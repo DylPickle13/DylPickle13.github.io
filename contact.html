@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnGem | Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div id="cursor-glow"></div>
+    <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html" class="active">Contact</a></li></ul></div></nav>
+    
+    <section class="container">
+        <div class="section-title reveal">
+            <h2>Initiate Contact</h2>
+            <p>Establish a secure connection with the EnGem team.</p>
+        </div>
+
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Message transmitted to engem313@gmail.com!');">
+            <div class="form-group">
+                <label>Identifier (Name)</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Return Address (Email)</label>
+                <input type="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Payload (Message)</label>
+                <textarea class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Transmit</button>
+            <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary);">Direct Link: <a href="mailto:engem313@gmail.com" style="color: var(--accent-1);">engem313@gmail.com</a></p>
+        </form>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnGem | Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div id="cursor-glow"></div>
+    <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html" class="active">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
+    
+    <section class="container">
+        <div class="section-title reveal">
+            <h2>Documentation</h2>
+            <p>Setup, architecture, and extension guides.</p>
+        </div>
+
+        <div class="doc-content reveal">
+            <h3>Quick Start</h3>
+            <p>Initialize the environment and launch the agent framework:</p>
+            <pre>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</pre>
+
+            <h3>Core Architecture</h3>
+            <p>EnGem relies on modular components that interact seamlessly:</p>
+            <ul>
+                <li><strong>LLM Layer:</strong> Google Gemini handles multi-modal reasoning.</li>
+                <li><strong>Tool/Skill System:</strong> Sandboxed execution for Python, browser control, and API interactions.</li>
+                <li><strong>Vector Memory:</strong> ChromaDB maintains persistent conversational context.</li>
+                <li><strong>Orchestrator:</strong> Manages parallel/serial agent execution plans dynamically.</li>
+            </ul>
+
+            <h3>Adding Skills</h3>
+            <p>Create a python module in `/skills` exposing a function. EnGem will auto-detect and register it as an executable tool.</p>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
