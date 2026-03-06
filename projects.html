@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <canvas id="canvas-bg"></canvas>
     <div class="bg-glow"></div>
     <div id="cursor-glow"></div>
+    
     <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html" class="active">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
     
     <section class="container">
@@ -18,27 +20,32 @@
         </div>
 
         <div class="project-card reveal">
-            <div class="project-visual">🧠</div>
+            <div class="project-visual">
+                <span>🧠</span>
+            </div>
             <div class="project-content">
                 <h3>fNIRS AI Pattern Analysis</h3>
-                <p>Leveraging EnGem's `run_notebook` and data science capabilities to process complex 4-Dimensional neural data. Automates reshaping and classification of Functional Near-Infrared Spectroscopy datasets.</p>
+                <p>Leveraging EnGem's `run_notebook` and data science capabilities to process complex 4-Dimensional neural data. Automates reshaping, training neural networks, and classification of Functional Near-Infrared Spectroscopy datasets.</p>
                 <ul>
                     <li>Automated 4D Data Reshaping</li>
-                    <li>Notebook Execution & Metrics Tracking</li>
-                    <li>Mean Accuracy: 0.568</li>
+                    <li>PyTorch Model Training Pipeline</li>
+                    <li>Automated Evaluation & Tracking</li>
                 </ul>
             </div>
         </div>
 
-        <div class="project-card reveal">
-            <div class="project-visual">🌐</div>
+        <div class="project-card reveal delay-1">
+            <div class="project-visual">
+                <span>🌐</span>
+            </div>
             <div class="project-content">
-                <h3>EnGem Showcase Site</h3>
-                <p>This cyber-ambient website was fully designed, coded, and deployed autonomously by EnGem. It features advanced CSS styling, interactive components, and real-time updates.</p>
+                <h3>EnGem Showcase Portfolio</h3>
+                <p>This cyber-ambient website was fully designed, coded, and deployed autonomously by EnGem. It features advanced CSS styling, an interactive terminal, and real-time canvas background rendering.</p>
                 <ul>
                     <li>Bento Box UI Architecture</li>
                     <li>Interactive Terminal Mockup</li>
-                    <li>Custom Hover Effects</li>
+                    <li>Canvas Particle Connections</li>
+                    <li>GitHub Pages CI/CD Integration</li>
                 </ul>
             </div>
         </div>

@@ -7,34 +7,55 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <canvas id="canvas-bg"></canvas>
     <div class="bg-glow"></div>
     <div id="cursor-glow"></div>
+    
     <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html" class="active">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
     
-    <section class="container">
-        <div class="section-title reveal">
-            <h2>Documentation</h2>
-            <p>Setup, architecture, and extension guides.</p>
-        </div>
+    <section class="container" style="padding-top: 150px;">
+        <div class="docs-layout">
+            <aside class="docs-sidebar reveal">
+                <h4>Contents</h4>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#quick-start">Quick Start</a></li>
+                    <li><a href="#configuration">Configuration</a></li>
+                    <li><a href="#skills">Skills & Tools</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                </ul>
+            </aside>
+            
+            <div class="doc-content reveal delay-1">
+                <h2>Documentation</h2>
+                
+                <h3 id="introduction">Introduction</h3>
+                <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface.</p>
+                <p>It provides sub-agent execution plans, lightweight skills, persistent conversation memory, a Chroma vector DB, and a Discord bot for chat, voice, and tool orchestration.</p>
 
-        <div class="doc-content reveal">
-            <h3>Quick Start</h3>
-            <p>Initialize the environment and launch the agent framework:</p>
-            <pre>python -m venv .venv
+                <h3 id="quick-start">Quick Start</h3>
+                <p>Create and activate a virtual environment, then install dependencies:</p>
+                <pre><code>python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt</pre>
+pip install -r requirements.txt</code></pre>
 
-            <h3>Core Architecture</h3>
-            <p>EnGem relies on modular components that interact seamlessly:</p>
-            <ul>
-                <li><strong>LLM Layer:</strong> Google Gemini handles multi-modal reasoning.</li>
-                <li><strong>Tool/Skill System:</strong> Sandboxed execution for Python, browser control, and API interactions.</li>
-                <li><strong>Vector Memory:</strong> ChromaDB maintains persistent conversational context.</li>
-                <li><strong>Orchestrator:</strong> Manages parallel/serial agent execution plans dynamically.</li>
-            </ul>
+                <p>Run the Discord bot:</p>
+                <pre><code>python discord_bot.py</code></pre>
 
-            <h3>Adding Skills</h3>
-            <p>Create a python module in `/skills` exposing a function. EnGem will auto-detect and register it as an executable tool.</p>
+                <h3 id="configuration">Configuration</h3>
+                <p>Configure required environment variables (examples):</p>
+                <ul>
+                    <li><code>DISCORD_BOT_TOKEN</code>: Discord bot token (see config.py)</li>
+                    <li><code>GEMINI_API_KEY</code>: API key for Gemini / LLM provider</li>
+                    <li>Optional: <code>DISCORD_ALLOWED_CHANNELS</code>, <code>VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code>MODEL</code></li>
+                </ul>
+
+                <h3 id="skills">Skills & Tools</h3>
+                <p>EnGem executes tools located in the <code>skills/</code> folder dynamically. Common tools include <code>use_browser</code>, <code>run_python</code>, and <code>run_notebook</code>.</p>
+                
+                <h3 id="architecture">Architecture</h3>
+                <p>The system utilizes an orchestrator model and sub-agent architecture to plan complex tasks, execute them in parallel or serial configurations, and verify outputs.</p>
+            </div>
         </div>
     </section>
 

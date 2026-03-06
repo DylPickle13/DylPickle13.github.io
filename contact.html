@@ -7,32 +7,40 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <canvas id="canvas-bg"></canvas>
     <div class="bg-glow"></div>
     <div id="cursor-glow"></div>
+    
     <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html" class="active">Contact</a></li></ul></div></nav>
     
     <section class="container">
-        <div class="section-title reveal">
-            <h2>Initiate Contact</h2>
-            <p>Establish a secure connection with the EnGem team.</p>
+        <div class="contact-wrapper">
+            <div class="contact-form reveal">
+                <div class="contact-header">
+                    <h3>Get in Touch</h3>
+                    <p>Contact the EnGem development team directly at <br> <a href="mailto:engem313@gmail.com">engem313@gmail.com</a></p>
+                </div>
+                
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message sending via EnGem network is under construction. Please use the direct email above.');">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Enter your message..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Initialize Transmission</button>
+                </form>
+            </div>
         </div>
-
-        <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Message transmitted to engem313@gmail.com!');">
-            <div class="form-group">
-                <label>Identifier (Name)</label>
-                <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Return Address (Email)</label>
-                <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Payload (Message)</label>
-                <textarea class="form-control" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Transmit</button>
-            <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary);">Direct Link: <a href="mailto:engem313@gmail.com" style="color: var(--accent-1);">engem313@gmail.com</a></p>
-        </form>
     </section>
 
     <script src="js/main.js"></script>
