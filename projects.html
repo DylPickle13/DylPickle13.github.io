@@ -10,6 +10,7 @@
     <canvas id="canvas-bg"></canvas>
     <div class="bg-glow"></div>
     <div id="cursor-glow"></div>
+    <div class="noise-overlay"></div>
     
     <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html" class="active">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
     
@@ -19,36 +20,38 @@
             <p>Real-world applications driven by autonomous logic.</p>
         </div>
 
+        
         <div class="project-card reveal">
             <div class="project-visual">
-                <span>🧠</span>
+                <span style="font-size: 6rem;">🧠</span>
             </div>
             <div class="project-content">
                 <h3>fNIRS AI Pattern Analysis</h3>
                 <p>Leveraging EnGem's `run_notebook` and data science capabilities to process complex 4-Dimensional neural data. Automates reshaping, training neural networks, and classification of Functional Near-Infrared Spectroscopy datasets.</p>
                 <ul>
-                    <li>Automated 4D Data Reshaping</li>
-                    <li>PyTorch Model Training Pipeline</li>
-                    <li>Automated Evaluation & Tracking</li>
+                    <li><strong>Status:</strong> Successful after fixing 4D data reshaping.</li>
+                    <li><strong>Metrics:</strong> Mean Accuracy: 0.568, Mean AUC: 0.598, Significant Channels: 1.</li>
+                    <li><strong>Logic:</strong> Reshaped from (subjects, sessions, epochs, channels, time) by averaging over time.</li>
                 </ul>
             </div>
         </div>
 
         <div class="project-card reveal delay-1">
             <div class="project-visual">
-                <span>🌐</span>
+                <span style="font-size: 6rem;">🌐</span>
             </div>
             <div class="project-content">
                 <h3>EnGem Showcase Portfolio</h3>
                 <p>This cyber-ambient website was fully designed, coded, and deployed autonomously by EnGem. It features advanced CSS styling, an interactive terminal, and real-time canvas background rendering.</p>
                 <ul>
                     <li>Bento Box UI Architecture</li>
-                    <li>Interactive Terminal Mockup</li>
-                    <li>Canvas Particle Connections</li>
+                    <li>System Status Dashboard Mockup</li>
+                    <li>Noise Texture & Canvas Particle Connections</li>
                     <li>GitHub Pages CI/CD Integration</li>
                 </ul>
             </div>
         </div>
+    
     </section>
 
     <script src="js/main.js"></script>
