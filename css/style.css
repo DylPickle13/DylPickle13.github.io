@@ -314,7 +314,7 @@ section {
 }
 
 .bento-item {
-    background: var(--card-bg);
+    background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 2rem;
@@ -379,7 +379,7 @@ section {
     grid-template-columns: 1.2fr 1fr;
     gap: 3rem;
     margin-bottom: 4rem;
-    background: var(--card-bg);
+    background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     overflow: hidden;
@@ -437,7 +437,7 @@ section {
 .docs-sidebar {
     position: sticky;
     top: 100px;
-    background: var(--card-bg);
+    background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid var(--glass-border);
@@ -450,7 +450,7 @@ section {
 .docs-sidebar a:hover { color: var(--text-primary); }
 
 .doc-content {
-    background: var(--card-bg);
+    background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 3rem;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -495,7 +495,7 @@ section {
 .contact-form {
     width: 100%;
     max-width: 600px;
-    background: var(--card-bg);
+    background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 3rem;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -580,4 +580,54 @@ textarea.form-control {
     z-index: 9999;
     opacity: 0.04;
     background: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-3); }
+
+/* Ultra-Modern Additions */
+.neon-btn {
+    box-shadow: 0 0 10px var(--accent-1), 0 0 20px var(--accent-1), inset 0 0 10px var(--accent-1);
+    border: 1px solid var(--accent-1);
+    background: transparent;
+    color: var(--accent-1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+.neon-btn:hover {
+    background: var(--accent-1);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-1), 0 0 40px var(--accent-1);
+}
+.glass-input {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.glass-input:focus {
+    box-shadow: 0 0 15px var(--accent-1);
+    border-color: var(--accent-1);
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+.dynamic-bento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.bento-item.wide { grid-column: span 2; }
+.bento-item.tall { grid-row: span 2; }
+.bento-item.large { grid-column: span 2; grid-row: span 2; }
+
+@media (max-width: 768px) {
+    .bento-item.wide, .bento-item.tall, .bento-item.large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
 }

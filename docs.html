@@ -27,38 +27,50 @@
                 </ul>
             </aside>
             
-            <div class="doc-content reveal delay-1">
+            
+            <div style="display: flex; gap: 2rem; max-width: 1200px; margin: 0 auto; width: 100%;">
+                <aside style="width: 250px; flex-shrink: 0; position: sticky; top: 100px; align-self: start; background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 12px;">
+                    <h3 style="color: var(--accent-1); margin-bottom: 1rem; font-size: 1.2rem;">On this page</h3>
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="#introduction" style="color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Introduction</a></li>
+                        <li><a href="#quick-start" style="color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Quick Start</a></li>
+                        <li><a href="#configuration" style="color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Configuration</a></li>
+                        <li><a href="#skills" style="color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Skills & Tools</a></li>
+                        <li><a href="#architecture" style="color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Architecture</a></li>
+                    </ul>
+                </aside>
+                <div class="doc-content reveal delay-1" style="flex-grow: 1; background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 12px;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 0 10px var(--accent-1);">Documentation</h2>
+                    
+                    <h3 id="introduction" style="color: var(--accent-1); margin-top: 1rem;">Introduction</h3>
+                    <p style="color: #fff; margin-bottom: 1rem;">EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface.</p>
+                    <p style="color: #fff; margin-bottom: 1rem;">It provides sub-agent execution plans, lightweight skills, persistent conversation memory, a Chroma vector DB, and a Discord bot for chat, voice, and tool orchestration.</p>
 
-                <h2>Documentation</h2>
-                
-                <h3 id="introduction">Introduction</h3>
-                <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface.</p>
-                <p>It provides sub-agent execution plans, lightweight skills, persistent conversation memory, a Chroma vector DB, and a Discord bot for chat, voice, and tool orchestration.</p>
-
-                <h3 id="quick-start">Quick Start</h3>
-                <p>Create and activate a virtual environment, then install dependencies:</p>
-                <pre><code>python -m venv .venv
+                    <h3 id="quick-start" style="color: var(--accent-1); margin-top: 2rem;">Quick Start</h3>
+                    <p style="color: #fff; margin-bottom: 1rem;">Create and activate a virtual environment, then install dependencies:</p>
+                    <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; color: #00ffcc;"><code style="font-family: 'JetBrains Mono', monospace;">python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt</code></pre>
 
-                <p>Run the Discord bot:</p>
-                <pre><code>python discord_bot.py</code></pre>
+                    <p style="color: #fff; margin-top: 1rem; margin-bottom: 1rem;">Run the Discord bot:</p>
+                    <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; color: #00ffcc;"><code style="font-family: 'JetBrains Mono', monospace;">python discord_bot.py</code></pre>
 
-                <h3 id="configuration">Configuration</h3>
-                <p>Configure required environment variables (examples):</p>
-                <ul>
-                    <li><code>DISCORD_BOT_TOKEN</code>: Discord bot token (see config.py)</li>
-                    <li><code>GEMINI_API_KEY</code>: API key for Gemini / LLM provider</li>
-                    <li>Optional: <code>DISCORD_ALLOWED_CHANNELS</code>, <code>VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code>MODEL</code></li>
-                </ul>
+                    <h3 id="configuration" style="color: var(--accent-1); margin-top: 2rem;">Configuration</h3>
+                    <p style="color: #fff; margin-bottom: 1rem;">Configure required environment variables (examples):</p>
+                    <ul style="color: #fff; margin-left: 2rem; margin-bottom: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><code style="color: var(--accent-2);">DISCORD_BOT_TOKEN</code>: Discord bot token (see config.py)</li>
+                        <li style="margin-bottom: 0.5rem;"><code style="color: var(--accent-2);">GEMINI_API_KEY</code>: API key for Gemini / LLM provider</li>
+                        <li style="margin-bottom: 0.5rem;">Optional: <code style="color: var(--accent-2);">DISCORD_ALLOWED_CHANNELS</code>, <code style="color: var(--accent-2);">VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code style="color: var(--accent-2);">MODEL</code></li>
+                    </ul>
 
-                <h3 id="skills">Skills & Tools</h3>
-                <p>EnGem executes tools located in the <code>skills/</code> folder dynamically. Common tools include <code>use_browser</code>, <code>run_python</code>, and <code>run_notebook</code>.</p>
-                
-                <h3 id="architecture">Architecture</h3>
-                <p>The system utilizes an orchestrator model and sub-agent architecture to plan complex tasks, execute them in parallel or serial configurations, and verify outputs.</p>
-
+                    <h3 id="skills" style="color: var(--accent-1); margin-top: 2rem;">Skills & Tools</h3>
+                    <p style="color: #fff; margin-bottom: 1rem;">EnGem executes tools located in the <code style="color: var(--accent-2);">skills/</code> folder dynamically. Common tools include <code style="color: var(--accent-2);">use_browser</code>, <code style="color: var(--accent-2);">run_python</code>, and <code style="color: var(--accent-2);">run_notebook</code>.</p>
+                    
+                    <h3 id="architecture" style="color: var(--accent-1); margin-top: 2rem;">Architecture</h3>
+                    <p style="color: #fff; margin-bottom: 1rem;">The system utilizes an orchestrator model and sub-agent architecture to plan complex tasks, execute them in parallel or serial configurations, and verify outputs.</p>
+                </div>
             </div>
+
         </div>
     </section>
 
