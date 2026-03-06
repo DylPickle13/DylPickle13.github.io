@@ -1,90 +1,85 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EnGem | Intelligence Accelerated</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EnGem | Intelligence Accelerated</title>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <canvas id="canvas-bg"></canvas>
-    <div class="bg-glow"></div>
-    <div id="cursor-glow"></div>
-    <div class="noise-overlay"></div>
-    
-    <nav class="navbar"><div class="nav-container"><a href="index.html" class="logo">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html" class="active">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
-    
-    <section class="container" style="min-height: 100vh;">
-        <div class="hero reveal">
-            <div class="hero-content">
-                <h1>Intelligence<br>Accelerated</h1>
-                <p>EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute power and flawless execution.</p>
-                <div class="btn-group">
-                    <a href="features.html" class="btn btn-primary neon-btn">Explore Features</a>
-                    <a href="docs.html" class="btn btn-secondary">Read Docs</a>
-                </div>
-            </div>
-            
-            
-            <div class="terminal-wrapper reveal delay-2">
-                <div class="terminal-header" style="justify-content: space-between;">
-                    <div style="display:flex; gap:0.5rem; align-items:center;">
-                        <div class="term-dot red"></div>
-                        <div class="term-dot yellow"></div>
-                        <div class="term-dot green"></div>
-                    </div>
-                    <div style="color:var(--accent-1); font-family:'JetBrains Mono', monospace; font-size:0.8rem; letter-spacing:1px;">SYSTEM STATUS: OPTIMAL</div>
-                </div>
-                <div class="terminal-body" style="display:flex; flex-direction:column; gap:15px;">
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-                        <div>
-                            <div style="color:var(--text-secondary); font-size:0.75rem;">CPU LOAD</div>
-                            <div style="color:#00ffcc; font-family:'JetBrains Mono', monospace;">12.4% [||||      ]</div>
-                        </div>
-                        <div>
-                            <div style="color:var(--text-secondary); font-size:0.75rem;">MEMORY</div>
-                            <div style="color:#bf00ff; font-family:'JetBrains Mono', monospace;">4.2GB / 16GB</div>
-                        </div>
-                        <div>
-                            <div style="color:var(--text-secondary); font-size:0.75rem;">NETWORK</div>
-                            <div style="color:#0088ff; font-family:'JetBrains Mono', monospace;">1.2 Gbps ↑↓</div>
-                        </div>
-                        <div>
-                            <div style="color:var(--text-secondary); font-size:0.75rem;">ACTIVE AGENTS</div>
-                            <div style="color:#27c93f; font-family:'JetBrains Mono', monospace;">14 ONLINE</div>
-                        </div>
-                    </div>
-                    <div class="term-line" style="margin-top:auto;">
-                        <span class="term-prompt">engem@core:~$</span>
-                        <input type="text" id="term-input" class="term-input" autocomplete="off" autofocus placeholder="Awaiting instruction...">
-                    </div>
-                </div>
-            </div>
+<canvas id="canvas-bg"></canvas>
+<div class="bg-glow"></div>
+<div id="cursor-glow"></div>
+<div class="noise-overlay"></div>
+<nav class="navbar"><div class="nav-container"><a class="logo" href="index.html">EnGem<span>.</span></a><ul class="nav-links"><li><a class="active" href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
+<section class="container" style="min-height: 100vh;">
+<div class="hero reveal">
+<div class="hero-content">
+<h1>Intelligence<br/>Accelerated</h1>
+<p>EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute power and flawless execution.</p>
+<div class="btn-group">
+<a class="btn btn-primary neon-btn" href="features.html">Explore Features</a>
+<a class="btn btn-secondary" href="docs.html">Read Docs</a>
+</div>
+</div>
+<div class="terminal-wrapper reveal delay-2">
+<div class="terminal-header" style="justify-content: space-between;">
+<div style="display:flex; gap:0.5rem; align-items:center;">
+<div class="term-dot red"></div>
+<div class="term-dot yellow"></div>
+<div class="term-dot green"></div>
+</div>
+<div style="color:var(--accent-1); font-family:'JetBrains Mono', monospace; font-size:0.8rem; letter-spacing:1px;">SYSTEM STATUS: OPTIMAL</div>
+</div>
+<div class="terminal-body" style="display:flex; flex-direction:column; gap:15px;">
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+<div>
+<div style="color:var(--text-secondary); font-size:0.75rem;">CPU LOAD</div>
+<div style="color:#00ffcc; font-family:'JetBrains Mono', monospace;">12.4% [||||      ]</div>
+</div>
+<div>
+<div style="color:var(--text-secondary); font-size:0.75rem;">MEMORY</div>
+<div style="color:#bf00ff; font-family:'JetBrains Mono', monospace;">4.2GB / 16GB</div>
+</div>
+<div>
+<div style="color:var(--text-secondary); font-size:0.75rem;">NETWORK</div>
+<div style="color:#0088ff; font-family:'JetBrains Mono', monospace;">1.2 Gbps ↑↓</div>
+</div>
+<div>
+<div style="color:var(--text-secondary); font-size:0.75rem;">ACTIVE AGENTS</div>
+<div style="color:#27c93f; font-family:'JetBrains Mono', monospace;">14 ONLINE</div>
+</div>
+</div>
+<div class="term-line" style="margin-top:auto;">
+<span class="term-prompt">engem@core:~$</span>
+<input autocomplete="off" autofocus="" class="term-input" id="term-input" placeholder="Awaiting instruction..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+<div class="terminal-body">
+<div class="term-line">
+<span class="term-prompt">System:</span>
+<span class="term-text" style="color: #27c93f;">EnGem Core initialized.</span>
+</div>
+<div class="term-line">
+<span class="term-prompt">System:</span>
+<span class="term-text">Multi-modal pathways online.</span>
+</div>
+<div class="term-line">
+<span class="term-prompt">System:</span>
+<span class="term-text">Type 'help' to see available commands.</span>
+</div>
+<div id="term-output"></div>
+<div class="term-input-line">
+<span class="term-prompt">engem@ai:~$</span>
+<input autocomplete="off" autofocus="" class="term-input" id="term-input" type="text"/>
+</div>
+</div>
 
-        </div>
-                <div class="terminal-body">
-                    <div class="term-line">
-                        <span class="term-prompt">System:</span>
-                        <span class="term-text" style="color: #27c93f;">EnGem Core initialized.</span>
-                    </div>
-                    <div class="term-line">
-                        <span class="term-prompt">System:</span>
-                        <span class="term-text">Multi-modal pathways online.</span>
-                    </div>
-                    <div class="term-line">
-                        <span class="term-prompt">System:</span>
-                        <span class="term-text">Type 'help' to see available commands.</span>
-                    </div>
-                    <div id="term-output"></div>
-                    <div class="term-input-line">
-                        <span class="term-prompt">engem@ai:~$</span>
-                        <input type="text" id="term-input" class="term-input" autocomplete="off" autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <script src="js/main.js"></script>
+</section>
+<script src="js/main.js"></script>
 </body>
 </html>
