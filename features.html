@@ -1,54 +1,172 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EnGem | Features</title>
-<link href="css/style.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EnGem - Features</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <style>
+        /* Ultra-modern specific styles for features */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .bento-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .bento-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 242, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
+        }
+        .bento-item:hover::before {
+            opacity: 1;
+        }
+        .bento-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00f2ff, #0077ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .bento-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            z-index: 1;
+        }
+        .bento-desc {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            z-index: 1;
+        }
+        @media (min-width: 768px) {
+            .bento-item.large {
+                grid-column: span 2;
+            }
+        }
+        h1.page-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin: 3rem 0 1rem;
+            background: linear-gradient(to right, #ffffff, #00f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.page-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body>
-<canvas id="canvas-bg"></canvas>
-<div class="bg-glow"></div>
-<div id="cursor-glow"></div>
-<div class="noise-overlay"></div>
-<nav class="navbar"><div class="nav-container"><a class="logo" href="index.html">EnGem<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a class="active" href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
-<section class="container">
-<div class="section-title reveal">
-<h2>Engine Capabilities</h2>
-<p>A modular ecosystem designed for complex, agentic tasks.</p>
-</div>
-<div class="bento-grid dynamic-bento">
-<div class="bento-item wide reveal">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">🌐</span> use_browser</h3>
-<p>Seamless web navigation, complex UI interaction, and deep data extraction using advanced LLM reasoning to parse DOM structures efficiently.</p>
-</div>
-<div class="bento-item tall reveal delay-1">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">🐍</span> run_python</h3>
-<p>Sandboxed Python execution for robust logic handling, data manipulation, and automated workflow scripts. Run operations safely.</p>
-</div>
-<div class="bento-item reveal delay-2">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">🎨</span> generate_image</h3>
-<p>High-fidelity image synthesis for creative generation and visual content creation directly from prompts.</p>
-</div>
-<div class="bento-item reveal delay-3">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">🎬</span> generate_video</h3>
-<p>Cinematic video rendering translating complex scene descriptions into high-quality motion clips.</p>
-</div>
-<div class="bento-item wide reveal">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">📓</span> run_notebook</h3>
-<p>Jupyter Notebook automation. Execute complex data science pipelines seamlessly, track metrics, and capture visual outputs autonomously.</p>
-</div>
-<div class="bento-item reveal delay-1">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">🔍</span> run_google_search</h3>
-<p>Direct integration with Google Search APIs for real-time information retrieval and summarization.</p>
-</div>
-<div class="bento-item large reveal delay-2">
-<h3 style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5em">📁</span> collect_generated_media</h3>
-<p>Centralized media repository management. Automatically tracks, organizes, and retrieves generated assets cleanly for downstream use.</p>
-</div>
-</div>
-</section>
-<script src="js/main.js"></script>
+<body class="dark-theme">
+    <nav class="navbar">
+        <div class="logo">EnGem</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html" class="active">Features</a>
+            <a href="projects.html">Projects</a>
+            <a href="docs.html">Docs</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title reveal">Agentic Capabilities</h1>
+        <p class="page-subtitle reveal">Modular skills enabling intelligent autonomous execution.</p>
+
+        <div class="bento-grid">
+            <div class="bento-item large reveal">
+                <div class="bento-icon">🌐</div>
+                <h3 class="bento-title">use_browser</h3>
+                <p class="bento-desc">Full autonomous web navigation. The agent can seamlessly browse pages, extract context, interact with UI elements, and summarize complex web architectures in real-time.</p>
+            </div>
+            
+            <div class="bento-item reveal">
+                <div class="bento-icon">🐍</div>
+                <h3 class="bento-title">run_python</h3>
+                <p class="bento-desc">Secure, local Python code execution. Enables the engine to dynamically process data, construct pipelines, and manipulate OS-level resources on the fly.</p>
+            </div>
+            
+            <div class="bento-item reveal">
+                <div class="bento-icon">🎨</div>
+                <h3 class="bento-title">generate_image</h3>
+                <p class="bento-desc">Direct integration with cutting-edge visual synthesis models. Produce high-fidelity images directly from conversational prompts.</p>
+            </div>
+            
+            <div class="bento-item reveal">
+                <div class="bento-icon">🎬</div>
+                <h3 class="bento-title">generate_video</h3>
+                <p class="bento-desc">Transform text into motion. Generate short, stunning video clips from descriptive prompts to enhance multi-modal outputs.</p>
+            </div>
+            
+            <div class="bento-item reveal">
+                <div class="bento-icon">🔍</div>
+                <h3 class="bento-title">run_google_search</h3>
+                <p class="bento-desc">Real-time information retrieval. Bypasses static knowledge limits by aggregating and summarizing live data directly from Google Search.</p>
+            </div>
+            
+            <div class="bento-item large reveal">
+                <div class="bento-icon">📓</div>
+                <h3 class="bento-title">run_notebook</h3>
+                <p class="bento-desc">Data Science Sandbox. Dynamically execute entire Jupyter notebooks (using Papermill) for complex, multi-stage analytical workflows and persistent data visualization.</p>
+            </div>
+            
+            <div class="bento-item reveal">
+                <div class="bento-icon">📁</div>
+                <h3 class="bento-title">collect_generated_media</h3>
+                <p class="bento-desc">Automated media indexing. Instantly retrieve, sort, and manage all generated visual and video assets across the workspace.</p>
+            </div>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach((el, i) => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, i * 150);
+            });
+        });
+    </script>
 </body>
 </html>
