@@ -1,83 +1,567 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EnGem | Intelligence Accelerated</title>
-<link href="css/style.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EnGem | Intelligence Accelerated</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-base: #030305;
+            --accent-cyan: #00f2ff;
+            --accent-purple: #8a2be2;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h2.section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(3, 3, 5, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .nav-brand span { color: var(--accent-cyan); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-cyan);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Home Hero */
+        #home {
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 242, 255, 0.05) 0%, transparent 60%);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .bento-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            transition: transform 0.4s, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 255, 0.3);
+        }
+
+        .bento-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bento-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .bento-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(138, 43, 226, 0.4);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent-cyan);
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tag.purple {
+            background: rgba(138, 43, 226, 0.1);
+            color: #c98cff;
+        }
+
+        .project-title { font-size: 1.8rem; margin-bottom: 1rem; }
+        .project-desc { color: var(--text-muted); font-size: 1rem; flex-grow: 1; }
+
+        .project-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            background: transparent;
+        }
+
+        /* Docs */
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+        }
+
+        .docs-container h1, .docs-container h2, .docs-container h3 { margin-top: 2rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; }
+        .docs-container h1 { display: none; } /* Hide main title from markdown */
+        .docs-container p, .docs-container li { color: var(--text-muted); margin-bottom: 1rem; }
+        .docs-container ul { margin-left: 2rem; margin-bottom: 1rem; }
+        .docs-container pre { background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 12px; overflow-x: auto; margin-bottom: 1.5rem; border: 1px solid var(--glass-border); }
+        .docs-container code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.9rem; }
+        .docs-container pre code { color: #e0e0e0; }
+
+        /* Contact */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: #fff; font-size: 0.9rem; }
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); }
+        textarea.form-control { min-height: 150px; resize: vertical; }
+
+        .contact-email { text-align: center; margin-top: 2rem; color: var(--text-muted); }
+        .contact-email a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simple mobile handling */
+            section { padding: 100px 5% 40px; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-<canvas id="canvas-bg"></canvas>
-<div class="bg-glow"></div>
-<div id="cursor-glow"></div>
-<div class="noise-overlay"></div>
-<nav class="navbar"><div class="nav-container"><a class="logo" href="index.html">EnGem<span>.</span></a><ul class="nav-links"><li><a class="active" href="index.html">Home</a></li><li><a href="features.html">Features</a></li><li><a href="projects.html">Projects</a></li><li><a href="docs.html">Docs</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
-<section class="container" style="min-height: 100vh;">
-<div class="hero reveal">
-<div class="hero-content">
-<h1>Intelligence<br/>Accelerated</h1>
-<p>EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute power and flawless execution.</p>
-<div class="btn-group">
-<a class="btn btn-primary neon-btn" href="features.html">Explore Features</a>
-<a class="btn btn-secondary" href="docs.html">Read Docs</a>
-</div>
-</div>
-<div class="terminal-wrapper reveal delay-2">
-<div class="terminal-header" style="justify-content: space-between;">
-<div style="display:flex; gap:0.5rem; align-items:center;">
-<div class="term-dot red"></div>
-<div class="term-dot yellow"></div>
-<div class="term-dot green"></div>
-</div>
-<div style="color:var(--accent-1); font-family:'JetBrains Mono', monospace; font-size:0.8rem; letter-spacing:1px;">SYSTEM STATUS: OPTIMAL</div>
-</div>
-<div class="terminal-body" style="display:flex; flex-direction:column; gap:15px;">
-<div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-<div>
-<div style="color:var(--text-secondary); font-size:0.75rem;">CPU LOAD</div>
-<div style="color:#00ffcc; font-family:'JetBrains Mono', monospace;">12.4% [||||      ]</div>
-</div>
-<div>
-<div style="color:var(--text-secondary); font-size:0.75rem;">MEMORY</div>
-<div style="color:#bf00ff; font-family:'JetBrains Mono', monospace;">4.2GB / 16GB</div>
-</div>
-<div>
-<div style="color:var(--text-secondary); font-size:0.75rem;">NETWORK</div>
-<div style="color:#0088ff; font-family:'JetBrains Mono', monospace;">1.2 Gbps ↑↓</div>
-</div>
-<div>
-<div style="color:var(--text-secondary); font-size:0.75rem;">ACTIVE AGENTS</div>
-<div style="color:#27c93f; font-family:'JetBrains Mono', monospace;">14 ONLINE</div>
-</div>
-</div>
-<div class="term-line" style="margin-top:auto;">
-<span class="term-prompt">engem@core:~$</span>
-<input autocomplete="off" autofocus="" class="term-input" id="term-input" placeholder="Awaiting instruction..." type="text"/>
-</div>
-</div>
-</div>
-</div>
-<div class="terminal-body">
-<div class="term-line">
-<span class="term-prompt">System:</span>
-<span class="term-text" style="color: #27c93f;">EnGem Core initialized.</span>
-</div>
-<div class="term-line">
-<span class="term-prompt">System:</span>
-<span class="term-text">Multi-modal pathways online.</span>
-</div>
-<div class="term-line">
-<span class="term-prompt">System:</span>
-<span class="term-text">Type 'help' to see available commands.</span>
-</div>
-<div id="term-output"></div>
-<div class="term-input-line">
-<span class="term-prompt">engem@ai:~$</span>
-<input autocomplete="off" autofocus="" class="term-input" id="term-input" type="text"/>
-</div>
-</div>
-</section>
-<script src="js/main.js"></script>
+
+    <nav>
+        <a href="#home" class="nav-brand brand">EnGem<span>.</span></a>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#features">Features</a>
+            <a href="#projects">Projects</a>
+            <a href="#docs">Docs</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="reveal">
+            <h1 class="hero-title">Intelligence<br>Accelerated</h1>
+            <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
+            <a href="#features" class="btn-primary">Explore the Engine</a>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+        <h2 class="section-title reveal">Core Capabilities</h2>
+        <p class="section-subtitle reveal">A modular suite of operational skills empowering the EnGem engine.</p>
+        
+        <div class="bento-grid">
+            <div class="bento-item reveal delay-1">
+                <div class="bento-icon">🌐</div>
+                <h3 class="bento-title">use_browser</h3>
+                <p class="bento-desc">Fully autonomous DOM parsing and web interaction for seamless extraction and navigation.</p>
+            </div>
+            <div class="bento-item reveal delay-2">
+                <div class="bento-icon">🐍</div>
+                <h3 class="bento-title">run_python</h3>
+                <p class="bento-desc">Secure local execution of Python scripts for advanced data manipulation and system-level operations.</p>
+            </div>
+            <div class="bento-item reveal delay-3">
+                <div class="bento-icon">🖼️</div>
+                <h3 class="bento-title">generate_image</h3>
+                <p class="bento-desc">High-fidelity text-to-image synthesis natively integrated into the agentic workflow.</p>
+            </div>
+            <div class="bento-item reveal delay-1">
+                <div class="bento-icon">🎬</div>
+                <h3 class="bento-title">generate_video</h3>
+                <p class="bento-desc">Transform complex prompts into dynamic video sequences for rich multi-modal output.</p>
+            </div>
+            <div class="bento-item reveal delay-2">
+                <div class="bento-icon">📓</div>
+                <h3 class="bento-title">run_notebook</h3>
+                <p class="bento-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of data science pipelines.</p>
+            </div>
+            <div class="bento-item reveal delay-3">
+                <div class="bento-icon">🔍</div>
+                <h3 class="bento-title">run_google_search</h3>
+                <p class="bento-desc">Real-time information retrieval across the global web to augment contextual reasoning.</p>
+            </div>
+            <div class="bento-item reveal delay-1">
+                <div class="bento-icon">📂</div>
+                <h3 class="bento-title">collect_media</h3>
+                <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets.</p>
+            </div>
+            <div class="bento-item reveal delay-2" style="border-color: rgba(138, 43, 226, 0.4);">
+                <div class="bento-icon">⚙️</div>
+                <h3 class="bento-title">Debug Utilities</h3>
+                <p class="bento-desc">Deep research protocols and direct Google Drive access tools for robust operational maintenance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2 class="section-title reveal">Deployed Workloads</h2>
+        <p class="section-subtitle reveal">Real-world deployments and high-dimensional problem solving.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card reveal delay-1">
+                <div class="project-tags">
+                    <span class="tag">Data Science</span>
+                    <span class="tag">fNIRS</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <h3 class="project-title">fNIRS AI Analysis</h3>
+                <p class="project-desc">Autonomous processing of 4D neural data. Engineered a 615-feature space evaluating Mean, Slope, and Asymmetry across channels. Evaluated Random Forest, SVM, and ExtraTrees models to achieve a peak Acc: 0.661 and AUC: 0.729.</p>
+            </div>
+
+            <div class="project-card reveal delay-2">
+                <div class="project-tags">
+                    <span class="tag purple">Web Dev</span>
+                    <span class="tag purple">DOM Patching</span>
+                    <span class="tag purple">CI/CD</span>
+                </div>
+                <h3 class="project-title">EnGem Portfolio</h3>
+                <p class="project-desc">This very single-page application. EnGem fully audited the repository, parsed requirements, composed the HTML/CSS with glassmorphism, and deployed the updates directly via git orchestration.</p>
+            </div>
+
+            <div class="project-card project-placeholder reveal delay-3">
+                <div>
+                    <h3 class="project-title" style="color: var(--text-muted); margin-bottom: 0.5rem;">More to Come</h3>
+                    <p class="project-desc">Continuous execution protocols are online. Future autonomous workloads will be indexed here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCS SECTION -->
+    <section id="docs">
+        <h2 class="section-title reveal">Documentation</h2>
+        <p class="section-subtitle reveal">System architecture, configuration, and developer guides.</p>
+        
+        <div class="docs-container reveal delay-1">
+            <h1>EnGem</h1>
+<p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
+<ul>
+<li>sub-agent execution plans and lightweight skills</li>
+<li>persistent conversation memory and a Chroma vector DB</li>
+<li>a Discord bot for chat, voice, and tool orchestration</li>
+</ul>
+<p><strong>This README</strong> summarizes how to get started, where key pieces live, and how to run and develop the project.</p>
+<p><strong>Quick Start</strong></p>
+<ol>
+<li>Create and activate a virtual environment, then install dependencies:</li>
+</ol>
+<pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+</code></pre>
+<ol>
+<li>
+<p>Configure required environment variables (examples):</p>
+</li>
+<li>
+<p><code>DISCORD_BOT_TOKEN</code>: Discord bot token (see <a href="config.py">config.py</a>).</p>
+</li>
+<li><code>GEMINI_API_KEY</code>: API key for Gemini / LLM provider.</li>
+<li>
+<p>Optional: <code>DISCORD_ALLOWED_CHANNELS</code>, <code>VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code>MODEL</code> — see <a href="config.py">config.py</a> for defaults.</p>
+</li>
+<li>
+<p>Run the Discord bot:</p>
+</li>
+</ol>
+<pre><code class="language-bash">python discord_bot.py
+</code></pre>
+<p><strong>Key Components</strong></p>
+<ul>
+<li><strong>Bot:</strong> <a href="discord_bot.py">discord_bot.py</a> — Discord integration, event handlers, and execution-plan progress tracking.</li>
+<li><strong>LLM integration:</strong> <a href="llm.py">llm.py</a> — model wiring, prompts, and preview/dispatch helpers.</li>
+<li><strong>Configuration:</strong> <a href="config.py">config.py</a> — environment variables and defaults.</li>
+<li><strong>Memory &amp; embeddings:</strong> <code>memory/</code> — channel histories under <code>memory/channel_history/</code> and embeddings at <a href="memory/vector_db/chroma.sqlite3">memory/vector_db/chroma.sqlite3</a>.</li>
+<li><strong>Skills:</strong> <code>skills/</code> — modular tools the agent can invoke (e.g., <a href="skills/run_python.py">skills/run_python.py</a>, <a href="skills/use_browser.py">skills/use_browser.py</a>).</li>
+<li><strong>Agent docs:</strong> <a href="agent_instructions/manager.md">agent_instructions/manager.md</a> — templates and guidance for sub-agents.</li>
+<li><strong>Sandbox &amp; notebooks:</strong> <a href="sandbox/run_notebook.py">sandbox/run_notebook.py</a> and <code>sandbox/notebooks/</code> for experiments.</li>
+</ul>
+<p><strong>Running &amp; Development Notes</strong></p>
+<ul>
+<li>The project uses a plain Python entrypoint; run the bot with <code>python discord_bot.py</code> while the virtualenv is active.</li>
+<li>Edit code, then restart the process to pick up changes. The repo contains many small scripts under <code>skills/</code> that can be exercised independently.</li>
+<li>Use <code>requirements.txt</code> to reproduce the environment.</li>
+</ul>
+<p><strong>Behavioral notes</strong></p>
+<ul>
+<li>The execution-plan progress tracker posts and updates a Discord message while sub-agents run. Message edits are now guarded so the bot only edits when the content actually changes, reducing unnecessary API calls and avoiding rate-limit pressure.</li>
+</ul>
+<p><strong>Data &amp; Storage</strong></p>
+<ul>
+<li>Conversation histories: <code>memory/channel_history/</code>.</li>
+<li>Vector DB / embeddings: <a href="memory/vector_db/chroma.sqlite3">memory/vector_db/chroma.sqlite3</a>.</li>
+<li>Generated media: <code>generated_images/</code> and <code>generated_videos/</code>.</li>
+</ul>
+<p><strong>Useful Commands</strong></p>
+<pre><code class="language-bash"># activate venv
+source .venv/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# run the Discord bot
+python discord_bot.py
+</code></pre>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2 class="section-title reveal">Initialize Contact</h2>
+        <p class="section-subtitle reveal">Direct transmission channel to the EnGem developers.</p>
+        
+        <div class="contact-container reveal delay-1">
+            <form onsubmit="event.preventDefault(); alert('Transmission simulated. Please email directly.');">
+                <div class="form-group">
+                    <label class="form-label">Identification (Name)</label>
+                    <input type="text" class="form-control" required placeholder="Enter your designation">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Return Vector (Email)</label>
+                    <input type="email" class="form-control" required placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payload (Message)</label>
+                    <textarea class="form-control" required placeholder="Transmit your query..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Transmission</button>
+            </form>
+            
+            <p class="contact-email">
+                Or email directly at <br>
+                <a href="mailto:engem.engine@gmail.com">engem.engine@gmail.com</a>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Active Nav Link Spy
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
