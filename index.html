@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="description" content="EnGem - Intelligence Accelerated. A multi-modal autonomous agent engine."/>
     <title>EnGem | Intelligence Accelerated</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
     <style>
         :root {
-            --bg-base: #020204;
-            --accent-cyan: #00f2ff;
-            --accent-purple: #b026ff;
-            --glass-bg: rgba(20, 20, 30, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-highlight: rgba(255, 255, 255, 0.2);
+            --bg-base: #050508;
+            --accent-cyan: #00e5ff;
+            --accent-purple: #c24cf6;
+            --glass-bg: rgba(25, 25, 35, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-highlight: rgba(255, 255, 255, 0.25);
             --text-main: #ffffff;
-            --text-muted: #a0a5b5;
+            --text-muted: #c4c9d4; /* Improved contrast */
+            --focus-ring: #00e5ff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,6 +28,26 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+
+        /* Accessibility: Focus States & Skip Link */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 4px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            background: var(--accent-cyan);
+            color: #000;
+            padding: 12px 24px;
+            z-index: 2000;
+            transition: top 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .skip-link:focus { top: 0; }
 
         /* Particle Background Canvas */
         #particles-canvas {
@@ -39,21 +61,22 @@
         h1, h2, h3, h4, .brand { font-family: 'Space Grotesk', sans-serif; }
         
         h2.section-title {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             text-align: center;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+            text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+            font-weight: 700;
         }
 
         p.section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             margin-bottom: 4rem;
-            max-width: 600px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -66,22 +89,22 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
-            background: rgba(2, 2, 4, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(5, 5, 8, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--glass-border);
             z-index: 1000;
         }
 
         .nav-brand { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; }
-        .nav-brand span { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        .nav-brand span { color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-cyan); }
 
         .nav-links { display: flex; gap: 2.5rem; }
         .nav-links a { 
             color: var(--text-muted); 
             text-decoration: none; 
-            font-size: 1rem; 
-            font-weight: 600; 
+            font-size: 1.05rem; 
+            font-weight: 500; 
             transition: all 0.3s ease; 
             position: relative;
         }
@@ -109,22 +132,22 @@
 
         #home { align-items: center; text-align: center; }
         .hero-title { 
-            font-size: clamp(3.5rem, 8vw, 6.5rem); 
+            font-size: clamp(3.5rem, 8vw, 7rem); 
             font-weight: 700; 
             line-height: 1.1; 
             margin-bottom: 1.5rem; 
-            background: linear-gradient(to right, #ffffff, #a0a5b5);
+            background: linear-gradient(to right, #ffffff, #d4d8e3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
         }
-        .hero-subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin-bottom: 3rem; }
+        .hero-subtitle { font-size: 1.4rem; color: var(--text-muted); max-width: 750px; margin-bottom: 3rem; font-weight: 400; }
 
         .btn-primary {
             display: inline-block;
             padding: 1.2rem 3rem;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #fff;
+            color: #000;
             text-decoration: none;
             font-weight: 700;
             border-radius: 50px;
@@ -135,7 +158,7 @@
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -144,17 +167,17 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: all 0.6s ease;
         }
         .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(176, 38, 255, 0.4); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(194, 76, 246, 0.4); color: #000; }
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
         }
@@ -164,10 +187,10 @@
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 var(--glass-highlight);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight);
             position: relative;
             overflow: hidden;
         }
@@ -176,27 +199,27 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             border-radius: 24px;
-            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0);
+            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0);
             transition: box-shadow 0.4s ease;
             pointer-events: none;
         }
         .bento-item:hover { 
-            transform: translateY(-10px); 
+            transform: translateY(-8px); 
             border-color: var(--accent-cyan); 
-            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15), inset 0 1px 0 var(--glass-highlight);
+            box-shadow: 0 20px 45px rgba(0, 229, 255, 0.2), inset 0 1px 0 var(--glass-highlight);
         }
-        .bento-item:hover::after { box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.1); }
+        .bento-item:hover::after { box-shadow: inset 0 0 25px rgba(0, 229, 255, 0.15); }
         .bento-item.purple:hover {
             border-color: var(--accent-purple);
-            box-shadow: 0 20px 40px rgba(176, 38, 255, 0.15), inset 0 1px 0 var(--glass-highlight);
+            box-shadow: 0 20px 45px rgba(194, 76, 246, 0.2), inset 0 1px 0 var(--glass-highlight);
         }
-        .bento-item.purple:hover::after { box-shadow: inset 0 0 20px rgba(176, 38, 255, 0.1); }
+        .bento-item.purple:hover::after { box-shadow: inset 0 0 25px rgba(194, 76, 246, 0.15); }
         
-        .bento-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
-        .bento-title { font-size: 1.5rem; margin-bottom: 0.8rem; color: #fff; }
-        .bento-desc { color: var(--text-muted); font-size: 1.05rem; }
+        .bento-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; filter: drop-shadow(0 0 15px rgba(255,255,255,0.25)); }
+        .bento-title { font-size: 1.6rem; margin-bottom: 0.8rem; color: #fff; font-weight: 600; }
+        .bento-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.5; }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; width: 100%; }
         .project-card { 
             background: var(--glass-bg); 
             border: 1px solid var(--glass-border); 
@@ -205,64 +228,80 @@
             display: flex; 
             flex-direction: column; 
             transition: all 0.4s ease;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 var(--glass-highlight);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight);
         }
         .project-card:hover { 
             border-color: var(--accent-purple); 
-            box-shadow: 0 20px 50px rgba(176, 38, 255, 0.2), inset 0 1px 0 var(--glass-highlight); 
+            box-shadow: 0 20px 50px rgba(194, 76, 246, 0.25), inset 0 1px 0 var(--glass-highlight); 
             transform: translateY(-8px);
         }
         .project-tags { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .tag { background: rgba(0, 242, 255, 0.1); color: var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(0, 242, 255, 0.2); }
-        .tag.purple { background: rgba(176, 38, 255, 0.1); color: #dfa6ff; border: 1px solid rgba(176, 38, 255, 0.2); }
-        .project-title { font-size: 2rem; margin-bottom: 1rem; }
-        .project-desc { color: var(--text-muted); font-size: 1.1rem; flex-grow: 1; }
+        .tag { background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(0, 229, 255, 0.25); font-weight: 600; }
+        .tag.purple { background: rgba(194, 76, 246, 0.15); color: #e8a6ff; border: 1px solid rgba(194, 76, 246, 0.25); }
+        .project-title { font-size: 2.2rem; margin-bottom: 1rem; color: #fff; }
+        .project-desc { color: var(--text-muted); font-size: 1.15rem; flex-grow: 1; }
 
-        .docs-container { max-width: 1000px; margin: 0 auto; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 4rem; width: 100%; backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 var(--glass-highlight); }
-        .docs-container h1, .docs-container h2, .docs-container h3 { margin-top: 2.5rem; margin-bottom: 1.5rem; color: #fff; }
+        .docs-container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: var(--glass-bg); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 24px; 
+            padding: 4rem; 
+            width: 100%; 
+            backdrop-filter: blur(24px); 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight); 
+        }
+        .docs-container h1, .docs-container h2, .docs-container h3 { margin-top: 2.5rem; margin-bottom: 1.5rem; color: #fff; font-weight: 600; }
         .docs-container h1 { display: none; }
-        .docs-container p, .docs-container li { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.1rem; }
-        .docs-container ul, .docs-container ol { margin-left: 2rem; margin-bottom: 1.5rem; }
-        .docs-container pre { background: rgba(0,0,0,0.6); padding: 2rem; border-radius: 16px; overflow-x: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-        .docs-container code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; }
-        .docs-container pre code { color: #e0e0e0; }
-        .docs-container a { color: var(--accent-purple); text-decoration: none; }
+        .docs-container p, .docs-container li { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.15rem; }
+        .docs-container ul, .docs-container ol { margin-left: 2rem; margin-bottom: 1.5rem; color: var(--text-muted); }
+        .docs-container pre { background: rgba(0,0,0,0.7); padding: 2rem; border-radius: 16px; overflow-x: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+        .docs-container code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; font-weight: 600; }
+        .docs-container pre code { color: #e2e8f0; font-weight: 400; }
+        .docs-container a { color: var(--accent-purple); text-decoration: none; font-weight: 600; }
         .docs-container a:hover { text-decoration: underline; }
+        
+        .docs-container table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; color: var(--text-muted); }
+        .docs-container th, .docs-container td { border: 1px solid var(--glass-border); padding: 1rem; text-align: left; }
+        .docs-container th { background: rgba(255,255,255,0.05); color: #fff; }
 
-        .contact-container { max-width: 700px; margin: 0 auto; width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 4rem; backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 var(--glass-highlight); }
+        .contact-container { max-width: 750px; margin: 0 auto; width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 4rem; backdrop-filter: blur(24px); box-shadow: 0 15px 45px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight); }
         .form-group { margin-bottom: 2rem; }
-        .form-label { display: block; margin-bottom: 0.8rem; color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; }
-        .form-control { width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 16px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s ease; }
-        .form-control:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); background: rgba(0,0,0,0.6); }
+        .form-label { display: block; margin-bottom: 0.8rem; color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.5px; }
+        .form-control { width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 16px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1.05rem; transition: all 0.3s ease; }
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 229, 255, 0.25); background: rgba(0,0,0,0.7); }
         textarea.form-control { min-height: 180px; resize: vertical; }
-        .contact-email { text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 1.1rem; }
+        .contact-email { text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 1.2rem; }
         .contact-email a { color: var(--accent-cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.3s; }
-        .contact-email a:hover { text-shadow: 0 0 10px var(--accent-cyan); }
+        .contact-email a:hover { text-shadow: 0 0 15px var(--accent-cyan); }
 
         /* Scroll Reveal Animations */
-        .reveal { opacity: 0; transform: translateY(50px) scale(0.95); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            section { padding: 100px 5% 50px; }
-            .hero-title { font-size: 2.8rem; }
-            .docs-container, .contact-container { padding: 2rem; }
-            h2.section-title { font-size: 2.5rem; }
+            section { padding: 120px 5% 60px; }
+            .hero-title { font-size: 3rem; }
+            .docs-container, .contact-container { padding: 2.5rem; }
+            h2.section-title { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Particle Background -->
-    <canvas id="particles-canvas"></canvas>
+    <a href="#main-content" class="skip-link">Skip to Content</a>
 
-    <nav>
-        <a href="#home" class="nav-brand brand">EnGem<span>.</span></a>
+    <!-- Refined Particle Background -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <nav aria-label="Main Navigation">
+        <a href="#home" class="nav-brand brand" aria-label="EnGem Home">EnGem<span>.</span></a>
         <div class="nav-links">
             <a href="#home" class="active">Home</a>
             <a href="#features">Features</a>
@@ -272,102 +311,103 @@
         </div>
     </nav>
 
-    <section id="home">
-        <div class="reveal">
-            <h1 class="hero-title">Intelligence<br>Accelerated</h1>
-            <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
-            <a href="#features" class="btn-primary">Explore Engine Capabilities</a>
-        </div>
-    </section>
+    <main id="main-content">
+        <section id="home">
+            <div class="reveal">
+                <h1 class="hero-title">Intelligence<br>Accelerated</h1>
+                <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
+                <a href="#features" class="btn-primary" aria-label="Explore Engine Capabilities">Explore Capabilities</a>
+            </div>
+        </section>
 
-    <section id="features">
-        <h2 class="section-title reveal">Core Features</h2>
-        <p class="section-subtitle reveal">A modular suite of operational skills empowering the EnGem engine.</p>
-        
-        <div class="bento-grid">
-            <div class="bento-item reveal delay-1">
-                <div class="bento-icon">🌐</div>
-                <h3 class="bento-title">use_browser</h3>
-                <p class="bento-desc">Fully autonomous DOM parsing and web interaction for seamless extraction and navigation.</p>
-            </div>
-            <div class="bento-item reveal delay-2">
-                <div class="bento-icon">🐍</div>
-                <h3 class="bento-title">run_python</h3>
-                <p class="bento-desc">Secure local execution of Python scripts for advanced data manipulation and system-level operations.</p>
-            </div>
-            <div class="bento-item reveal delay-3">
-                <div class="bento-icon">🖼️</div>
-                <h3 class="bento-title">generate_image</h3>
-                <p class="bento-desc">High-fidelity text-to-image synthesis natively integrated into the agentic workflow.</p>
-            </div>
-            <div class="bento-item reveal delay-1">
-                <div class="bento-icon">🎬</div>
-                <h3 class="bento-title">generate_video</h3>
-                <p class="bento-desc">Transform complex prompts into dynamic video sequences for rich multi-modal output.</p>
-            </div>
-            <div class="bento-item reveal delay-2">
-                <div class="bento-icon">📓</div>
-                <h3 class="bento-title">run_notebook</h3>
-                <p class="bento-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of data science pipelines.</p>
-            </div>
-            <div class="bento-item reveal delay-3">
-                <div class="bento-icon">🔍</div>
-                <h3 class="bento-title">run_google_search</h3>
-                <p class="bento-desc">Real-time information retrieval across the global web to augment contextual reasoning.</p>
-            </div>
-            <div class="bento-item reveal delay-1">
-                <div class="bento-icon">📂</div>
-                <h3 class="bento-title">collect_generated_media</h3>
-                <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets to bridge output streams.</p>
-            </div>
-            <div class="bento-item purple reveal delay-2">
-                <div class="bento-icon">⚙️</div>
-                <h3 class="bento-title">Debug & Maintenance Utilities</h3>
-                <p class="bento-desc">Advanced deep research protocols (<code>deep_research.py</code>) and direct Google Drive access tools (<code>access_google_drive.py</code>) for robust operational maintenance and file sync.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title reveal">Deployed Projects</h2>
-        <p class="section-subtitle reveal">Real-world deployments and high-dimensional problem solving.</p>
-        
-        <div class="projects-grid">
-            <div class="project-card reveal delay-1">
-                <div class="project-tags">
-                    <span class="tag">Data Science</span>
-                    <span class="tag">fNIRS</span>
-                    <span class="tag">Machine Learning</span>
+        <section id="features">
+            <h2 class="section-title reveal">Core Engine Skills</h2>
+            <p class="section-subtitle reveal">A modular suite of operational capabilities empowering the EnGem architecture.</p>
+            
+            <div class="bento-grid">
+                <div class="bento-item reveal delay-1" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">🌐</div>
+                    <h3 class="bento-title">use_browser</h3>
+                    <p class="bento-desc">Fully autonomous DOM parsing and web interaction for seamless extraction and navigation.</p>
                 </div>
-                <h3 class="project-title">fNIRS AI Analysis</h3>
-                <p class="project-desc">Autonomous processing of 4D neural data. Peak metrics achieved include a <strong>Mean Accuracy of 0.661</strong> and a <strong>Mean AUC of 0.729</strong>. The engine successfully discovered significant channel correlations via advanced statistical reshaping and machine learning optimization.</p>
-            </div>
-
-            <div class="project-card reveal delay-2">
-                <div class="project-tags">
-                    <span class="tag purple">Web Dev</span>
-                    <span class="tag purple">SPA</span>
-                    <span class="tag purple">CI/CD</span>
+                <div class="bento-item reveal delay-2" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">🐍</div>
+                    <h3 class="bento-title">run_python</h3>
+                    <p class="bento-desc">Secure local execution of Python scripts for advanced data manipulation and system-level operations.</p>
                 </div>
-                <h3 class="project-title">EnGem Portfolio</h3>
-                <p class="project-desc">This high-end, glassmorphism-inspired single-page application. Built autonomously by reading repositories, extracting insights, and writing highly optimized HTML/CSS/JS code directly to git with zero human intervention.</p>
-            </div>
-
-            <div class="project-card reveal delay-3" style="border: 2px dashed rgba(255, 255, 255, 0.1); background: rgba(0,0,0,0.2); align-items: center; justify-content: center; text-align: center; box-shadow: none;">
-                <div>
-                    <h3 class="project-title" style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 1.5rem;">More to Come</h3>
-                    <p class="project-desc" style="font-size: 0.95rem;">Continuous execution protocols are online. Future autonomous workloads and system integrations will be dynamically indexed here.</p>
+                <div class="bento-item reveal delay-3" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">🖼️</div>
+                    <h3 class="bento-title">generate_image</h3>
+                    <p class="bento-desc">High-fidelity text-to-image synthesis natively integrated into the agentic workflow.</p>
+                </div>
+                <div class="bento-item reveal delay-1" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">🎬</div>
+                    <h3 class="bento-title">generate_video</h3>
+                    <p class="bento-desc">Transform complex prompts into dynamic video sequences for rich multi-modal output.</p>
+                </div>
+                <div class="bento-item reveal delay-2" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">📓</div>
+                    <h3 class="bento-title">run_notebook</h3>
+                    <p class="bento-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of data science pipelines.</p>
+                </div>
+                <div class="bento-item reveal delay-3" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">🔍</div>
+                    <h3 class="bento-title">run_google_search</h3>
+                    <p class="bento-desc">Real-time information retrieval across the global web to augment contextual reasoning.</p>
+                </div>
+                <div class="bento-item reveal delay-1" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">📂</div>
+                    <h3 class="bento-title">collect_generated_media</h3>
+                    <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets to bridge output streams.</p>
+                </div>
+                <div class="bento-item purple reveal delay-2" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">⚙️</div>
+                    <h3 class="bento-title">Debug & Deep Research</h3>
+                    <p class="bento-desc">Advanced utilities including <code>access_google_drive</code> for file sync and <code>deep_research</code> for recursive data aggregation and analysis.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="docs">
-        <h2 class="section-title reveal">Documentation</h2>
-        <p class="section-subtitle reveal">System architecture, configuration, and developer guides.</p>
-        
-        <div class="docs-container reveal delay-1">
-            <h1>EnGem</h1>
+        <section id="projects">
+            <h2 class="section-title reveal">Deployed Projects</h2>
+            <p class="section-subtitle reveal">Real-world deployments and high-dimensional problem solving.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal delay-1" tabindex="0">
+                    <div class="project-tags">
+                        <span class="tag">Data Science</span>
+                        <span class="tag">fNIRS</span>
+                        <span class="tag">Machine Learning</span>
+                    </div>
+                    <h3 class="project-title">fNIRS AI Analysis</h3>
+                    <p class="project-desc">Autonomous processing of 4D neural data. The engine discovered significant channel correlations via advanced statistical reshaping and ML optimization.<br><br><strong>Metrics Achieved:</strong><br>• Mean Accuracy: 0.661<br>• Mean AUC: 0.729</p>
+                </div>
+
+                <div class="project-card reveal delay-2" tabindex="0">
+                    <div class="project-tags">
+                        <span class="tag purple">Web Dev</span>
+                        <span class="tag purple">SPA</span>
+                        <span class="tag purple">CI/CD</span>
+                    </div>
+                    <h3 class="project-title">EnGem Portfolio</h3>
+                    <p class="project-desc">This high-end, accessibility-focused single-page application. Built autonomously by reading repositories, extracting insights, and writing highly optimized HTML/CSS/JS code directly to git with zero human intervention.</p>
+                </div>
+
+                <div class="project-card reveal delay-3" tabindex="0" style="border: 2px dashed rgba(255, 255, 255, 0.15); background: rgba(0,0,0,0.3); align-items: center; justify-content: center; text-align: center; box-shadow: none;">
+                    <div>
+                        <h3 class="project-title" style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 1.6rem;">More to Come</h3>
+                        <p class="project-desc" style="font-size: 1.05rem;">Continuous execution protocols are online. Future autonomous workloads will be dynamically indexed here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs">
+            <h2 class="section-title reveal">Documentation</h2>
+            <p class="section-subtitle reveal">System architecture, configuration, and developer guides.</p>
+            
+            <div class="docs-container reveal delay-1">
+                <h1>EnGem</h1>
 <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
 <ul>
 <li>sub-agent execution plans and lightweight skills</li>
@@ -436,39 +476,40 @@ pip install -r requirements.txt
 # run the Discord bot
 python discord_bot.py
 </code></pre>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <section id="contact">
-        <h2 class="section-title reveal">Initialize Contact</h2>
-        <p class="section-subtitle reveal">Direct transmission channel to the EnGem developers.</p>
-        
-        <div class="contact-container reveal delay-1">
-            <form onsubmit="event.preventDefault(); alert('Transmission simulated. Please email directly.');">
-                <div class="form-group">
-                    <label class="form-label">Identification (Name)</label>
-                    <input type="text" class="form-control" required placeholder="Enter your designation">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Return Vector (Email)</label>
-                    <input type="email" class="form-control" required placeholder="Enter your email address">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Payload (Message)</label>
-                    <textarea class="form-control" required placeholder="Transmit your query..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Send Transmission</button>
-            </form>
+        <section id="contact">
+            <h2 class="section-title reveal">Initialize Contact</h2>
+            <p class="section-subtitle reveal">Direct transmission channel to the EnGem developers.</p>
             
-            <p class="contact-email">
-                Or email directly at <br>
-                <a href="mailto:engem.engine@gmail.com">engem.engine@gmail.com</a>
-            </p>
-        </div>
-    </section>
+            <div class="contact-container reveal delay-1">
+                <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Identification (Name)</label>
+                        <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Enter your designation" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Return Vector (Email)</label>
+                        <input type="email" id="contact-email" name="email" class="form-control" required placeholder="Enter your email address" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Payload (Message)</label>
+                        <textarea id="contact-message" name="message" class="form-control" required placeholder="Transmit your query..." aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Transmission</button>
+                </form>
+                
+                <p class="contact-email">
+                    Or email directly at <br>
+                    <a href="mailto:engem.engine@gmail.com" aria-label="Email engem.engine@gmail.com">engem.engine@gmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
 
     <script>
-        // Particle Background Logic
+        // Refined Particle Background Logic with Connections
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
@@ -477,21 +518,39 @@ python discord_bot.py
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            const count = Math.min(width * height / 10000, 100);
+            const count = Math.min(width * height / 12000, 120);
             for(let i=0; i<count; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
                     size: Math.random() * 2 + 0.5,
-                    color: Math.random() > 0.5 ? 'rgba(0, 242, 255, 0.3)' : 'rgba(176, 38, 255, 0.3)'
+                    color: Math.random() > 0.5 ? 'rgba(0, 229, 255, 0.4)' : 'rgba(194, 76, 246, 0.4)'
                 });
             }
         }
 
         function drawParticles() {
             ctx.clearRect(0, 0, width, height);
+            
+            // Draw connections
+            ctx.lineWidth = 0.5;
+            for(let i=0; i<particles.length; i++) {
+                for(let j=i+1; j<particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 100) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist/100)})`;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
             particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
@@ -506,16 +565,27 @@ python discord_bot.py
             requestAnimationFrame(drawParticles);
         }
 
-        window.addEventListener('resize', initParticles);
+        window.addEventListener('resize', () => {
+            const oldWidth = width;
+            const oldHeight = height;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            // Prevent recreating particles on every small resize to save performance
+            if (Math.abs(oldWidth - width) > 100 || Math.abs(oldHeight - height) > 100) {
+                initParticles();
+            }
+        });
         initParticles();
         drawParticles();
 
-        // Advanced Scroll Reveal
+        // High-end Scroll Reveal
         const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    // Optional: Unobserve after reveal for better performance
+                    // observer.unobserve(entry.target); 
                 }
             });
         }, observerOptions);
@@ -542,7 +612,7 @@ python discord_bot.py
                     link.classList.add('active');
                 }
             });
-        });
+        }, { passive: true });
     </script>
 </body>
 </html>
