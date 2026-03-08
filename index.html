@@ -15,7 +15,7 @@
             --glass-border: rgba(255, 255, 255, 0.15);
             --glass-highlight: rgba(255, 255, 255, 0.25);
             --text-main: #ffffff;
-            --text-muted: #c4c9d4; /* Improved contrast */
+            --text-muted: #e2e8f0; /* WCAG AA compliant */
             --focus-ring: #00e5ff;
         }
 
@@ -29,244 +29,161 @@
             line-height: 1.6;
         }
 
-        /* Accessibility: Focus States & Skip Link */
-        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, details:focus-visible, summary:focus-visible {
             outline: 2px solid var(--focus-ring);
             outline-offset: 4px;
         }
         
         .skip-link {
-            position: absolute;
-            top: -50px;
-            left: 0;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 12px 24px;
-            z-index: 2000;
-            transition: top 0.3s;
-            font-weight: 600;
-            text-decoration: none;
+            position: absolute; top: -50px; left: 0; background: var(--accent-cyan);
+            color: #000; padding: 12px 24px; z-index: 2000; transition: top 0.3s;
+            font-weight: 600; text-decoration: none;
         }
         .skip-link:focus { top: 0; }
 
-        /* Particle Background Canvas */
         #particles-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -10; pointer-events: none;
         }
 
         h1, h2, h3, h4, .brand { font-family: 'Space Grotesk', sans-serif; }
         
         h2.section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            text-align: center;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
-            font-weight: 700;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(0, 229, 255, 0.2); font-weight: 700;
         }
 
         p.section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
+            text-align: center; color: var(--text-muted); font-size: 1.2rem;
+            margin-bottom: 4rem; max-width: 650px; margin-left: auto; margin-right: auto;
         }
 
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            background: rgba(5, 5, 8, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; height: 80px;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
+            background: rgba(5, 5, 8, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--glass-border); z-index: 1000;
         }
 
         .nav-brand { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; }
         .nav-brand span { color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-cyan); }
 
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: all 0.3s ease; border-radius: 3px; }
+
         .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a { 
-            color: var(--text-muted); 
-            text-decoration: none; 
-            font-size: 1.05rem; 
-            font-weight: 500; 
-            transition: all 0.3s ease; 
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-cyan);
-            transition: width 0.3s ease;
-        }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-cyan); transition: width 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: #fff; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        section {
-            min-height: 100vh;
-            padding: 140px 5% 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
+        section { min-height: 100vh; padding: 140px 5% 80px; display: flex; flex-direction: column; justify-content: center; position: relative; }
 
         #home { align-items: center; text-align: center; }
         .hero-title { 
-            font-size: clamp(3.5rem, 8vw, 7rem); 
-            font-weight: 700; 
-            line-height: 1.1; 
-            margin-bottom: 1.5rem; 
-            background: linear-gradient(to right, #ffffff, #d4d8e3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+            font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; 
+            background: linear-gradient(to right, #ffffff, #d4d8e3); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
         }
         .hero-subtitle { font-size: 1.4rem; color: var(--text-muted); max-width: 750px; margin-bottom: 3rem; font-weight: 400; }
 
         .btn-primary {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
-            position: relative;
-            overflow: hidden;
+            display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #000; text-decoration: none; font-weight: 700; border-radius: 50px; font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.4s ease; border: none; cursor: pointer; font-size: 1.1rem; text-transform: uppercase;
+            letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3); position: relative; overflow: hidden;
         }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: all 0.6s ease;
-        }
+        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: all 0.6s ease; }
         .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(194, 76, 246, 0.4); color: #000; }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
+        /* Terminal Demo Styles */
+        .terminal-container {
+            max-width: 900px; margin: 0 auto; width: 100%; background: #0a0a0f; border: 1px solid var(--glass-border);
+            border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 229, 255, 0.1);
+            overflow: hidden; font-family: 'JetBrains Mono', monospace;
+        }
+        .terminal-header { background: #15151f; padding: 0.8rem 1rem; display: flex; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title { flex-grow: 1; text-align: center; color: #8a8a93; font-size: 0.9rem; margin-right: 56px; }
+        .terminal-body { padding: 1.5rem; height: 350px; overflow-y: auto; color: #e2e8f0; font-size: 1rem; line-height: 1.6; scroll-behavior: smooth; }
+        .terminal-line { margin-bottom: 0.5rem; word-break: break-word; }
+        .prompt-user { color: var(--accent-purple); font-weight: bold; }
+        .prompt-sys { color: var(--accent-cyan); font-weight: bold; }
+        .typing-cursor {
+            display: inline-block; width: 8px; height: 18px; background: var(--accent-cyan);
+            animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Dynamic Glow Cards */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; width: 100%; }
+        
+        .bento-item, .project-card {
+            position: relative; z-index: 1; padding: 2.5rem; border-radius: 24px;
+            border: 1px solid var(--glass-border); background: transparent; transition: transform 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .project-card { padding: 3rem; display: flex; flex-direction: column; }
+        
+        .bento-item::after, .project-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px;
+            background: var(--glass-bg); z-index: -1; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            box-shadow: inset 0 1px 0 var(--glass-highlight); pointer-events: none; transition: box-shadow 0.4s ease;
         }
         
-        .bento-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight);
-            position: relative;
-            overflow: hidden;
+        .bento-item::before, .project-card::before {
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; border-radius: 26px;
+            background: linear-gradient(130deg, transparent 30%, var(--accent-cyan) 50%, transparent 70%);
+            background-size: 300% 300%; z-index: -2; opacity: 0; transition: opacity 0.4s ease;
         }
-        .bento-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 24px;
-            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0);
-            transition: box-shadow 0.4s ease;
-            pointer-events: none;
-        }
-        .bento-item:hover { 
-            transform: translateY(-8px); 
-            border-color: var(--accent-cyan); 
-            box-shadow: 0 20px 45px rgba(0, 229, 255, 0.2), inset 0 1px 0 var(--glass-highlight);
-        }
-        .bento-item:hover::after { box-shadow: inset 0 0 25px rgba(0, 229, 255, 0.15); }
-        .bento-item.purple:hover {
-            border-color: var(--accent-purple);
-            box-shadow: 0 20px 45px rgba(194, 76, 246, 0.2), inset 0 1px 0 var(--glass-highlight);
-        }
-        .bento-item.purple:hover::after { box-shadow: inset 0 0 25px rgba(194, 76, 246, 0.15); }
+        .bento-item.purple::before, .project-card.purple-glow::before { background: linear-gradient(130deg, transparent 30%, var(--accent-purple) 50%, transparent 70%); background-size: 300% 300%; }
+
+        .bento-item:hover, .project-card:hover { transform: translateY(-8px); border-color: transparent; }
+        .bento-item:hover::before, .project-card:hover::before { opacity: 1; animation: glowMove 2.5s linear infinite; }
+        .bento-item:hover::after { box-shadow: inset 0 0 25px rgba(0, 229, 255, 0.15), inset 0 1px 0 var(--glass-highlight); }
+        .bento-item.purple:hover::after, .project-card.purple-glow:hover::after { box-shadow: inset 0 0 25px rgba(194, 76, 246, 0.15), inset 0 1px 0 var(--glass-highlight); }
+
+        @keyframes glowMove { 0% { background-position: 200% 50%; } 100% { background-position: -200% 50%; } }
         
         .bento-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; filter: drop-shadow(0 0 15px rgba(255,255,255,0.25)); }
         .bento-title { font-size: 1.6rem; margin-bottom: 0.8rem; color: #fff; font-weight: 600; }
         .bento-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.5; }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; width: 100%; }
-        .project-card { 
-            background: var(--glass-bg); 
-            border: 1px solid var(--glass-border); 
-            border-radius: 24px; 
-            padding: 3rem; 
-            display: flex; 
-            flex-direction: column; 
-            transition: all 0.4s ease;
-            backdrop-filter: blur(24px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight);
-        }
-        .project-card:hover { 
-            border-color: var(--accent-purple); 
-            box-shadow: 0 20px 50px rgba(194, 76, 246, 0.25), inset 0 1px 0 var(--glass-highlight); 
-            transform: translateY(-8px);
-        }
         .project-tags { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
         .tag { background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(0, 229, 255, 0.25); font-weight: 600; }
         .tag.purple { background: rgba(194, 76, 246, 0.15); color: #e8a6ff; border: 1px solid rgba(194, 76, 246, 0.25); }
         .project-title { font-size: 2.2rem; margin-bottom: 1rem; color: #fff; }
         .project-desc { color: var(--text-muted); font-size: 1.15rem; flex-grow: 1; }
 
-        .docs-container { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            background: var(--glass-bg); 
-            border: 1px solid var(--glass-border); 
-            border-radius: 24px; 
-            padding: 4rem; 
-            width: 100%; 
-            backdrop-filter: blur(24px); 
-            box-shadow: 0 15px 45px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight); 
-        }
-        .docs-container h1, .docs-container h2, .docs-container h3 { margin-top: 2.5rem; margin-bottom: 1.5rem; color: #fff; font-weight: 600; }
-        .docs-container h1 { display: none; }
-        .docs-container p, .docs-container li { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.15rem; }
-        .docs-container ul, .docs-container ol { margin-left: 2rem; margin-bottom: 1.5rem; color: var(--text-muted); }
-        .docs-container pre { background: rgba(0,0,0,0.7); padding: 2rem; border-radius: 16px; overflow-x: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-        .docs-container code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; font-weight: 600; }
-        .docs-container pre code { color: #e2e8f0; font-weight: 400; }
-        .docs-container a { color: var(--accent-purple); text-decoration: none; font-weight: 600; }
-        .docs-container a:hover { text-decoration: underline; }
-        
-        .docs-container table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; color: var(--text-muted); }
-        .docs-container th, .docs-container td { border: 1px solid var(--glass-border); padding: 1rem; text-align: left; }
-        .docs-container th { background: rgba(255,255,255,0.05); color: #fff; }
+        /* Accordion Documentation */
+        .docs-container { max-width: 1000px; margin: 0 auto; width: 100%; }
+        .accordion-item { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s ease; backdrop-filter: blur(24px); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .accordion-item[open] { border-color: var(--accent-cyan); box-shadow: 0 5px 25px rgba(0, 229, 255, 0.1); }
+        .accordion-header { padding: 1.5rem 2rem; font-size: 1.25rem; font-weight: 600; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; font-family: 'Space Grotesk', sans-serif; }
+        .accordion-header::-webkit-details-marker { display: none; }
+        .accordion-icon { font-size: 1.5rem; color: var(--accent-cyan); transition: transform 0.3s ease; }
+        .accordion-item[open] .accordion-icon { transform: rotate(45deg); color: var(--accent-purple); }
+        .accordion-content { padding: 0 2rem 2rem; color: var(--text-muted); font-size: 1.1rem; }
+        .accordion-content h3, .accordion-content h4 { color: #fff; margin-top: 1.5rem; margin-bottom: 1rem; }
+        .accordion-content p, .accordion-content li { margin-bottom: 1rem; }
+        .accordion-content ul, .accordion-content ol { margin-left: 2rem; }
+        .accordion-content pre { background: rgba(0,0,0,0.7); padding: 1.5rem; border-radius: 12px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1); }
+        .accordion-content code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; }
+        .accordion-content pre code { color: #e2e8f0; }
+        .accordion-content a { color: var(--accent-purple); text-decoration: none; font-weight: 600; }
+        .accordion-content a:hover { text-decoration: underline; }
+        .accordion-content table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .accordion-content th, .accordion-content td { border: 1px solid var(--glass-border); padding: 0.8rem; text-align: left; }
+        .accordion-content th { background: rgba(255,255,255,0.05); color: #fff; }
 
+        /* Contact Form */
         .contact-container { max-width: 750px; margin: 0 auto; width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 4rem; backdrop-filter: blur(24px); box-shadow: 0 15px 45px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight); }
         .form-group { margin-bottom: 2rem; }
         .form-label { display: block; margin-bottom: 0.8rem; color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.5px; }
@@ -285,10 +202,24 @@
         .delay-3 { transition-delay: 0.3s; }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 70vw; height: 100vh;
+                background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(20px);
+                display: flex; flex-direction: column; justify-content: center; align-items: center;
+                transition: right 0.4s ease; z-index: 1000; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                border-left: 1px solid var(--glass-border);
+            }
+            .nav-links.open { right: 0; }
+            .nav-links a { font-size: 1.5rem; margin: 1.5rem 0; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
             section { padding: 120px 5% 60px; }
             .hero-title { font-size: 3rem; }
-            .docs-container, .contact-container { padding: 2.5rem; }
+            .docs-container, .contact-container, .terminal-container, .accordion-header, .accordion-content { padding: 1.5rem; }
+            .terminal-body { height: 250px; font-size: 0.9rem; }
             h2.section-title { font-size: 2.8rem; }
         }
     </style>
@@ -296,14 +227,20 @@
 <body>
 
     <a href="#main-content" class="skip-link">Skip to Content</a>
-
-    <!-- Refined Particle Background -->
     <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
     <nav aria-label="Main Navigation">
         <a href="#home" class="nav-brand brand" aria-label="EnGem Home">EnGem<span>.</span></a>
-        <div class="nav-links">
+        
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
             <a href="#home" class="active">Home</a>
+            <a href="#demo">Demo</a>
             <a href="#features">Features</a>
             <a href="#projects">Projects</a>
             <a href="#docs">Docs</a>
@@ -316,7 +253,24 @@
             <div class="reveal">
                 <h1 class="hero-title">Intelligence<br>Accelerated</h1>
                 <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
-                <a href="#features" class="btn-primary" aria-label="Explore Engine Capabilities">Explore Capabilities</a>
+                <a href="#demo" class="btn-primary" aria-label="Explore Engine Capabilities">View Live Demo</a>
+            </div>
+        </section>
+
+        <section id="demo">
+            <h2 class="section-title reveal">Live Terminal Simulation</h2>
+            <p class="section-subtitle reveal">Experience the engine's cognitive flow and execution in real-time.</p>
+            
+            <div class="terminal-container reveal delay-1">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <div class="terminal-title">engem@core: ~/projects/fnirs</div>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <!-- Terminal content populated by JS -->
+                </div>
             </div>
         </section>
 
@@ -380,10 +334,10 @@
                         <span class="tag">Machine Learning</span>
                     </div>
                     <h3 class="project-title">fNIRS AI Analysis</h3>
-                    <p class="project-desc">Autonomous processing of 4D neural data. The engine discovered significant channel correlations via advanced statistical reshaping and ML optimization.<br><br><strong>Metrics Achieved:</strong><br>• Mean Accuracy: 0.661<br>• Mean AUC: 0.729</p>
+                    <p class="project-desc">Autonomous processing of 4D neural data. The engine discovered significant channel correlations via advanced statistical reshaping and ML optimization.<br><br><strong style="color:var(--text-main)">Metrics Achieved:</strong><br>• Mean Accuracy: 0.661<br>• Mean AUC: 0.729</p>
                 </div>
 
-                <div class="project-card reveal delay-2" tabindex="0">
+                <div class="project-card purple-glow reveal delay-2" tabindex="0">
                     <div class="project-tags">
                         <span class="tag purple">Web Dev</span>
                         <span class="tag purple">SPA</span>
@@ -393,7 +347,7 @@
                     <p class="project-desc">This high-end, accessibility-focused single-page application. Built autonomously by reading repositories, extracting insights, and writing highly optimized HTML/CSS/JS code directly to git with zero human intervention.</p>
                 </div>
 
-                <div class="project-card reveal delay-3" tabindex="0" style="border: 2px dashed rgba(255, 255, 255, 0.15); background: rgba(0,0,0,0.3); align-items: center; justify-content: center; text-align: center; box-shadow: none;">
+                <div class="project-card reveal delay-3" tabindex="0" style="border: 2px dashed rgba(255, 255, 255, 0.15); align-items: center; justify-content: center; text-align: center; box-shadow: none;">
                     <div>
                         <h3 class="project-title" style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 1.6rem;">More to Come</h3>
                         <p class="project-desc" style="font-size: 1.05rem;">Continuous execution protocols are online. Future autonomous workloads will be dynamically indexed here.</p>
@@ -407,7 +361,11 @@
             <p class="section-subtitle reveal">System architecture, configuration, and developer guides.</p>
             
             <div class="docs-container reveal delay-1">
-                <h1>EnGem</h1>
+                
+    <details class="accordion-item" open>
+        <summary class="accordion-header">Overview <span class="accordion-icon">+</span></summary>
+        <div class="accordion-content">
+            
 <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
 <ul>
 <li>sub-agent execution plans and lightweight skills</li>
@@ -476,6 +434,9 @@ pip install -r requirements.txt
 # run the Discord bot
 python discord_bot.py
 </code></pre>
+        </div>
+    </details>
+    
             </div>
         </section>
 
@@ -509,7 +470,7 @@ python discord_bot.py
     </main>
 
     <script>
-        // Refined Particle Background Logic with Connections
+        // Particles Background
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
@@ -518,13 +479,11 @@ python discord_bot.py
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            const count = Math.min(width * height / 12000, 120);
+            const count = Math.min(width * height / 12000, 100);
             for(let i=0; i<count; i++) {
                 particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
+                    x: Math.random() * width, y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
                     size: Math.random() * 2 + 0.5,
                     color: Math.random() > 0.5 ? 'rgba(0, 229, 255, 0.4)' : 'rgba(194, 76, 246, 0.4)'
                 });
@@ -533,8 +492,6 @@ python discord_bot.py
 
         function drawParticles() {
             ctx.clearRect(0, 0, width, height);
-            
-            // Draw connections
             ctx.lineWidth = 0.5;
             for(let i=0; i<particles.length; i++) {
                 for(let j=i+1; j<particles.length; j++) {
@@ -543,74 +500,152 @@ python discord_bot.py
                     const dist = Math.sqrt(dx*dx + dy*dy);
                     if(dist < 100) {
                         ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist/100)})`;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
                     }
                 }
             }
-
             particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
+                p.x += p.vx; p.y += p.vy;
                 if(p.x < 0 || p.x > width) p.vx *= -1;
                 if(p.y < 0 || p.y > height) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color; ctx.fill();
             });
             requestAnimationFrame(drawParticles);
         }
 
         window.addEventListener('resize', () => {
-            const oldWidth = width;
-            const oldHeight = height;
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            // Prevent recreating particles on every small resize to save performance
-            if (Math.abs(oldWidth - width) > 100 || Math.abs(oldHeight - height) > 100) {
-                initParticles();
-            }
+            const oldWidth = width; const oldHeight = height;
+            width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight;
+            if (Math.abs(oldWidth - width) > 100 || Math.abs(oldHeight - height) > 100) initParticles();
         });
-        initParticles();
-        drawParticles();
+        initParticles(); drawParticles();
 
-        // High-end Scroll Reveal
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger-btn');
+        const navLinksContainer = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinksContainer.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Terminal Demo Logic
+        const terminalLines = [
+            { type: 'user', text: '> EnGem, initiate deep research on recent fNIRS methodologies.' },
+            { type: 'sys', text: '[System] Acknowledged. Launching deep_research tool...' },
+            { type: 'sys', text: '[System] Accessing global web and parsing academic papers...' },
+            { type: 'sys', text: '[System] Compiling cross-channel correlations...' },
+            { type: 'sys', text: '[EnGem] Research complete. Found optimal 4D data reshaping technique. Mean Accuracy improved to 0.661 and Mean AUC to 0.729.' },
+            { type: 'user', text: '> Generate a visualization of the results.' },
+            { type: 'sys', text: '[System] Calling generate_image skill...' },
+            { type: 'sys', text: '[EnGem] Visual assets successfully pushed to /generated_media/fnirs_plot.png.' },
+            { type: 'user', text: '> Standby for further instructions.' },
+            { type: 'sys', text: '[EnGem] Entering low-power listening mode. Ready.' }
+        ];
+
+        const terminalBody = document.getElementById('terminal-body');
+        let lineIndex = 0;
+
+        function typeLine(line, callback) {
+            const div = document.createElement('div');
+            div.className = 'terminal-line';
+            const prefix = document.createElement('span');
+            prefix.className = line.type === 'user' ? 'prompt-user' : 'prompt-sys';
+            prefix.textContent = line.type === 'user' ? 'user@host:~$ ' : 'engem> ';
+            
+            const content = document.createElement('span');
+            div.appendChild(prefix);
+            div.appendChild(content);
+            terminalBody.appendChild(div);
+            
+            let charIndex = 0;
+            const interval = setInterval(() => {
+                content.textContent += line.text[charIndex];
+                charIndex++;
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+                if (charIndex >= line.text.length) {
+                    clearInterval(interval);
+                    setTimeout(callback, line.type === 'user' ? 800 : 1200);
+                }
+            }, line.type === 'user' ? 40 : 15);
+        }
+
+        function runTerminal() {
+            if (lineIndex < terminalLines.length) {
+                typeLine(terminalLines[lineIndex], () => {
+                    lineIndex++;
+                    runTerminal();
+                });
+            } else {
+                const cursorLine = document.createElement('div');
+                cursorLine.className = 'terminal-line';
+                cursorLine.innerHTML = '<span class="prompt-user">user@host:~$ </span><span class="typing-cursor"></span>';
+                terminalBody.appendChild(cursorLine);
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+                
+                setTimeout(() => {
+                    terminalBody.innerHTML = '';
+                    lineIndex = 0;
+                    runTerminal();
+                }, 8000);
+            }
+        }
+
+        const terminalObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                runTerminal();
+                terminalObserver.disconnect();
+            }
+        }, { threshold: 0.5 });
+        
+        const demoSection = document.getElementById('demo');
+        if (demoSection) terminalObserver.observe(demoSection);
+
+        // Accordion functionality to close others
+        const accordions = document.querySelectorAll('.accordion-item');
+        accordions.forEach(acc => {
+            acc.addEventListener('toggle', (e) => {
+                if (acc.open) {
+                    accordions.forEach(otherAcc => {
+                        if (otherAcc !== acc && otherAcc.open) otherAcc.removeAttribute('open');
+                    });
+                }
+            });
+        });
+
+        // Scroll Reveal
         const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Optional: Unobserve after reveal for better performance
-                    // observer.unobserve(entry.target); 
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Active Navigation Link Highlighting
         const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute('id');
-                }
+                if (scrollY >= sectionTop - sectionHeight / 3) current = section.getAttribute('id');
             });
-
-            navLinks.forEach(link => {
+            navItems.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href').includes(current)) link.classList.add('active');
             });
         }, { passive: true });
     </script>
