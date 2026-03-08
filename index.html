@@ -88,6 +88,16 @@
         .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: all 0.6s ease; }
         .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(194, 76, 246, 0.4); color: #000; }
+        
+        .btn-pulse {
+            animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 229, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+        }
 
         /* Dynamic Glow Cards and Shimmer */
         .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
@@ -133,13 +143,14 @@
         /* Documentation */
         .docs-container { max-width: 1000px; margin: 0 auto; width: 100%; background: var(--glass-bg); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border); backdrop-filter: blur(24px); }
         .docs-content { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; }
-        .docs-content h2, .docs-content h3 { color: #fff; margin-top: 2rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; }
-        .docs-content h3 { color: var(--accent-cyan); font-size: 1.4rem; }
+        .docs-content h1 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1rem; }
+        .docs-content h2 { color: #fff; margin-top: 2rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+        .docs-content h3 { color: var(--accent-cyan); font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 1rem; }
         .docs-content p, .docs-content ul, .docs-content ol { margin-bottom: 1.2rem; }
-        .docs-content ul { padding-left: 2rem; }
+        .docs-content ul, .docs-content ol { padding-left: 2rem; }
         .docs-content pre { background: #000; padding: 1.5rem; border-radius: 12px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1); }
-        .docs-content code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; }
-        .docs-content pre code { color: #e2e8f0; }
+        .docs-content code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; background: rgba(0, 229, 255, 0.1); padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .docs-content pre code { color: #e2e8f0; background: transparent; padding: 0; border-radius: 0; }
         .docs-content a { color: var(--accent-purple); text-decoration: none; font-weight: 600; }
         .docs-content a:hover { text-decoration: underline; }
 
@@ -168,6 +179,7 @@
         .metric-label { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: 600; color: #fff;}
         .bar-track { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; position: relative; }
         .bar-fill { height: 100%; background: var(--accent-cyan); width: 0; box-shadow: 0 0 10px var(--accent-cyan); transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bar-fill.purple { background: var(--accent-purple); box-shadow: 0 0 10px var(--accent-purple); }
 
         @media (max-width: 768px) {
             .hamburger { display: block; }
@@ -218,7 +230,7 @@
             <div class="reveal">
                 <h1 class="hero-title">Intelligence<br>Accelerated</h1>
                 <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent engine built on Google's Gemini. Bridging the gap between raw compute and seamless environmental interaction.</p>
-                <a href="#features" class="btn-primary" aria-label="Explore Features">Discover EnGem</a>
+                <a href="#features" class="btn-primary btn-pulse" aria-label="Explore Features">Discover EnGem</a>
             </div>
         </section>
 
@@ -230,7 +242,7 @@
                 <div class="bento-item reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">🌐</div>
                     <h3 class="bento-title">use_browser</h3>
-                    <p class="bento-desc">Fully autonomous DOM parsing and web interaction for seamless data extraction, navigation, and testing.</p>
+                    <p class="bento-desc">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and testing.</p>
                 </div>
                 <div class="bento-item reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">🐍</div>
@@ -240,7 +252,7 @@
                 <div class="bento-item reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">🖼️</div>
                     <h3 class="bento-title">generate_image</h3>
-                    <p class="bento-desc">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal workflow.</p>
+                    <p class="bento-desc">High-fidelity text-to-image synthesis natively integrated into the agentic multi-modal workflow.</p>
                 </div>
                 <div class="bento-item reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">🎬</div>
@@ -259,13 +271,18 @@
                 </div>
                 <div class="bento-item reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">📂</div>
-                    <h3 class="bento-title">collect_media</h3>
+                    <h3 class="bento-title">collect_generated_media</h3>
                     <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
                 </div>
                 <div class="bento-item purple reveal" tabindex="0">
                     <div class="bento-icon" aria-hidden="true">🧠</div>
-                    <h3 class="bento-title">Deep Research & Debug</h3>
-                    <p class="bento-desc">Background <code>deep_research</code> interactions for profound insights, and <code>access_google_drive</code> for secure file synchronization and analysis.</p>
+                    <h3 class="bento-title">deep_research</h3>
+                    <p class="bento-desc">Run a background deep research interaction and return the final text result for profound insights.</p>
+                </div>
+                <div class="bento-item purple reveal" tabindex="0">
+                    <div class="bento-icon" aria-hidden="true">☁️</div>
+                    <h3 class="bento-title">access_google_drive</h3>
+                    <p class="bento-desc">Secure file synchronization and analysis, bridging cloud storage capabilities directly to the agent.</p>
                 </div>
             </div>
         </section>
@@ -285,12 +302,12 @@
                     <p class="project-desc">Autonomous processing of 4D neural data. The engine executed multiple Jupyter notebooks, identifying significant channel correlations via advanced statistical reshaping and ML optimization.</p>
                     <div class="metrics-container">
                         <div class="metric-row">
-                            <div class="metric-label"><span>Accuracy</span><span>0.538</span></div>
+                            <div class="metric-label"><span>Accuracy</span><span style="color: var(--accent-cyan); font-weight: 700;">0.538</span></div>
                             <div class="bar-track"><div class="bar-fill" style="width: 0;" data-target="53.8%"></div></div>
                         </div>
                         <div class="metric-row">
-                            <div class="metric-label"><span>AUC Score</span><span>0.549</span></div>
-                            <div class="bar-track"><div class="bar-fill" style="width: 0;" data-target="54.9%"></div></div>
+                            <div class="metric-label"><span>AUC Score</span><span style="color: var(--accent-purple); font-weight: 700;">0.550</span></div>
+                            <div class="bar-track"><div class="bar-fill purple" style="width: 0;" data-target="55.0%"></div></div>
                         </div>
                     </div>
                 </div>
@@ -320,36 +337,68 @@
             
             <div class="docs-container reveal">
                 <div class="docs-content">
-                    <h3>Overview</h3>
+                    <h1>EnGem</h1>
                     <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
                     <ul>
-                        <li>Sub-agent execution plans and lightweight skills</li>
-                        <li>Persistent conversation memory and a Chroma vector DB</li>
-                        <li>A Discord bot for chat, voice, and tool orchestration</li>
+                        <li>sub-agent execution plans and lightweight skills</li>
+                        <li>persistent conversation memory and a Chroma vector DB</li>
+                        <li>a Discord bot for chat, voice, and tool orchestration</li>
                     </ul>
+                    <p><strong>This README</strong> summarizes how to get started, where key pieces live, and how to run and develop the project.</p>
 
-                    <h3>Quick Start</h3>
+                    <h2>Quick Start</h2>
                     <p>1. Create and activate a virtual environment, then install dependencies:</p>
                     <pre><code>python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt</code></pre>
-                    <p>2. Configure required environment variables:</p>
+                    <p>2. Configure required environment variables (examples):</p>
                     <ul>
-                        <li><code>DISCORD_BOT_TOKEN</code>: Discord bot token (see config.py).</li>
+                        <li><code>DISCORD_BOT_TOKEN</code>: Discord bot token (see <a href="config.py">config.py</a>).</li>
                         <li><code>GEMINI_API_KEY</code>: API key for Gemini / LLM provider.</li>
-                        <li>Optional: <code>DISCORD_ALLOWED_CHANNELS</code>, <code>VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code>MODEL</code></li>
+                        <li>Optional: <code>DISCORD_ALLOWED_CHANNELS</code>, <code>VOICE_TOOL_TARGET_CHANNEL_NAME</code>, <code>MODEL</code> — see <a href="config.py">config.py</a> for defaults.</li>
                     </ul>
                     <p>3. Run the Discord bot:</p>
                     <pre><code>python discord_bot.py</code></pre>
 
-                    <h3>Key Components</h3>
+                    <h2>Key Components</h2>
                     <ul>
-                        <li><strong>Bot:</strong> <code>discord_bot.py</code> — Discord integration, event handlers, and execution-plan tracking.</li>
-                        <li><strong>LLM integration:</strong> <code>llm.py</code> — model wiring, prompts, and preview/dispatch helpers.</li>
-                        <li><strong>Configuration:</strong> <code>config.py</code> — environment variables and defaults.</li>
-                        <li><strong>Memory & embeddings:</strong> <code>memory/</code> — channel histories and Chroma DB.</li>
-                        <li><strong>Skills:</strong> <code>skills/</code> — modular tools the agent can invoke (e.g., <code>run_python</code>, <code>use_browser</code>).</li>
+                        <li><strong>Bot:</strong> <a href="discord_bot.py">discord_bot.py</a> — Discord integration, event handlers, and execution-plan progress tracking.</li>
+                        <li><strong>LLM integration:</strong> <a href="llm.py">llm.py</a> — model wiring, prompts, and preview/dispatch helpers.</li>
+                        <li><strong>Configuration:</strong> <a href="config.py">config.py</a> — environment variables and defaults.</li>
+                        <li><strong>Memory & embeddings:</strong> <code>memory/</code> — channel histories under <code>memory/channel_history/</code> and embeddings at <a href="memory/vector_db/chroma.sqlite3">memory/vector_db/chroma.sqlite3</a>.</li>
+                        <li><strong>Skills:</strong> <code>skills/</code> — modular tools the agent can invoke (e.g., <a href="skills/run_python.py">skills/run_python.py</a>, <a href="skills/use_browser.py">skills/use_browser.py</a>).</li>
+                        <li><strong>Agent docs:</strong> <a href="agent_instructions/manager.md">agent_instructions/manager.md</a> — templates and guidance for sub-agents.</li>
+                        <li><strong>Sandbox & notebooks:</strong> <a href="sandbox/run_notebook.py">sandbox/run_notebook.py</a> and <code>sandbox/notebooks/</code> for experiments.</li>
                     </ul>
+
+                    <h2>Running & Development Notes</h2>
+                    <ul>
+                        <li>The project uses a plain Python entrypoint; run the bot with <code>python discord_bot.py</code> while the virtualenv is active.</li>
+                        <li>Edit code, then restart the process to pick up changes. The repo contains many small scripts under <code>skills/</code> that can be exercised independently.</li>
+                        <li>Use <code>requirements.txt</code> to reproduce the environment.</li>
+                    </ul>
+
+                    <h2>Behavioral notes</h2>
+                    <ul>
+                        <li>The execution-plan progress tracker posts and updates a Discord message while sub-agents run. Message edits are now guarded so the bot only edits when the content actually changes, reducing unnecessary API calls and avoiding rate-limit pressure.</li>
+                    </ul>
+
+                    <h2>Data & Storage</h2>
+                    <ul>
+                        <li>Conversation histories: <code>memory/channel_history/</code>.</li>
+                        <li>Vector DB / embeddings: <a href="memory/vector_db/chroma.sqlite3">memory/vector_db/chroma.sqlite3</a>.</li>
+                        <li>Generated media: <code>generated_images/</code> and <code>generated_videos/</code>.</li>
+                    </ul>
+
+                    <h2>Useful Commands</h2>
+                    <pre><code># activate venv
+source .venv/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# run the Discord bot
+python discord_bot.py</code></pre>
                 </div>
             </div>
         </section>
