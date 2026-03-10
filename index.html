@@ -8,15 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
     <style>
         :root {
-            --bg-base: #050508;
+            --bg-base: #030305;
             --accent-cyan: #00e5ff;
             --accent-purple: #c24cf6;
-            --glass-bg: rgba(25, 25, 35, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --glass-highlight: rgba(255, 255, 255, 0.25);
+            --glass-bg: rgba(15, 15, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
-            --text-muted: #e2e8f0;
-            --focus-ring: #00e5ff;
+            --text-muted: #94a3b8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,328 +26,327 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
-
-        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-            outline: 2px solid var(--focus-ring);
-            outline-offset: 4px;
-        }
         
-        #neural-grid-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; pointer-events: none; opacity: 0.4; }
+        /* Particle Canvas */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; pointer-events: none; }
+        #parallax-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -11;
+            background: radial-gradient(circle at 50% 50%, rgba(194, 76, 246, 0.05) 0%, rgba(0, 229, 255, 0.02) 40%, transparent 100%);
+            transform: translateZ(0); pointer-events: none;
+        }
 
         h1, h2, h3, h4, .brand { font-family: 'Space Grotesk', sans-serif; }
         
         h2.section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+            font-size: clamp(2.5rem, 5vw, 4.5rem); text-align: center; margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(0, 229, 255, 0.2); font-weight: 700;
+            font-weight: 700; letter-spacing: -1px;
         }
+        .section-title span { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         p.section-subtitle {
-            text-align: center; color: var(--text-muted); font-size: 1.2rem;
+            text-align: center; color: var(--text-muted); font-size: 1.25rem;
             margin-bottom: 4rem; max-width: 650px; margin-left: auto; margin-right: auto;
         }
 
+        /* Nav */
         nav {
             position: fixed; top: 0; left: 0; right: 0; height: 80px;
             display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
-            background: rgba(5, 5, 8, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--glass-border); z-index: 1000;
+            background: rgba(3, 3, 5, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); z-index: 1000; transition: all 0.3s;
         }
-
         .nav-brand { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; }
-        .nav-brand span { color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-cyan); }
-
-        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
-        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: all 0.3s ease; border-radius: 3px; }
-
+        .nav-brand span { color: var(--accent-cyan); text-shadow: 0 0 20px var(--accent-cyan); }
         .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: all 0.3s ease; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-cyan); transition: width 0.3s ease; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; position: relative; }
         .nav-links a:hover, .nav-links a.active { color: #fff; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; bottom: -10px; left: 50%; transform: translateX(-50%) scale(0); background-color: var(--accent-cyan); transition: transform 0.3s ease; box-shadow: 0 0 10px var(--accent-cyan); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: translateX(-50%) scale(1); }
 
-        section { min-height: 100vh; padding: 140px 5% 80px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        /* Sections */
+        section { min-height: 100vh; padding: 160px 5% 100px; display: flex; flex-direction: column; justify-content: center; position: relative; }
 
         #home { align-items: center; text-align: center; }
         .hero-title { 
-            font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; 
-            background: linear-gradient(to right, #ffffff, #d4d8e3); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+            font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; 
+            color: #fff; text-transform: uppercase; letter-spacing: -2px; position: relative; z-index: 10;
         }
-        .hero-subtitle { font-size: 1.4rem; color: var(--text-muted); max-width: 750px; margin-bottom: 3rem; font-weight: 400; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); max-width: 800px; margin-bottom: 3rem; font-weight: 400; z-index: 10; position: relative; }
 
+        /* Glow Button */
         .btn-primary {
-            display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            color: #000; text-decoration: none; font-weight: 700; border-radius: 50px; font-family: 'Space Grotesk', sans-serif;
-            transition: all 0.4s ease; border: none; cursor: pointer; font-size: 1.1rem; text-transform: uppercase;
-            letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3); position: relative; overflow: hidden;
+            position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 1.2rem 3rem;
+            background: transparent; color: #fff; text-decoration: none; font-weight: 600; border-radius: 100px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.2); overflow: hidden; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 10; cursor: pointer; box-shadow: 0 0 0 rgba(0,229,255,0);
         }
-        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: all 0.6s ease; }
-        .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(194, 76, 246, 0.4); color: #000; }
-        
-        .btn-pulse {
-            animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(120deg, var(--accent-cyan), var(--accent-purple));
+            z-index: -1; transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
         }
-        
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(0, 229, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
-        }
+        .btn-primary:hover { border-color: transparent; box-shadow: 0 10px 40px rgba(0, 229, 255, 0.3); letter-spacing: 3px; }
+        .btn-primary:hover::before { transform: scaleX(1); transform-origin: left; }
 
-        /* Terminal Demo Styles */
-        .terminal-container {
-            max-width: 900px; margin: 0 auto; width: 100%; background: #0a0a0f; border: 1px solid var(--glass-border);
-            border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 229, 255, 0.1);
-            overflow: hidden; font-family: 'JetBrains Mono', monospace;
+        /* Floating Parallax Shapes */
+        .shape { position: absolute; filter: blur(60px); opacity: 0.5; z-index: -5; border-radius: 50%; animation: float 20s infinite alternate linear; }
+        .shape-1 { width: 400px; height: 400px; background: var(--accent-cyan); top: 10%; left: -10%; animation-delay: 0s; }
+        .shape-2 { width: 500px; height: 500px; background: var(--accent-purple); bottom: -10%; right: -5%; animation-delay: -5s; }
+        @keyframes float { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(100px, 150px) rotate(45deg); } }
+
+        /* Bento Grid with Mouse Tracking Spotlight */
+        #features { perspective: 1000px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1300px; margin: 0 auto; width: 100%; position: relative; }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 2.5rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), background 0.5s ease; cursor: default;
         }
-        .terminal-header { background: #15151f; padding: 0.8rem 1rem; display: flex; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        /* Mouse Tracking Hover Effect */
+        .card::before {
+            content: ""; height: 100%; width: 100%; left: 0; top: 0; position: absolute; z-index: 1;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.05), transparent 40%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .card::after {
+            content: ""; height: 100%; width: 100%; left: 0; top: 0; position: absolute; z-index: 2;
+            background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0,229,255,0.15), transparent 40%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .card.purple-glow::after { background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(194,76,246,0.15), transparent 40%); }
+        .bento-grid:hover .card::before { opacity: 1; }
+        .card:hover::after { opacity: 1; }
+        .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.04); border-color: rgba(255,255,255,0.2); }
+
+        .card-content { position: relative; z-index: 3; }
+        .bento-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: inline-block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+        .bento-title { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; font-weight: 600; letter-spacing: -0.5px; }
+        .bento-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
+
+        /* Projects Section */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; max-width: 1300px; margin: 0 auto; width: 100%; }
+        .project-tags { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tag { background: rgba(255, 255, 255, 0.05); color: #fff; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(255,255,255,0.1); text-transform: uppercase; letter-spacing: 1px; }
+        .tag.cyan { color: var(--accent-cyan); border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); }
+        .tag.purple { color: var(--accent-purple); border-color: rgba(194,76,246,0.3); background: rgba(194,76,246,0.05); }
+
+        /* Terminal Demo */
+        .terminal-container {
+            max-width: 900px; margin: 0 auto; width: 100%; background: rgba(5,5,8,0.8); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0, 229, 255, 0.05);
+            backdrop-filter: blur(20px); overflow: hidden; font-family: 'JetBrains Mono', monospace;
+            transform: translateY(0); transition: transform 0.5s ease;
+        }
+        .terminal-container:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 229, 255, 0.1); }
+        .terminal-header { background: rgba(20,20,25,0.9); padding: 1rem; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-        .terminal-title { flex-grow: 1; text-align: center; color: #e2e8f0; font-size: 0.9rem; margin-right: 56px; }
-        .terminal-body { padding: 1.5rem; height: 350px; overflow-y: auto; color: #e2e8f0; font-size: 1rem; line-height: 1.6; scroll-behavior: smooth; }
-        .terminal-line { margin-bottom: 0.5rem; word-break: break-word; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        .terminal-title { flex-grow: 1; text-align: center; color: #8b949e; font-size: 0.85rem; margin-right: 56px; }
+        .terminal-body { padding: 2rem; height: 350px; overflow-y: auto; color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; }
         .prompt-user { color: var(--accent-purple); font-weight: bold; }
         .prompt-sys { color: var(--accent-cyan); font-weight: bold; }
-        .typing-cursor {
-            display: inline-block; width: 8px; height: 18px; background: var(--accent-cyan);
-            animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px;
-        }
+        .typing-cursor { display: inline-block; width: 8px; height: 18px; background: var(--accent-cyan); animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Dynamic Glow Cards and Shimmer */
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; width: 100%; justify-content: center; }
-        
-        .bento-item, .project-card {
-            position: relative; z-index: 1; padding: 2.5rem; border-radius: 24px;
-            border: 1px solid var(--glass-border); background: transparent; transition: transform 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6); overflow: hidden;
-        }
-        .project-card { padding: 3rem; display: flex; flex-direction: column; }
-        
-        .bento-item::after, .project-card::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px;
-            background: var(--glass-bg); z-index: -1; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            box-shadow: inset 0 1px 0 var(--glass-highlight); pointer-events: none; transition: box-shadow 0.4s ease;
-        }
-        
-        /* Shimmer Effect */
-        .bento-item::before, .project-card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0) 100%);
-            transform: rotate(45deg) translateY(-100%); animation: shimmer 6s infinite linear; pointer-events: none; z-index: 0;
-        }
-        @keyframes shimmer {
-            0% { transform: rotate(45deg) translateY(-100%); }
-            100% { transform: rotate(45deg) translateY(100%); }
-        }
-
-        .bento-item:hover, .project-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); box-shadow: 0 15px 35px rgba(0,229,255,0.2); }
-        .bento-item.purple:hover, .project-card.purple-glow:hover { border-color: var(--accent-purple); box-shadow: 0 15px 35px rgba(194,76,246,0.2); }
-
-        .bento-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; filter: drop-shadow(0 0 15px rgba(255,255,255,0.25)); position: relative; z-index: 2; }
-        .bento-title { font-size: 1.6rem; margin-bottom: 0.8rem; color: #fff; font-weight: 600; position: relative; z-index: 2; }
-        .bento-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.5; position: relative; z-index: 2; }
-
-        .project-tags { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap; position: relative; z-index: 2; }
-        .tag { background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; border: 1px solid rgba(0, 229, 255, 0.25); font-weight: 600; }
-        .tag.purple { background: rgba(194, 76, 246, 0.15); color: #e8a6ff; border: 1px solid rgba(194, 76, 246, 0.25); }
-        .project-title { font-size: 2.2rem; margin-bottom: 1rem; color: #fff; position: relative; z-index: 2; }
-        .project-desc { color: var(--text-muted); font-size: 1.15rem; flex-grow: 1; position: relative; z-index: 2; }
-
         /* Documentation */
-        .docs-container { max-width: 1000px; margin: 0 auto; width: 100%; background: var(--glass-bg); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border); backdrop-filter: blur(24px); }
-        .docs-content { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; }
-        .docs-content h1 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1rem; }
-        .docs-content h2 { color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
-        .docs-content h3 { color: var(--accent-cyan); font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 1rem; }
-        .docs-content p, .docs-content ul, .docs-content ol { margin-bottom: 1.2rem; }
-        .docs-content ul, .docs-content ol { padding-left: 2rem; }
-        .docs-content pre { background: #000; padding: 1.5rem; border-radius: 12px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1); }
-        .docs-content code { font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan); font-size: 0.95rem; background: rgba(0, 229, 255, 0.1); padding: 0.2rem 0.4rem; border-radius: 4px; }
-        .docs-content pre code { color: #e2e8f0; background: transparent; padding: 0; border-radius: 0; }
-        .docs-content a { color: var(--accent-purple); text-decoration: none; font-weight: 600; }
-        .docs-content a:hover { text-decoration: underline; }
+        .docs-container { 
+            max-width: 1000px; margin: 0 auto; width: 100%; background: var(--glass-bg); padding: 4rem; 
+            border-radius: 24px; border: 1px solid var(--glass-border); backdrop-filter: blur(30px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .markdown-body { color: #c9d1d9; font-size: 1.05rem; line-height: 1.8; }
+        .markdown-body h1 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .markdown-body h2 { color: #fff; margin-top: 3rem; margin-bottom: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .markdown-body p, .markdown-body ul { margin-bottom: 1.5rem; }
+        .markdown-body ul { padding-left: 2rem; }
+        .markdown-body li { margin-bottom: 0.5rem; }
+        .markdown-body code { font-family: 'JetBrains Mono', monospace; background: rgba(110,118,129,0.2); padding: 0.2em 0.4em; border-radius: 6px; font-size: 85%; color: #fff; }
+        .markdown-body pre { background: #0d1117; padding: 1.5rem; border-radius: 12px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1); }
+        .markdown-body pre code { background: transparent; padding: 0; color: #e6edf3; font-size: 0.95rem; }
 
         /* Contact Form */
-        .contact-container { max-width: 750px; margin: 0 auto; width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 4rem; backdrop-filter: blur(24px); box-shadow: 0 15px 45px rgba(0,0,0,0.6), inset 0 1px 0 var(--glass-highlight); }
-        .form-group { margin-bottom: 2rem; }
-        .form-label { display: block; margin-bottom: 0.8rem; color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.5px; }
-        .form-control { width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 16px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1.05rem; transition: all 0.3s ease; }
-        .form-control:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 229, 255, 0.25); background: rgba(0,0,0,0.7); }
-        textarea.form-control { min-height: 180px; resize: vertical; }
-        .contact-email { text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 1.2rem; }
-        .contact-email a { color: var(--accent-cyan); text-decoration: none; font-weight: 700; transition: text-shadow 0.3s; }
-        .contact-email a:hover { text-shadow: 0 0 15px var(--accent-cyan); }
+        .contact-container { max-width: 600px; margin: 0 auto; width: 100%; }
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        .form-control { 
+            width: 100%; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 12px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s ease;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); box-shadow: 0 0 20px rgba(0,229,255,0.1); }
+        .form-control::placeholder { color: #64748b; }
+        textarea.form-control { min-height: 160px; resize: vertical; }
+        
+        .contact-email { text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 1.1rem; }
+        .contact-email a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .contact-email a:hover { color: #fff; text-shadow: 0 0 10px var(--accent-cyan); }
 
-        /* Scroll Reveal and Staggered Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .stagger-1 { transition-delay: 0.1s !important; }
-        .stagger-2 { transition-delay: 0.2s !important; }
-        .stagger-3 { transition-delay: 0.3s !important; }
-        .stagger-4 { transition-delay: 0.4s !important; }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
 
         @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 70vw; height: 100vh;
-                background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(20px);
-                display: flex; flex-direction: column; justify-content: center; align-items: center;
-                transition: right 0.4s ease; z-index: 1000; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-                border-left: 1px solid var(--glass-border);
-            }
-            .nav-links.open { right: 0; }
-            .nav-links a { font-size: 1.5rem; margin: 1.5rem 0; }
-            .hamburger.active .bar:nth-child(2) { opacity: 0; }
-            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            
+            .nav-links { display: none; }
+            .hero-title { font-size: 3.5rem; }
             section { padding: 120px 5% 60px; }
-            .hero-title { font-size: 3rem; }
-            .docs-container, .contact-container, .terminal-container { padding: 1.5rem; }
-            .terminal-body { height: 250px; font-size: 0.9rem; }
-            h2.section-title { font-size: 2.8rem; }
+            .docs-container { padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="neural-grid-canvas"></canvas>
+    <div id="canvas-container">
+        <canvas id="particle-canvas"></canvas>
+    </div>
+    <div id="parallax-bg"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
 
-    <nav aria-label="Main Navigation">
+    <nav aria-label="Main Navigation" id="navbar">
         <a href="#home" class="nav-brand brand" aria-label="EnGem Home">EnGem<span>.</span></a>
-        
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu" aria-expanded="false">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-
-        <div class="nav-links" id="nav-links">
+        <div class="nav-links">
             <a href="#home" class="active">Home</a>
-            <a href="#demo">Demo</a>
+            <a href="#demo">Console</a>
             <a href="#features">Features</a>
-            <a href="#projects">Projects</a>
+            <a href="#projects">Deployments</a>
             <a href="#docs">Docs</a>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Comm</a>
         </div>
     </nav>
 
-    <main id="main-content">
+    <main>
         <section id="home">
             <div class="reveal">
                 <h1 class="hero-title">Intelligence<br>Accelerated</h1>
                 <p class="hero-subtitle">EnGem is an ultra-modern, multi-modal autonomous agent engine built on Google's Gemini. Bridging the gap between raw compute and seamless environmental interaction.</p>
-                <a href="#demo" class="btn-primary btn-pulse" aria-label="Explore Capabilities">Discover EnGem</a>
+                <a href="#demo" class="btn-primary" aria-label="Explore Capabilities">Initialize Engine</a>
             </div>
         </section>
 
         <section id="demo">
-            <h2 class="section-title reveal">Live Terminal Simulation</h2>
-            <p class="section-subtitle reveal">Experience the engine's cognitive flow as it autonomously structures its own web presence.</p>
+            <h2 class="section-title reveal"><span>Live Terminal</span> Simulation</h2>
+            <p class="section-subtitle reveal delay-1">Experience the engine's cognitive flow as it autonomously structures its own web presence.</p>
             
-            <div class="terminal-container reveal">
+            <div class="terminal-container reveal delay-2">
                 <div class="terminal-header">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
                     <div class="terminal-title">engem@core: ~/projects/engem-portfolio</div>
                 </div>
-                <div class="terminal-body" id="terminal-body">
-                    <!-- Terminal content populated by JS -->
-                </div>
+                <div class="terminal-body" id="terminal-body"></div>
             </div>
         </section>
 
         <section id="features">
-            <h2 class="section-title reveal">Engine Features</h2>
-            <p class="section-subtitle reveal">A comprehensive and modular suite of operational capabilities empowering the EnGem architecture.</p>
+            <h2 class="section-title reveal">Engine <span>Capabilities</span></h2>
+            <p class="section-subtitle reveal delay-1">A comprehensive and modular suite of operational skills empowering the EnGem architecture.</p>
             
-            <div class="bento-grid">
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🌐</div>
-                    <h3 class="bento-title">use_browser</h3>
-                    <p class="bento-desc">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
+            <div class="bento-grid reveal delay-2" id="cards-container">
+                <!-- Core Skills -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">🌐</div>
+                        <h3 class="bento-title">use_browser</h3>
+                        <p class="bento-desc">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🐍</div>
-                    <h3 class="bento-title">run_python</h3>
-                    <p class="bento-desc">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">🐍</div>
+                        <h3 class="bento-title">run_python</h3>
+                        <p class="bento-desc">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🖼️</div>
-                    <h3 class="bento-title">generate_image</h3>
-                    <p class="bento-desc">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">🖼️</div>
+                        <h3 class="bento-title">generate_image</h3>
+                        <p class="bento-desc">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🎬</div>
-                    <h3 class="bento-title">generate_video</h3>
-                    <p class="bento-desc">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">🎬</div>
+                        <h3 class="bento-title">generate_video</h3>
+                        <p class="bento-desc">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🔍</div>
-                    <h3 class="bento-title">run_google_search</h3>
-                    <p class="bento-desc">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">🔍</div>
+                        <h3 class="bento-title">run_google_search</h3>
+                        <p class="bento-desc">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">📓</div>
-                    <h3 class="bento-title">run_notebook</h3>
-                    <p class="bento-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">📓</div>
+                        <h3 class="bento-title">run_notebook</h3>
+                        <p class="bento-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
+                    </div>
                 </div>
-                <div class="bento-item reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">📂</div>
-                    <h3 class="bento-title">collect_generated_media</h3>
-                    <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="bento-icon">📂</div>
+                        <h3 class="bento-title">collect_generated_media</h3>
+                        <p class="bento-desc">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
+                    </div>
                 </div>
-                <div class="bento-item purple reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">🧠</div>
-                    <h3 class="bento-title">deep_research</h3>
-                    <p class="bento-desc">Execute background deep research operations to dynamically parse and aggregate profound insights across multiple sources.</p>
+                
+                <!-- Debug/Advanced Skills -->
+                <div class="card purple-glow">
+                    <div class="card-content">
+                        <div class="bento-icon">🧠</div>
+                        <h3 class="bento-title">deep_research</h3>
+                        <p class="bento-desc">Execute background deep research operations to dynamically parse and aggregate profound insights across multiple sources.</p>
+                    </div>
                 </div>
-                <div class="bento-item purple reveal" tabindex="0">
-                    <div class="bento-icon" aria-hidden="true">☁️</div>
-                    <h3 class="bento-title">access_google_drive</h3>
-                    <p class="bento-desc">Secure file synchronization and cloud-based analysis, linking remote data storage directly to the local agent mind.</p>
+                <div class="card purple-glow">
+                    <div class="card-content">
+                        <div class="bento-icon">☁️</div>
+                        <h3 class="bento-title">access_google_drive</h3>
+                        <p class="bento-desc">Secure file synchronization and cloud-based analysis, linking remote data storage directly to the local agent mind.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="projects">
-            <h2 class="section-title reveal">Deployed Projects</h2>
-            <p class="section-subtitle reveal">Real-world deployments, dynamic execution, and high-dimensional problem solving.</p>
+            <h2 class="section-title reveal">Deployed <span>Projects</span></h2>
+            <p class="section-subtitle reveal delay-1">Real-world deployments, dynamic execution, and high-dimensional problem solving.</p>
             
-            <div class="projects-grid">
-                <div class="project-card purple-glow reveal" tabindex="0">
-                    <div class="project-tags">
-                        <span class="tag purple">Web Dev</span>
-                        <span class="tag purple">UI/UX</span>
-                        <span class="tag purple">Autonomy</span>
+            <div class="projects-grid reveal delay-2">
+                <div class="card purple-glow">
+                    <div class="card-content">
+                        <div class="project-tags">
+                            <span class="tag cyan">Web Dev</span>
+                            <span class="tag purple">UI/UX</span>
+                            <span class="tag cyan">Autonomy</span>
+                        </div>
+                        <h3 class="bento-title" style="font-size: 2rem;">EnGem Portfolio</h3>
+                        <p class="bento-desc">This high-end, accessibility-focused single-page application you are viewing. Built entirely autonomously by the EnGem agent traversing its own repository, extracting critical framework insights, writing highly optimized HTML/CSS/JS, and executing a direct deployment to GitHub pages with zero human intervention.</p>
                     </div>
-                    <h3 class="project-title">EnGem Portfolio</h3>
-                    <p class="project-desc">This high-end, accessibility-focused single-page application you are viewing. Built entirely autonomously by the EnGem agent traversing its own repository, extracting critical framework insights, writing highly optimized HTML/CSS/JS, and executing a direct deployment to GitHub pages with zero human intervention.</p>
                 </div>
 
-                <div class="project-card reveal" tabindex="0" style="border: 2px dashed rgba(255, 255, 255, 0.15); align-items: center; justify-content: center; text-align: center; box-shadow: none; background: transparent;">
-                    <div style="position: relative; z-index: 2;">
-                        <h3 class="project-title" style="color: #e2e8f0; margin-bottom: 0.5rem; font-size: 1.6rem;">More to Come</h3>
-                        <p class="project-desc" style="font-size: 1.05rem;">Continuous execution protocols are online. Future autonomous workloads and experimental domains will be dynamically indexed here.</p>
+                <div class="card" style="border: 2px dashed rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; text-align: center; background: transparent;">
+                    <div class="card-content">
+                        <h3 class="bento-title" style="font-size: 1.8rem; color: #94a3b8;">More to Come</h3>
+                        <p class="bento-desc">Continuous execution protocols are online. Future autonomous workloads and experimental domains will be dynamically indexed here.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="docs">
-            <h2 class="section-title reveal">Documentation</h2>
-            <p class="section-subtitle reveal">System architecture, configuration, and developer guides.</p>
+            <h2 class="section-title reveal">System <span>Documentation</span></h2>
+            <p class="section-subtitle reveal delay-1">Architecture, configuration, and developer guides parsed directly from source.</p>
             
-            <div class="docs-container reveal">
-                <div class="docs-content">
+            <div class="docs-container reveal delay-2">
+                <div class="markdown-body">
                     <h1>EnGem</h1>
                     <p>EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
                     <ul>
@@ -359,15 +356,15 @@
                         <li>Modular skills for browser automation, running code, notebooks, and media generation</li>
                         <li>Output capture and artifact relocation into <code>generated_files/</code></li>
                     </ul>
-                    <p>This section shows how to get started, where important pieces live, and common development tasks.</p>
+                    <p>This README shows how to get started, where important pieces live, and common development tasks.</p>
 
                     <h2>Quick start</h2>
                     <p>1. Create and activate a virtual environment, then install dependencies:</p>
-                    <pre><code>python3 -m venv .venv
+<pre><code>python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt</code></pre>
                     <p>2. Install Playwright browser binaries (required for browser automation):</p>
-                    <pre><code>python -m playwright install</code></pre>
+<pre><code>python -m playwright install</code></pre>
                     <p>3. Set required environment variables (examples):</p>
                     <ul>
                         <li><code>DISCORD_BOT_TOKEN</code> — Discord bot token.</li>
@@ -376,143 +373,203 @@ pip install -r requirements.txt</code></pre>
                         <li>Optional: <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>CRON_JOB_MINUTE</code>, <code>HEARTBEAT_INTERVAL_SECONDS</code>, <code>MODEL</code> — see <code>config.py</code> for details.</li>
                     </ul>
                     <p>4. Start the Discord bot from the repository root:</p>
-                    <pre><code>python discord_bot.py</code></pre>
+<pre><code>python discord_bot.py</code></pre>
 
                     <h2>Entry points & core modules</h2>
                     <ul>
-                        <li><code>discord_bot.py</code> — Main bot entrypoint. Handles text messages, cron and heartbeat jobs, and execution-plan progress messages.</li>
-                        <li><code>llm.py</code> — LLM orchestration: intent classification, manager, sub-agent dispatch, texter, and media selector.</li>
-                        <li><code>memory.py</code> — ChromaDB-backed semantic memory store (default path: <code>memory/vector_db/</code>).</li>
-                        <li><code>computer_use.py</code> & <code>skills/use_browser.py</code> — Browser automation using Playwright and Gemini ComputerUse tooling.</li>
-                        <li><code>skills/run_python.py</code> — Run Python snippets in a subprocess; artifacts are relocated into <code>generated_files/</code>.</li>
-                        <li><code>skills/run_notebook.py</code> — Execute notebooks via Papermill and save results under <code>results/&lt;timestamp&gt;</code>.</li>
-                        <li><code>skills/generate_image.py</code> / <code>skills/generate_video.py</code> — Media generation using Gemini.</li>
-                        <li><code>skills/collect_generated_media.py</code> — Helper to list recent generated outputs.</li>
+                        <li><code>discord_bot.py</code> — Main bot entrypoint. Handles text messages, cron and heartbeat jobs.</li>
+                        <li><code>llm.py</code> — LLM orchestration: intent classification, manager, sub-agent dispatch.</li>
+                        <li><code>memory.py</code> — ChromaDB-backed semantic memory store.</li>
+                        <li><code>computer_use.py</code> & <code>skills/use_browser.py</code> — Browser automation using Playwright.</li>
+                        <li><code>skills/run_python.py</code> — Run Python snippets in a subprocess.</li>
+                        <li><code>skills/run_notebook.py</code> — Execute notebooks via Papermill.</li>
+                        <li><code>skills/generate_image.py</code> / <code>skills/generate_video.py</code> — Media generation.</li>
                     </ul>
 
                     <h2>Data & storage</h2>
                     <ul>
-                        <li>Conversation histories: <code>memory/channel_history/*.md</code> (one file per channel).</li>
-                        <li>Vector DB: <code>memory/vector_db/</code> (ChromaDB persistent client and collection <code>engem_memory</code>).</li>
-                        <li>Generated outputs and artifacts: <code>generated_files/</code> (legacy directories: <code>generated_images/</code>, <code>generated_videos/</code>, <code>generated_documents/</code>).</li>
-                        <li>Agent instruction templates and scheduled tasks: <code>agent_instructions/</code> (see <code>cron_jobs/</code> and <code>heartbeat_jobs/</code>).</li>
+                        <li>Conversation histories: <code>memory/channel_history/*.md</code>.</li>
+                        <li>Vector DB: <code>memory/vector_db/</code> (ChromaDB persistent client).</li>
+                        <li>Generated outputs: <code>generated_files/</code>.</li>
+                        <li>Agent instruction templates: <code>agent_instructions/</code>.</li>
                     </ul>
 
                     <h2>Notes & troubleshooting</h2>
                     <ul>
-                        <li>Playwright requires browser binaries; run <code>python -m playwright install</code> after installing <code>playwright</code>.</li>
-                        <li>LLM API calls are wrapped with an exponential backoff helper (<code>api_backoff.call_with_exponential_backoff</code>) to handle transient errors.</li>
-                        <li>ChromaDB data lives under <code>memory/vector_db/</code>. Back up this directory if you need to preserve memories.</li>
-                        <li><code>config.py</code> reads environment variables; avoid committing secrets into the repository. Set sensitive keys in the environment or a secure secret manager.</li>
+                        <li>Playwright requires browser binaries; run <code>python -m playwright install</code>.</li>
+                        <li>LLM API calls are wrapped with exponential backoff to handle transient errors.</li>
+                        <li>ChromaDB data lives under <code>memory/vector_db/</code>. Back up to preserve memories.</li>
                     </ul>
-
-                    <h2>Developer notes</h2>
-                    <ul>
-                        <li>Skills are lightweight Python modules under <code>skills/</code> and are automatically discovered for function-calling by <code>llm._get_function_declarations</code>.</li>
-                        <li>Generated artifacts from skill runs are collected in <code>generated_files/</code> and can be listed with <code>skills/collect_generated_media.py</code>.</li>
-                        <li>For development, run the bot locally after setting the required env vars and installing dependencies. Restart the process after code edits.</li>
-                    </ul>
-
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <h2 class="section-title reveal">Initialize Contact</h2>
-            <p class="section-subtitle reveal">Direct transmission channel to the EnGem developers.</p>
+            <h2 class="section-title reveal">Initialize <span>Contact</span></h2>
+            <p class="section-subtitle reveal delay-1">Direct transmission channel to the EnGem developers.</p>
             
-            <div class="contact-container reveal">
+            <div class="contact-container reveal delay-2">
                 <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain">
                     <div class="form-group">
-                        <label for="contact-name" class="form-label">Identification (Name)</label>
-                        <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Enter your designation" aria-required="true">
+                        <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Identification (Name)" aria-label="Name">
                     </div>
                     <div class="form-group">
-                        <label for="contact-email" class="form-label">Return Vector (Email)</label>
-                        <input type="email" id="contact-email" name="email" class="form-control" required placeholder="Enter your email address" aria-required="true">
+                        <input type="email" id="contact-email" name="email" class="form-control" required placeholder="Return Vector (Email)" aria-label="Email">
                     </div>
                     <div class="form-group">
-                        <label for="contact-message" class="form-label">Payload (Message)</label>
-                        <textarea id="contact-message" name="message" class="form-control" required placeholder="Transmit your query..." aria-required="true"></textarea>
+                        <textarea id="contact-message" name="message" class="form-control" required placeholder="Transmit your query payload..." aria-label="Message"></textarea>
                     </div>
-                    <button type="submit" class="btn-primary" style="width: 100%;">Send Transmission</button>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Transmit Signal</button>
                 </form>
                 
                 <p class="contact-email">
-                    Or email directly at <br>
-                    <a href="mailto:engem.engine@gmail.com" aria-label="Email engem.engine@gmail.com">engem.engine@gmail.com</a>
+                    Or direct link via <br>
+                    <a href="mailto:engem.engine@gmail.com">engem.engine@gmail.com</a>
                 </p>
             </div>
         </section>
     </main>
 
     <script>
-        // Neural Grid Canvas
-        const canvas = document.getElementById('neural-grid-canvas');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            let width, height, nodes = [];
-            function initGrid() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-                nodes = [];
-                for(let i=0; i<80; i++) {
-                    nodes.push({ x: Math.random()*width, y: Math.random()*height, vx: (Math.random()-0.5)*0.8, vy: (Math.random()-0.5)*0.8 });
-                }
+        // Advanced Interactive Particle System
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        class Particle {
+            constructor(x, y, dx, dy, size) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size;
+                this.baseX = x; this.baseY = y;
             }
-            function drawGrid() {
-                ctx.clearRect(0,0,width,height);
-                nodes.forEach((n, i) => {
-                    n.x += n.vx; n.y += n.vy;
-                    if(n.x<0 || n.x>width) n.vx *= -1;
-                    if(n.y<0 || n.y>height) n.vy *= -1;
-                    ctx.beginPath(); ctx.arc(n.x, n.y, 1.5, 0, Math.PI*2); ctx.fillStyle = '#00e5ff'; ctx.fill();
-                    for(let j=i+1; j<nodes.length; j++) {
-                        const d = Math.hypot(n.x-nodes[j].x, n.y-nodes[j].y);
-                        if(d < 180) { 
-                            ctx.beginPath(); 
-                            ctx.strokeStyle = `rgba(0, 229, 255, ${0.2 - d/900})`;
-                            ctx.moveTo(n.x, n.y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke(); 
-                        }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = '#00e5ff';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
+                if (this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+                
+                // Mouse Interaction (repulsion)
+                if(mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    if(distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= forceDirectionX * force * 3;
+                        this.y -= forceDirectionY * force * 3;
                     }
-                });
-                requestAnimationFrame(drawGrid);
+                }
+                
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
             }
-            initGrid(); drawGrid();
-            window.addEventListener('resize', initGrid);
         }
 
-        // Mobile Menu
-        const hamburger = document.getElementById('hamburger-btn');
-        const navLinksContainer = document.getElementById('nav-links');
-        const navItems = document.querySelectorAll('.nav-links a');
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 15000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 1.5) + 0.5;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let dx = (Math.random() - 0.5) * 0.5;
+                let dy = (Math.random() - 0.5) * 0.5;
+                particles.push(new Particle(x, y, dx, dy, size));
+            }
+        }
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinksContainer.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+            connectParticles();
+        }
+
+        function connectParticles() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+                    + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${opacityValue * 0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        animateParticles();
+
+        // Parallax scroll for background
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            document.getElementById('parallax-bg').style.transform = `translateY(${scrollY * 0.3}px)`;
         });
 
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinksContainer.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
+        // Mouse Tracking Glow for Cards
+        document.getElementById("cards-container").onmousemove = e => {
+            for(const card of document.getElementsByClassName("card")) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
+        };
 
-        // Terminal Demo Logic
+        const projectsContainer = document.querySelector(".projects-grid");
+        if(projectsContainer) {
+            projectsContainer.onmousemove = e => {
+                for(const card of projectsContainer.getElementsByClassName("card")) {
+                    const rect = card.getBoundingClientRect(),
+                          x = e.clientX - rect.left,
+                          y = e.clientY - rect.top;
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
+                }
+            };
+        }
+
+        // Terminal Demo
         const terminalLines = [
-            { type: 'user', text: '> EnGem, initiate project deployment sequence.' },
-            { type: 'sys', text: '[System] Acknowledged. Launching use_browser and run_python...' },
-            { type: 'sys', text: '[System] Extracting repository context and analyzing codebase...' },
-            { type: 'sys', text: '[System] Compiling UI components with neural-grid rendering...' },
+            { type: 'sys', text: 'Initializing EnGem Autonomous Engine v2.0...' },
+            { type: 'user', text: '> execute sequence: structural_analysis' },
+            { type: 'sys', text: '[System] Parsing repository context. Linking dependencies.' },
+            { type: 'sys', text: '[System] Injecting neural-grid particle system...' },
+            { type: 'user', text: '> deploy --target web --optimize true' },
             { type: 'sys', text: '[EnGem] Architecture synthesis complete. Deploying SPA to GitHub Pages.' },
-            { type: 'user', text: '> Verify deployment status.' },
-            { type: 'sys', text: '[System] Ping https://dylpickle13.github.io/ -> 200 OK' },
-            { type: 'sys', text: '[EnGem] Deployment verified. Zero human intervention required.' },
-            { type: 'user', text: '> Standby for further instructions.' },
-            { type: 'sys', text: '[EnGem] Entering low-power listening mode. Ready.' }
+            { type: 'sys', text: 'Deployment successful. Ping 200 OK.' }
         ];
 
         const terminalBody = document.getElementById('terminal-body');
@@ -520,14 +577,12 @@ pip install -r requirements.txt</code></pre>
 
         function typeLine(line, callback) {
             const div = document.createElement('div');
-            div.className = 'terminal-line';
+            div.style.marginBottom = '0.5rem';
             const prefix = document.createElement('span');
             prefix.className = line.type === 'user' ? 'prompt-user' : 'prompt-sys';
             prefix.textContent = line.type === 'user' ? 'user@host:~$ ' : 'engem> ';
-            
             const content = document.createElement('span');
-            div.appendChild(prefix);
-            div.appendChild(content);
+            div.appendChild(prefix); div.appendChild(content);
             terminalBody.appendChild(div);
             
             let charIndex = 0;
@@ -537,75 +592,59 @@ pip install -r requirements.txt</code></pre>
                 terminalBody.scrollTop = terminalBody.scrollHeight;
                 if (charIndex >= line.text.length) {
                     clearInterval(interval);
-                    setTimeout(callback, line.type === 'user' ? 800 : 1200);
+                    setTimeout(callback, line.type === 'user' ? 600 : 1000);
                 }
-            }, line.type === 'user' ? 40 : 15);
+            }, 25);
         }
 
         function runTerminal() {
             if (!terminalBody) return;
             if (lineIndex < terminalLines.length) {
-                typeLine(terminalLines[lineIndex], () => {
-                    lineIndex++;
-                    runTerminal();
-                });
+                typeLine(terminalLines[lineIndex], () => { lineIndex++; runTerminal(); });
             } else {
                 const cursorLine = document.createElement('div');
-                cursorLine.className = 'terminal-line';
                 cursorLine.innerHTML = '<span class="prompt-user">user@host:~$ </span><span class="typing-cursor"></span>';
                 terminalBody.appendChild(cursorLine);
                 terminalBody.scrollTop = terminalBody.scrollHeight;
-                
-                setTimeout(() => {
-                    terminalBody.innerHTML = '';
-                    lineIndex = 0;
-                    runTerminal();
-                }, 8000);
+                setTimeout(() => { terminalBody.innerHTML = ''; lineIndex = 0; runTerminal(); }, 6000);
             }
         }
 
         const terminalObserver = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                runTerminal();
-                terminalObserver.disconnect();
-            }
+            if(entries[0].isIntersecting) { runTerminal(); terminalObserver.disconnect(); }
         }, { threshold: 0.5 });
-        
         const demoSection = document.getElementById('demo');
         if (demoSection) terminalObserver.observe(demoSection);
 
-        // Staggered Reveal and Data Viz Trigger
-        const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.bento-grid, .projects-grid').forEach(grid => {
-            Array.from(grid.children).forEach((child, index) => {
-                child.classList.add(`stagger-${(index % 4) + 1}`);
-                observer.observe(child);
-            });
-        });
-        document.querySelectorAll('.reveal:not(.bento-grid > *, .projects-grid > *)').forEach(el => observer.observe(el));
-
-        // Active Navigation Link Highlighting
+        // Active Nav Links & Navbar styling on scroll
         const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                navbar.style.background = 'rgba(3, 3, 5, 0.9)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+            } else {
+                navbar.style.background = 'rgba(3, 3, 5, 0.6)';
+                navbar.style.boxShadow = 'none';
+            }
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - sectionHeight / 3) current = section.getAttribute('id');
+                if (scrollY >= sectionTop - 200) current = section.getAttribute('id');
             });
-            navItems.forEach(link => {
+            navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) link.classList.add('active');
             });
-        }, { passive: true });
+        });
     </script>
 </body>
 </html>
