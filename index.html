@@ -4,13 +4,13 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta name="description" content="EnGem - Intelligence Accelerated. A multi-modal autonomous agent engine built on Google's Gemini."/>
-    <title>EnGem | An Engine built on Gemini</title>
+    <title>EnGem | Intelligence Accelerated</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
     <style>
         /* CSS reset and variables */
         :root {
-            --bg-base: #020203;
+            --bg-base: #030305;
             --bg-surface: #0a0a0f;
             --accent-cyan: #00e5ff;
             --accent-purple: #c24cf6;
@@ -20,7 +20,7 @@
             --glass-border: rgba(255, 255, 255, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
         body {
             background-color: var(--bg-base);
             color: var(--text-main);
@@ -42,7 +42,7 @@
         /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; z-index: 1000; background: rgba(2, 2, 3, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
+            padding: 0 5%; z-index: 1000; background: rgba(3, 3, 5, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
         }
         .nav-brand { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
         .nav-brand span { color: var(--accent-cyan); }
@@ -75,6 +75,7 @@
             max-width: 900px; width: 100%; margin: 0 auto; background: rgba(5,5,10,0.8); border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
             font-family: 'JetBrains Mono', monospace; overflow: hidden;
+            text-align: left;
         }
         .term-header { background: #111; padding: 1rem; display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .term-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -83,40 +84,33 @@
         .prompt { color: var(--accent-cyan); font-weight: bold; }
         .sys { color: var(--accent-purple); }
 
-        /* Features - Alternate Layout */
-        .feature-showcase { display: flex; flex-direction: column; gap: 6rem; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .feature-row { display: flex; align-items: center; gap: 4rem; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
-        .feature-row.visible { opacity: 1; transform: translateY(0); }
-        .feature-row:nth-child(even) { flex-direction: row-reverse; }
-        .feature-text { flex: 1; }
-        .feature-text h3 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
-        .feature-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-        .feature-visual { flex: 1; position: relative; border-radius: 20px; padding: 3rem; background: var(--bg-surface); border: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        /* Features */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
         
-        .skill-chip { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px; transition: all 0.3s; cursor: default; }
-        .skill-chip:hover { border-color: var(--accent-cyan); background: rgba(0,229,255,0.05); transform: translateY(-3px); }
-        .skill-chip i { font-size: 1.5rem; font-style: normal; }
-        .skill-chip span { font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 20px;
+            padding: 2.5rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), background 0.5s ease;
+        }
+        /* Mouse Tracking Hover Effect */
+        .feature-card::before {
+            content: ""; height: 100%; width: 100%; left: 0; top: 0; position: absolute; z-index: 1;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.05), transparent 40%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .feature-card::after {
+            content: ""; height: 100%; width: 100%; left: 0; top: 0; position: absolute; z-index: 2;
+            background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0,229,255,0.15), transparent 40%);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .feature-card.debug::after { background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(194,76,246,0.15), transparent 40%); }
+        .feature-card:hover::before, .feature-card:hover::after { opacity: 1; }
+        .feature-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.04); border-color: rgba(255,255,255,0.2); }
 
-        /* Projects */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .project-card { 
-            background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 24px; padding: 3rem;
-            position: relative; overflow: hidden; transition: transform 0.4s;
-        }
-        .project-card:hover { transform: translateY(-10px); border-color: var(--accent-purple); }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(194,76,246,0.1), transparent 50%);
-            opacity: 0; transition: opacity 0.3s; pointer-events: none;
-        }
-        .project-card:hover::before { opacity: 1; }
-        .project-title { font-size: 2rem; margin-bottom: 1rem; }
-        .project-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; }
-        .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .tag { padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .tag.cyan { background: rgba(0,229,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,229,255,0.3); }
-        .tag.purple { background: rgba(194,76,246,0.1); color: var(--accent-purple); border: 1px solid rgba(194,76,246,0.3); }
+        .feature-content { position: relative; z-index: 3; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: inline-block; }
+        .feature-title { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .feature-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
         /* Documentation Layout */
         .docs-wrapper { max-width: 1300px; margin: 0 auto; width: 100%; display: flex; gap: 3rem; background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; height: 75vh; }
@@ -137,8 +131,9 @@
         .docs-content p code, .docs-content li code { background: rgba(110,118,129,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; }
 
         /* Contact */
-        .contact-container { max-width: 600px; margin: 0 auto; width: 100%; background: var(--bg-surface); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border); }
+        .contact-container { max-width: 600px; margin: 0 auto; width: 100%; background: var(--bg-surface); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border); position: relative; z-index: 10;}
         .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
         .form-control { width: 100%; padding: 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s; }
         .form-control:focus { outline: none; border-color: var(--accent-cyan); background: rgba(0,229,255,0.05); }
         textarea.form-control { min-height: 150px; resize: vertical; }
@@ -149,9 +144,13 @@
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
 
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .feature-row, .feature-row:nth-child(even) { flex-direction: column; }
             .docs-wrapper { flex-direction: column; height: auto; }
             .docs-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); }
         }
@@ -166,7 +165,6 @@
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#features">Features</a>
-            <a href="#projects">Projects</a>
             <a href="#docs">Docs</a>
             <a href="#contact">Contact</a>
         </div>
@@ -174,13 +172,13 @@
 
     <main>
         <section id="home">
-            <h1 class="hero-title">Intelligence<br><span class="gradient-text">Accelerated</span></h1>
-            <p class="hero-subtitle">EnGem is a multi-modal autonomous agent engine built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
-            <div style="margin-bottom: 4rem;">
+            <h1 class="hero-title reveal">Intelligence<br><span class="gradient-text">Accelerated</span></h1>
+            <p class="hero-subtitle reveal delay-1">EnGem is a multi-modal autonomous agent engine built on Google's Gemini. It bridges the gap between raw compute and seamless environmental interaction.</p>
+            <div class="reveal delay-2" style="margin-bottom: 4rem;">
                 <a href="#demo" class="btn-primary">Initialize Engine</a>
             </div>
 
-            <div id="demo" class="interactive-terminal">
+            <div id="demo" class="interactive-terminal reveal delay-3">
                 <div class="term-header">
                     <div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div>
                 </div>
@@ -189,81 +187,88 @@
         </section>
 
         <section id="features">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Core <span class="gradient-text">Capabilities</span></h2>
-                <p class="section-subtitle">A modular suite of operational skills empowering the EnGem architecture to execute complex real-world tasks.</p>
+                <p class="section-subtitle">A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.</p>
             </div>
 
-            <div class="feature-showcase">
-                <div class="feature-row">
-                    <div class="feature-text">
-                        <h3>Environmental Interaction</h3>
-                        <p>EnGem fundamentally alters how AI interacts with host systems, moving beyond text generation into active execution. It parses DOMs, runs scripts securely, and orchestrates scientific workflows autonomously.</p>
-                    </div>
-                    <div class="feature-visual">
-                        <div class="skill-chip"><i>🌐</i><span>use_browser</span></div>
-                        <div class="skill-chip"><i>🐍</i><span>run_python</span></div>
-                        <div class="skill-chip"><i>📓</i><span>run_notebook</span></div>
-                        <div class="skill-chip"><i>🔍</i><span>run_search</span></div>
+            <div class="features-grid reveal delay-1" id="features-container">
+                <!-- Standard Tools -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🌐</div>
+                        <h3 class="feature-title">use_browser.py</h3>
+                        <p class="feature-desc">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
                     </div>
                 </div>
-
-                <div class="feature-row">
-                    <div class="feature-text">
-                        <h3>Multi-Modal Synthesis</h3>
-                        <p>Leveraging the native capabilities of Gemini, EnGem synthesizes rich media on command. It dynamically generates, indexes, and retrieves visual and auditory assets, seamlessly bridging output streams.</p>
-                    </div>
-                    <div class="feature-visual">
-                        <div class="skill-chip"><i>🖼️</i><span>generate_image</span></div>
-                        <div class="skill-chip"><i>🎬</i><span>generate_video</span></div>
-                        <div class="skill-chip" style="grid-column: span 2;"><i>📂</i><span>collect_generated_media</span></div>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🐍</div>
+                        <h3 class="feature-title">run_python.py</h3>
+                        <p class="feature-desc">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
                     </div>
                 </div>
-
-                <div class="feature-row">
-                    <div class="feature-text">
-                        <h3>Deep Protocols (Debug)</h3>
-                        <p>For advanced deployments, EnGem executes background deep research operations and links directly to remote cloud storage, turning vast arrays of information into structured, actionable intelligence.</p>
-                    </div>
-                    <div class="feature-visual" style="grid-template-columns: 1fr;">
-                        <div class="skill-chip"><i>🧠</i><span>deep_research</span></div>
-                        <div class="skill-chip"><i>☁️</i><span>access_google_drive</span></div>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🖼️</div>
+                        <h3 class="feature-title">generate_image.py</h3>
+                        <p class="feature-desc">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline via Gemini.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="section-header">
-                <h2 class="section-title">Deployed <span class="gradient-text">Projects</span></h2>
-                <p class="section-subtitle">Real-world deployments driven entirely by EnGem's autonomous task execution.</p>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="tags" style="margin-bottom: 1.5rem;">
-                        <span class="tag cyan">Web Dev</span>
-                        <span class="tag purple">UI/UX</span>
-                        <span class="tag cyan">Autonomy</span>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🎬</div>
+                        <h3 class="feature-title">generate_video.py</h3>
+                        <p class="feature-desc">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
                     </div>
-                    <h3 class="project-title">EnGem Portfolio</h3>
-                    <p class="project-desc">This high-end, accessibility-focused single-page application you are currently viewing was built entirely autonomously by the EnGem agent traversing its own repository and executing a direct deployment to GitHub pages with zero human intervention.</p>
                 </div>
-
-                <div class="project-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-style: dashed; border-width: 2px;">
-                    <h3 class="project-title" style="color: var(--text-muted);">More to Come</h3>
-                    <p class="project-desc" style="margin-bottom: 0;">Continuous execution protocols are online. Future autonomous workloads and experimental domains will be dynamically indexed here.</p>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🔍</div>
+                        <h3 class="feature-title">run_google_search.py</h3>
+                        <p class="feature-desc">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">📓</div>
+                        <h3 class="feature-title">run_notebook.py</h3>
+                        <p class="feature-desc">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">📂</div>
+                        <h3 class="feature-title">collect_generated_media.py</h3>
+                        <p class="feature-desc">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-icon">🧠</div>
+                        <h3 class="feature-title">deep_research.py</h3>
+                        <p class="feature-desc">Execute background deep research operations to dynamically parse and aggregate profound insights across multiple sources.</p>
+                    </div>
+                </div>
+                
+                <!-- Debug Tools -->
+                <div class="feature-card debug">
+                    <div class="feature-content">
+                        <div class="feature-icon">☁️</div>
+                        <h3 class="feature-title">access_google_drive.py <span style="color: var(--accent-purple); font-size: 0.8em;">(Debug)</span></h3>
+                        <p class="feature-desc">Secure file synchronization and cloud-based analysis, linking remote data storage directly to the local agent mind.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="docs">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">System <span class="gradient-text">Documentation</span></h2>
                 <p class="section-subtitle">Architecture, configuration, and developer guides parsed directly from source.</p>
             </div>
 
-            <div class="docs-wrapper">
+            <div class="docs-wrapper reveal delay-1">
                 <aside class="docs-sidebar">
                     <h3>Contents</h3>
                     <ul class="docs-nav">
@@ -273,6 +278,7 @@
                         <li><a href="#doc-storage">Data & Storage</a></li>
                         <li><a href="#doc-troubleshoot">Troubleshooting</a></li>
                         <li><a href="#doc-dev">Developer Notes</a></li>
+                        <li><a href="#doc-repo">Repository Map</a></li>
                     </ul>
                 </aside>
                 <div class="docs-content" id="docs-content-area">
@@ -285,6 +291,7 @@
                         <li>Modular skills for browser automation, running code, notebooks, and media generation</li>
                         <li>Output capture and artifact relocation into <code>generated_files/</code></li>
                     </ul>
+                    <p>This README shows how to get started, where important pieces live, and common development tasks.</p>
 
                     <h2 id="doc-quickstart">Quick start</h2>
                     <p>1. Create and activate a virtual environment, then install dependencies:</p>
@@ -297,63 +304,80 @@ pip install -r requirements.txt</code></pre>
                     <ul>
                         <li><code>DISCORD_BOT_TOKEN</code> — Discord bot token.</li>
                         <li><code>PAID_GEMINI_API_KEY</code> — Gemini API key used by the bot and skills.</li>
-                        <li><code>DISCORD_ALLOWED_CHANNELS</code> — Comma-separated allowed channel names.</li>
+                        <li><code>DISCORD_ALLOWED_CHANNELS</code> — Comma-separated allowed channel names (optional).</li>
+                        <li>Optional: <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>CRON_JOB_MINUTE</code>, <code>HEARTBEAT_INTERVAL_SECONDS</code>, <code>MODEL</code> — see <code>config.py</code> for details.</li>
                     </ul>
                     <p>4. Start the Discord bot from the repository root:</p>
 <pre><code>python discord_bot.py</code></pre>
 
                     <h2 id="doc-modules">Entry points & core modules</h2>
                     <ul>
-                        <li><code>discord_bot.py</code> — Main bot entrypoint. Handles text messages, cron and heartbeat jobs.</li>
-                        <li><code>llm.py</code> — LLM orchestration: intent classification, manager, sub-agent dispatch.</li>
-                        <li><code>memory.py</code> — ChromaDB-backed semantic memory store.</li>
-                        <li><code>computer_use.py</code> & <code>skills/use_browser.py</code> — Browser automation using Playwright.</li>
-                        <li><code>skills/run_python.py</code> — Run Python snippets in a subprocess.</li>
-                        <li><code>skills/run_notebook.py</code> — Execute notebooks via Papermill.</li>
-                        <li><code>skills/generate_image.py</code> / <code>skills/generate_video.py</code> — Media generation.</li>
+                        <li><code>discord_bot.py</code> — Main bot entrypoint. Handles text messages, cron and heartbeat jobs, and execution-plan progress messages.</li>
+                        <li><code>llm.py</code> — LLM orchestration: intent classification, manager, sub-agent dispatch, texter, and media selector.</li>
+                        <li><code>memory.py</code> — ChromaDB-backed semantic memory store (default path: <code>memory/vector_db/</code>).</li>
+                        <li><code>computer_use.py</code> & <code>skills/use_browser.py</code> — Browser automation using Playwright and Gemini ComputerUse tooling.</li>
+                        <li><code>skills/run_python.py</code> — Run Python snippets in a subprocess; artifacts are relocated into <code>generated_files/</code>.</li>
+                        <li><code>skills/run_notebook.py</code> — Execute notebooks via Papermill and save results under <code>results/&lt;timestamp&gt;</code>.</li>
+                        <li><code>skills/generate_image.py</code> / <code>skills/generate_video.py</code> — Media generation using Gemini.</li>
+                        <li><code>skills/collect_generated_media.py</code> — Helper to list recent generated outputs.</li>
                     </ul>
 
                     <h2 id="doc-storage">Data & storage</h2>
                     <ul>
-                        <li>Conversation histories: <code>memory/channel_history/*.md</code>.</li>
-                        <li>Vector DB: <code>memory/vector_db/</code> (ChromaDB persistent client).</li>
-                        <li>Generated outputs: <code>generated_files/</code>.</li>
-                        <li>Agent instruction templates: <code>agent_instructions/</code>.</li>
+                        <li>Conversation histories: <code>memory/channel_history/*.md</code> (one file per channel).</li>
+                        <li>Vector DB: <code>memory/vector_db/</code> (ChromaDB persistent client and collection <code>engem_memory</code>).</li>
+                        <li>Generated outputs and artifacts: <code>generated_files/</code> (legacy directories: <code>generated_images/</code>, <code>generated_videos/</code>, <code>generated_documents/</code>).</li>
+                        <li>Agent instruction templates and scheduled tasks: <code>agent_instructions/</code> (see <code>cron_jobs/</code> and <code>heartbeat_jobs/</code>).</li>
                     </ul>
 
                     <h2 id="doc-troubleshoot">Notes & troubleshooting</h2>
                     <ul>
-                        <li>Playwright requires browser binaries; run <code>python -m playwright install</code>.</li>
-                        <li>LLM API calls are wrapped with exponential backoff to handle transient errors.</li>
-                        <li>ChromaDB data lives under <code>memory/vector_db/</code>. Back up to preserve memories.</li>
+                        <li>Playwright requires browser binaries; run <code>python -m playwright install</code> after installing <code>playwright</code>.</li>
+                        <li>LLM API calls are wrapped with an exponential backoff helper (<code>api_backoff.call_with_exponential_backoff</code>) to handle transient errors.</li>
+                        <li>ChromaDB data lives under <code>memory/vector_db/</code>. Back up this directory if you need to preserve memories.</li>
+                        <li><code>config.py</code> reads environment variables; avoid committing secrets into the repository. Set sensitive keys in the environment or a secure secret manager.</li>
                     </ul>
 
                     <h2 id="doc-dev">Developer notes</h2>
                     <ul>
-                        <li>Skills are lightweight Python modules under <code>skills/</code> and are automatically discovered.</li>
-                        <li>Generated artifacts from skill runs are collected in <code>generated_files/</code>.</li>
-                        <li>For development, run the bot locally after setting the required env vars and installing dependencies.</li>
+                        <li>Skills are lightweight Python modules under <code>skills/</code> and are automatically discovered for function-calling by <code>llm._get_function_declarations</code>.</li>
+                        <li>Generated artifacts from skill runs are collected in <code>generated_files/</code> and can be listed with <code>skills/collect_generated_media.py</code>.</li>
+                        <li>For development, run the bot locally after setting the required env vars and installing dependencies. Restart the process after code edits.</li>
+                    </ul>
+
+                    <h2 id="doc-repo">Repository map (short)</h2>
+                    <ul>
+                        <li><a href="discord_bot.py" style="color:var(--accent-cyan); text-decoration:none;">discord_bot.py</a> — main bot entrypoint</li>
+                        <li><a href="llm.py" style="color:var(--accent-cyan); text-decoration:none;">llm.py</a> — LLM orchestration</li>
+                        <li><a href="memory.py" style="color:var(--accent-cyan); text-decoration:none;">memory.py</a> — ChromaDB memory store</li>
+                        <li><a href="config.py" style="color:var(--accent-cyan); text-decoration:none;">config.py</a> — environment variables and defaults</li>
+                        <li><a href="skills/" style="color:var(--accent-cyan); text-decoration:none;">skills/</a> — agent skills and helper scripts</li>
+                        <li><a href="agent_instructions/" style="color:var(--accent-cyan); text-decoration:none;">agent_instructions/</a> — instruction templates, cron/heartbeat tasks</li>
+                        <li><a href="generated_files/" style="color:var(--accent-cyan); text-decoration:none;">generated_files/</a> — outputs captured from skills</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2 class="section-title">Initialize <span class="gradient-text">Contact</span></h2>
                 <p class="section-subtitle">Direct transmission channel to the EnGem developers.</p>
             </div>
             
-            <div class="contact-container">
+            <div class="contact-container reveal delay-1">
                 <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" required placeholder="Identification (Name)" aria-label="Name">
+                        <label class="form-label" for="contact-name">Identification</label>
+                        <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Name" aria-label="Name">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" required placeholder="Return Vector (Email)" aria-label="Email">
+                        <label class="form-label" for="contact-email">Return Vector</label>
+                        <input type="email" id="contact-email" name="email" class="form-control" required placeholder="Email Address" aria-label="Email">
                     </div>
                     <div class="form-group">
-                        <textarea name="message" class="form-control" required placeholder="Transmit your query payload..." aria-label="Message"></textarea>
+                        <label class="form-label" for="contact-message">Query Payload</label>
+                        <textarea id="contact-message" name="message" class="form-control" required placeholder="Transmit your message here..." aria-label="Message"></textarea>
                     </div>
                     <button type="submit" class="btn-primary" style="width: 100%;">Transmit Signal</button>
                 </form>
@@ -433,8 +457,8 @@ pip install -r requirements.txt</code></pre>
         }
         initParticles(); animateParticles();
 
-        // Mouse-tracking tilt and glow on project cards
-        document.querySelectorAll('.project-card').forEach(card => {
+        // Mouse-tracking glow on feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left; const y = e.clientY - rect.top;
@@ -457,18 +481,18 @@ pip install -r requirements.txt</code></pre>
                     }
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-        document.querySelectorAll('.feature-row').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         document.querySelectorAll('section').forEach(el => observer.observe(el));
 
         // Terminal Typing Effect
         const termLines = [
             { t: 'sys', text: 'Initializing EnGem Autonomous Engine v2.0...' },
-            { t: 'user', text: '> execute sequence: structural_analysis' },
-            { t: 'sys', text: '[System] Parsing repository context. Linking dependencies.' },
-            { t: 'user', text: '> deploy --target web --optimize true' },
-            { t: 'sys', text: '[EnGem] Architecture synthesis complete. Deploying SPA to GitHub Pages.' }
+            { t: 'user', text: '> execute sequence: load_tools --all' },
+            { t: 'sys', text: '[System] Tools loaded successfully. Linking deep_research module.' },
+            { t: 'user', text: '> deploy --target local' },
+            { t: 'sys', text: '[EnGem] Agent online. Ready for complex multi-modal execution.' }
         ];
         const termBody = document.getElementById('term-body');
         let lineIdx = 0;
