@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EnGem | Intelligence Accelerated</title>
+    <title>EnGem</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -35,6 +35,21 @@
         .text-gradient { background: linear-gradient(135deg, #00e5ff, #c24cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .bg-gradient-custom { background: linear-gradient(135deg, #00e5ff, #c24cf6); }
         
+        /* Scanline Texture */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        
         /* Particle Canvas */
         #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         
@@ -57,20 +72,39 @@
             z-index: 1;
         }
         .feature-card:hover::before { opacity: 1; }
-        .feature-card:hover { transform: translateY(-5px); border-color: rgba(0, 229, 255, 0.3); box-shadow: 0 10px 30px -10px rgba(0,229,255,0.2); }
+        .feature-card:hover { transform: translateY(-5px); border-color: rgba(0, 229, 255, 0.5); box-shadow: 0 10px 30px -10px rgba(0,229,255,0.4); }
         .feature-content { position: relative; z-index: 2; }
+
+        /* Neon Borders & Pulses */
+        .neon-border:hover {
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), inset 0 0 15px rgba(194, 76, 246, 0.2);
+            border-color: rgba(0, 229, 255, 0.8);
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 5px currentColor); }
+            50% { filter: drop-shadow(0 0 15px currentColor); }
+        }
+        .pulse-icon { animation: pulse-glow 2s infinite; }
 
         /* Docs Sidebar Sticky */
         .docs-sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.2) transparent; }
         
         /* Terminal */
         .terminal-window {
-            background: rgba(5,5,10,0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: rgba(5,5,10,0.85);
+            border: 1px solid rgba(0,229,255,0.3);
+            box-shadow: 0 0 30px rgba(0,229,255,0.15);
             backdrop-filter: blur(10px);
         }
         .term-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .blinking-cursor::after {
+            content: '_';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
         
         /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -79,9 +113,9 @@
         ::-webkit-scrollbar-thumb:hover { background: rgba(0,229,255,0.5); }
 
         /* Code Blocks */
-        pre { background: #0d1117; padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; }
-        code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: #e6edf3; }
-        p code, li code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.25rem; }
+        pre { background: #0d1117; padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: #00e5ff; }
+        p code, li code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.25rem; color: #c24cf6; }
 
         section { scroll-margin-top: 80px; }
     </style>
@@ -90,28 +124,28 @@
 
 <!-- Navbar -->
 <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#home" class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
+        <a href="#home" class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]">
             EnGem<span class="text-accent-cyan">.</span>
         </a>
         <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-            <a href="#home" class="hover:text-accent-cyan transition-colors">HOME</a>
-            <a href="#features" class="hover:text-accent-cyan transition-colors">FEATURES</a>
-            <a href="#docs" class="hover:text-accent-cyan transition-colors">DOCS</a>
-            <a href="#contact" class="hover:text-accent-cyan transition-colors">CONTACT</a>
+            <a href="#home" class="nav-link hover:text-accent-cyan transition-colors">HOME</a>
+            <a href="#features" class="nav-link hover:text-accent-cyan transition-colors">FEATURES</a>
+            <a href="#docs" class="nav-link hover:text-accent-cyan transition-colors">DOCS</a>
+            <a href="#contact" class="nav-link hover:text-accent-cyan transition-colors">CONTACT</a>
         </div>
         <!-- Mobile menu button -->
-        <button class="md:hidden text-white hover:text-accent-cyan" id="mobile-menu-btn">
+        <button class="md:hidden text-white hover:text-accent-cyan z-20 relative" id="mobile-menu-btn">
             <i class="fas fa-bars text-xl"></i>
         </button>
     </div>
     <!-- Mobile menu -->
-    <div class="md:hidden hidden bg-bg-surface border-b border-white/10" id="mobile-menu">
+    <div class="md:hidden hidden bg-bg-surface border-b border-white/10 absolute top-full left-0 w-full z-10 shadow-xl" id="mobile-menu">
         <div class="px-6 py-4 flex flex-col space-y-4">
-            <a href="#home" class="hover:text-accent-cyan mobile-link block">HOME</a>
-            <a href="#features" class="hover:text-accent-cyan mobile-link block">FEATURES</a>
-            <a href="#docs" class="hover:text-accent-cyan mobile-link block">DOCS</a>
-            <a href="#contact" class="hover:text-accent-cyan mobile-link block">CONTACT</a>
+            <a href="#home" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">HOME</a>
+            <a href="#features" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">FEATURES</a>
+            <a href="#docs" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">DOCS</a>
+            <a href="#contact" class="hover:text-accent-cyan mobile-link block py-2">CONTACT</a>
         </div>
     </div>
 </nav>
@@ -124,27 +158,27 @@
         <div class="space-y-8 text-center lg:text-left gs-reveal">
             <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight">
                 Intelligence<br>
-                <span class="text-gradient">Accelerated.</span>
+                <span class="text-gradient drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">Accelerated.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
                 A multi-modal autonomous agent engine built on Google's Gemini. Bridging raw compute and seamless environmental interaction.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="#features" class="bg-gradient-custom text-black font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.4)] text-center">
+                <a href="#features" class="bg-gradient-custom text-black font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.6)] text-center relative z-10">
                     Initialize Engine
                 </a>
-                <a href="#docs" class="border border-white/20 hover:border-accent-cyan hover:bg-accent-cyan/10 font-bold py-4 px-8 rounded-full transition-all duration-300 text-center">
+                <a href="#docs" class="border border-white/20 hover:border-accent-cyan hover:bg-accent-cyan/10 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] font-bold py-4 px-8 rounded-full transition-all duration-300 text-center relative z-10">
                     Read Docs
                 </a>
             </div>
         </div>
         
-        <div class="terminal-window rounded-xl overflow-hidden gs-reveal hidden lg:block">
-            <div class="bg-black/50 px-4 py-3 border-b border-white/10 flex items-center">
-                <div class="term-dot bg-red-500"></div>
-                <div class="term-dot bg-yellow-500"></div>
-                <div class="term-dot bg-green-500"></div>
-                <span class="ml-4 text-xs text-gray-400 font-mono">engem-terminal ~ bash</span>
+        <div class="terminal-window rounded-xl overflow-hidden gs-reveal hidden lg:block border border-accent-cyan/30 z-10 relative">
+            <div class="bg-black/80 px-4 py-3 border-b border-accent-cyan/20 flex items-center">
+                <div class="term-dot bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></div>
+                <div class="term-dot bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]"></div>
+                <div class="term-dot bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></div>
+                <span class="ml-4 text-xs text-accent-cyan font-mono">engem-terminal ~ bash</span>
             </div>
             <div class="p-6 font-mono text-sm h-[320px] overflow-y-auto" id="terminal-content">
                 <!-- Typed by JS -->
@@ -154,102 +188,102 @@
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-24 relative bg-bg-surface">
+<section id="features" class="py-24 relative bg-bg-surface z-10">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-20 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Core <span class="text-gradient">Capabilities</span></h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg">A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.</p>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg">A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.</p>
         </div>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamic Tool Generation here -->
-            <div class="feature-card rounded-xl p-8 gs-reveal">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">use_browser.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.1s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_python.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.2s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_image.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline via Gemini.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_video.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.1s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_google_search.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
-                </div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.2s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl">
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.0s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl pulse-icon">
                         <i class="fas fa-cloud"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">access_google_workspace.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Integrate seamlessly with Google Workspace, allowing the agent to read, write, and manage documents and sheets.</p>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Integrate seamlessly with Google Workspace, allowing the agent to read, write, and manage documents and sheets.</p>
                 </div>
             </div>
 
-            <div class="feature-card rounded-xl p-8 gs-reveal">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_notebook.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
-                </div>
-            </div>
-            
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.1s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl">
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.1s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl pulse-icon">
                         <i class="fas fa-folder-open"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">collect_generated_media.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
                 </div>
             </div>
-            
-            <div class="feature-card rounded-xl p-8 gs-reveal" style="transition-delay: 0.2s">
-                <div class="feature-content">
-                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl">
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.2s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl pulse-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">deep_research.py</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Execute background deep research operations to dynamically parse and aggregate profound insights.</p>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Execute background deep research operations to dynamically parse and aggregate profound insights.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.0s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl pulse-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_image.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline via Gemini.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.1s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl pulse-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_video.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.2s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl pulse-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_google_search.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.0s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl pulse-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_notebook.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.1s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl pulse-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_python.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
+                </div>
+            </div>
+
+            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full" style="transition-delay: 0.2s">
+                <div class="feature-content flex-grow flex flex-col">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl pulse-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">use_browser.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
                 </div>
             </div>
 
@@ -258,17 +292,17 @@
 </section>
 
 <!-- Docs Section -->
-<section id="docs" class="py-24 relative bg-bg-base border-y border-white/5">
+<section id="docs" class="py-24 relative bg-bg-base border-y border-white/5 z-10">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">System <span class="text-gradient">Documentation</span></h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Architecture, configuration, and developer guides parsed directly from source.</p>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg">Architecture, configuration, and developer guides parsed directly from source.</p>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-12 relative items-start">
             <!-- Sticky Sidebar -->
-            <div class="lg:w-1/4 w-full">
-                <div class="docs-sidebar bg-white/5 p-6 rounded-xl border border-white/5 backdrop-blur-sm">
+            <div class="lg:w-1/4 w-full order-2 lg:order-1 hidden lg:block">
+                <div class="docs-sidebar bg-black/40 p-6 rounded-xl border border-accent-cyan/20 backdrop-blur-sm shadow-[0_0_15px_rgba(0,229,255,0.05)]">
                     <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Contents</h4>
                     <ul class="space-y-3 font-medium text-gray-400" id="docs-nav">
                         <li><a href="#doc-intro" class="hover:text-accent-cyan transition-colors block py-1">Introduction</a></li>
@@ -283,20 +317,20 @@
             </div>
             
             <!-- Content Area -->
-            <div class="lg:w-3/4 w-full space-y-16 text-gray-300 gs-reveal">
+            <div class="lg:w-3/4 w-full space-y-16 text-gray-300 gs-reveal order-1 lg:order-2">
                 <div id="doc-intro" class="scroll-mt-32">
                     <h3 class="text-3xl font-display font-bold text-white mb-6 border-b border-white/10 pb-4">EnGem</h3>
-                    <p class="mb-4 text-lg">EnGem is a local assistant and automation framework that connects a streaming LLM to host-side tooling and exposes a Discord bot interface. It provides:</p>
-                    <ul class="list-disc pl-6 space-y-2 mb-6 text-lg">
+                    <p class="mb-4 text-lg">EnGem is a local assistant and automation framework that connects a streaming LLM (Gemini) to host-side tooling and exposes a Discord bot interface. It provides:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6 text-lg text-gray-300">
                         <li>LLM orchestration and sub-agent execution plans</li>
                         <li>A Discord bot for text chat, scheduling, and execution-plan progress tracking</li>
                         <li>Persistent semantic memory backed by ChromaDB</li>
                         <li>Modular skills for browser automation, running code, notebooks, and media generation</li>
                         <li>Output capture and artifact relocation into <code>generated_files/</code></li>
                     </ul>
-                    <div class="bg-accent-cyan/5 border border-accent-cyan/20 rounded-lg p-4 flex items-start gap-4">
+                    <div class="bg-accent-cyan/10 border border-accent-cyan/30 rounded-lg p-4 flex items-start gap-4 shadow-[0_0_10px_rgba(0,229,255,0.1)]">
                         <i class="fas fa-info-circle text-accent-cyan mt-1 text-xl"></i>
-                        <p class="text-sm">This README shows how to get started, where important pieces live, and common development tasks.</p>
+                        <p class="text-sm text-gray-200">This README shows how to get started, where important pieces live, and common development tasks.</p>
                     </div>
                 </div>
 
@@ -318,74 +352,74 @@ pip install -r requirements.txt</code></pre>
 
                         <div>
                             <p class="mb-3 font-semibold text-white">3. Set required environment variables (examples):</p>
-                            <ul class="list-disc pl-6 space-y-2 bg-white/5 rounded-lg p-6 border border-white/10">
-                                <li><code>DISCORD_BOT_TOKEN</code> — Discord bot token.</li>
-                                <li><code>PAID_GEMINI_API_KEY</code> — Gemini API key used by the bot and skills.</li>
+                            <ul class="list-disc pl-6 space-y-2 bg-black/40 rounded-lg p-6 border border-white/10 text-gray-300">
+                                <li><code>DISCORD_BOT_TOKEN</code> — Discord bot token (required to run the bot).</li>
+                                <li><code>PAID_GEMINI_API_KEY</code> — Gemini API key used by the LLM clients/tools.</li>
                                 <li><code>DISCORD_ALLOWED_CHANNELS</code> — Comma-separated allowed channel names (optional).</li>
-                                <li><span class="text-gray-400">Optional:</span> <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>CRON_JOB_MINUTE</code>, <code>HEARTBEAT_INTERVAL_SECONDS</code>, <code>MODEL</code> — see <code>config.py</code> for details.</li>
+                                <li><span class="text-gray-400">Optional:</span> <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>CRON_JOB_MINUTE</code>, <code>HEARTBEAT_INTERVAL_SECONDS</code>, <code>MODEL</code> — see <code>config.py</code> for defaults.</li>
                             </ul>
                         </div>
 
                         <div>
-                            <p class="mb-3 font-semibold text-white">4. Start the Discord bot from the repository root:</p>
+                            <p class="mb-3 font-semibold text-white">4. Run the Discord bot from the repository root:</p>
                             <pre><code>python discord_bot.py</code></pre>
+                            <p class="mt-4 text-gray-300">This starts the bot. The bot writes per-channel conversation history files to <code>memory/channel_history/</code> and uses <code>llm.py</code> to orchestrate intent classification and sub-agent execution.</p>
                         </div>
                     </div>
                 </div>
 
                 <div id="doc-modules" class="scroll-mt-32">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Entry points & core modules</h3>
+                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Tools and helpers</h3>
+                    <p class="mb-4">The repository contains several helper tools under <code>tools/</code>. Common helpers include:</p>
                     <ul class="space-y-4">
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-robot text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">discord_bot.py</code> — Main bot entrypoint. Handles text messages, cron and heartbeat jobs, and execution-plan progress messages.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-brain text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">llm.py</code> — LLM orchestration: intent classification, manager, sub-agent dispatch, texter, and media selector.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-database text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">memory.py</code> — ChromaDB-backed semantic memory store (default path: <code>memory/vector_db/</code>).</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-globe text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">computer_use.py</code> & <code class="text-accent-cyan bg-transparent p-0">skills/use_browser.py</code> — Browser automation using Playwright and Gemini ComputerUse tooling.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fab fa-python text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">skills/run_python.py</code> — Run Python snippets in a subprocess; artifacts are relocated into <code>generated_files/</code>.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-book text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">skills/run_notebook.py</code> — Execute notebooks via Papermill and save results under <code>results/&lt;timestamp&gt;</code>.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-photo-video text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">skills/generate_image.py</code> / <code class="text-accent-cyan bg-transparent p-0">skills/generate_video.py</code> — Media generation using Gemini.</div></li>
-                        <li class="bg-white/5 p-4 rounded-lg border border-white/5 flex gap-4 items-start"><i class="fas fa-layer-group text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">skills/collect_generated_media.py</code> — Helper to list recent generated outputs.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fas fa-search text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">tools/run_google_search.py</code> — Google Search via Gemini.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fab fa-python text-accent-purple mt-1"></i><div><code class="text-accent-purple bg-transparent p-0">tools/run_python.py</code> — Safely run Python snippets and capture artifacts.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fas fa-book text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">tools/run_notebook.py</code> — Execute notebooks via Papermill.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fas fa-globe text-accent-purple mt-1"></i><div><code class="text-accent-purple bg-transparent p-0">tools/use_browser.py</code> — High-level browser automation via ComputerUse.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fas fa-photo-video text-accent-cyan mt-1"></i><div><code class="text-accent-cyan bg-transparent p-0">tools/generate_image.py</code> & <code>generate_video.py</code> — Media generation helpers.</div></li>
+                        <li class="bg-black/40 p-4 rounded-lg border border-white/10 flex gap-4 items-start neon-border"><i class="fas fa-folder-open text-accent-purple mt-1"></i><div><code class="text-accent-purple bg-transparent p-0">tools/collect_generated_media.py</code> — List recent outputs.</div></li>
                     </ul>
                 </div>
 
                 <div id="doc-storage" class="scroll-mt-32">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Data & storage</h3>
-                    <ul class="list-disc pl-6 space-y-3">
-                        <li><strong>Conversation histories:</strong> <code>memory/channel_history/*.md</code> (one file per channel).</li>
-                        <li><strong>Vector DB:</strong> <code>memory/vector_db/</code> (ChromaDB persistent client and collection <code>engem_memory</code>).</li>
-                        <li><strong>Generated outputs and artifacts:</strong> <code>generated_files/</code> (legacy directories: <code>generated_images/</code>, <code>generated_videos/</code>, <code>generated_documents/</code>).</li>
-                        <li><strong>Agent instruction templates and scheduled tasks:</strong> <code>agent_instructions/</code> (see <code>cron_jobs/</code> and <code>heartbeat_jobs/</code>).</li>
+                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Data, storage, and runtime artifacts</h3>
+                    <ul class="list-disc pl-6 space-y-3 text-gray-300">
+                        <li><strong>Conversation histories:</strong> <code>memory/channel_history/*.md</code> (one file per Discord channel).</li>
+                        <li><strong>Vector DB:</strong> <code>memory/vector_db/</code> (ChromaDB persistent client).</li>
+                        <li><strong>Generated outputs and artifacts:</strong> <code>generated_files/</code>.</li>
+                        <li><strong>Sub-agent execution orders:</strong> <code>sub-agents/</code> (JSON files).</li>
+                        <li><strong>Agent instructions:</strong> <code>agent_instructions/</code> (templates).</li>
                     </ul>
                 </div>
 
                 <div id="doc-troubleshooting" class="scroll-mt-32">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Notes & troubleshooting</h3>
-                    <div class="bg-accent-purple/10 border-l-4 border-accent-purple p-6 rounded-r-lg space-y-3">
-                        <p><i class="fas fa-exclamation-triangle mr-2 text-accent-purple"></i> Playwright requires browser binaries; run <code>python -m playwright install</code> after installing <code>playwright</code>.</p>
-                        <p><i class="fas fa-redo mr-2 text-accent-purple"></i> LLM API calls are wrapped with an exponential backoff helper (<code>api_backoff.call_with_exponential_backoff</code>) to handle transient errors.</p>
-                        <p><i class="fas fa-database mr-2 text-accent-purple"></i> ChromaDB data lives under <code>memory/vector_db/</code>. Back up this directory if you need to preserve memories.</p>
-                        <p><i class="fas fa-key mr-2 text-accent-purple"></i> <code>config.py</code> reads environment variables; avoid committing secrets into the repository. Set sensitive keys in the environment or a secure secret manager.</p>
+                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Troubleshooting</h3>
+                    <div class="bg-accent-purple/10 border-l-4 border-accent-purple p-6 rounded-r-lg space-y-3 shadow-[0_0_15px_rgba(194,76,246,0.1)]">
+                        <p class="text-gray-200"><i class="fas fa-exclamation-triangle mr-2 text-accent-purple"></i> If Playwright actions fail, ensure browsers are installed (<code>python -m playwright install</code>).</p>
+                        <p class="text-gray-200"><i class="fas fa-redo mr-2 text-accent-purple"></i> If Gemini/Google APIs error frequently, <code>api_backoff.call_with_exponential_backoff</code> retries on transient errors; verify API keys.</p>
+                        <p class="text-gray-200"><i class="fas fa-robot mr-2 text-accent-purple"></i> If the bot does not receive messages, verify <code>DISCORD_BOT_TOKEN</code> and <code>DISCORD_ALLOWED_CHANNELS</code>.</p>
                     </div>
                 </div>
 
                 <div id="doc-dev" class="scroll-mt-32">
                     <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Developer notes</h3>
-                    <ul class="list-disc pl-6 space-y-3 bg-white/5 p-6 rounded-xl border border-white/5">
-                        <li>Skills are lightweight Python modules under <code>skills/</code> and are automatically discovered for function-calling by <code>llm._get_function_declarations</code>.</li>
-                        <li>Generated artifacts from skill runs are collected in <code>generated_files/</code> and can be listed with <code>skills/collect_generated_media.py</code>.</li>
-                        <li>For development, run the bot locally after setting the required env vars and installing dependencies. Restart the process after code edits.</li>
+                    <ul class="list-disc pl-6 space-y-3 bg-black/40 p-6 rounded-xl border border-white/10 text-gray-300">
+                        <li>Manager/Planner enforces a final `Reviewer` agent that prints <code>&lt;yes&gt;</code>.</li>
+                        <li>Tool discovery: LLM sub-agents call helpers in <code>tools/</code>. Ensure valid function signatures.</li>
+                        <li>Artifact relocation keeps the repo clean.</li>
+                        <li>ChromaDB uses <code>sentence-transformers</code>. Back up <code>memory/vector_db/</code>.</li>
                     </ul>
                 </div>
 
                 <div id="doc-repo" class="scroll-mt-32">
                     <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient">Repository map</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>discord_bot.py</code><br><span class="text-sm text-gray-400">main bot entrypoint</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>llm.py</code><br><span class="text-sm text-gray-400">LLM orchestration</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>memory.py</code><br><span class="text-sm text-gray-400">ChromaDB memory store</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>config.py</code><br><span class="text-sm text-gray-400">env variables and defaults</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>skills/</code><br><span class="text-sm text-gray-400">agent skills & scripts</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 hover:border-accent-cyan/50 transition-colors"><code>agent_instructions/</code><br><span class="text-sm text-gray-400">instruction templates</span></div>
-                        <div class="bg-white/5 p-4 rounded border border-white/5 md:col-span-2 hover:border-accent-cyan/50 transition-colors"><code>generated_files/</code><br><span class="text-sm text-gray-400">outputs captured from skills</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>discord_bot.py</code><br><span class="text-sm text-gray-400">main bot</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>llm.py</code><br><span class="text-sm text-gray-400">LLM orchestration</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>memory.py</code><br><span class="text-sm text-gray-400">ChromaDB store</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>config.py</code><br><span class="text-sm text-gray-400">env and defaults</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>tools/</code><br><span class="text-sm text-gray-400">automation helpers</span></div>
+                        <div class="bg-black/40 p-4 rounded border border-white/10 hover:border-accent-cyan/80 hover:shadow-[0_0_10px_rgba(0,229,255,0.4)] transition-all"><code>agent_instructions/</code><br><span class="text-sm text-gray-400">templates</span></div>
                     </div>
                 </div>
 
@@ -395,34 +429,34 @@ pip install -r requirements.txt</code></pre>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-24 relative bg-bg-surface">
+<section id="contact" class="py-24 relative bg-bg-surface z-10">
     <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Initialize <span class="text-gradient">Contact</span></h2>
-            <p class="text-gray-400 text-lg">Direct transmission channel to the EnGem developers.</p>
+            <p class="text-gray-300 text-lg">Direct transmission channel to the EnGem developers.</p>
         </div>
 
-        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden gs-reveal">
+        <div class="bg-black/60 backdrop-blur-md border border-accent-purple/30 rounded-2xl p-8 md:p-12 shadow-[0_0_30px_rgba(194,76,246,0.15)] relative overflow-hidden gs-reveal neon-border">
             <!-- Decorative elements -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-accent-purple/20 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-cyan/20 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
             
             <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain" class="space-y-6 relative z-10">
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label for="name" class="block text-sm font-mono text-accent-cyan uppercase tracking-wider">Identification</label>
-                        <input type="text" id="name" name="name" required class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-colors" placeholder="Enter Name">
+                        <input type="text" id="name" name="name" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all z-20 relative" placeholder="Enter Name">
                     </div>
                     <div class="space-y-2">
                         <label for="email" class="block text-sm font-mono text-accent-purple uppercase tracking-wider">Return Vector (Email)</label>
-                        <input type="email" id="email" name="email" required class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple transition-colors" placeholder="Enter Email Address">
+                        <input type="email" id="email" name="email" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple focus:shadow-[0_0_10px_rgba(194,76,246,0.3)] transition-all z-20 relative" placeholder="Enter Email Address">
                     </div>
                 </div>
                 <div class="space-y-2">
                     <label for="message" class="block text-sm font-mono text-gray-300 uppercase tracking-wider">Query Payload</label>
-                    <textarea id="message" name="message" rows="5" required class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-colors resize-y" placeholder="Transmit your message here..."></textarea>
+                    <textarea id="message" name="message" rows="5" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all resize-y z-20 relative" placeholder="Transmit your message here..."></textarea>
                 </div>
-                <button type="submit" class="w-full bg-gradient-custom text-black font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(194,76,246,0.4)] transition-all duration-300 uppercase tracking-widest mt-4 group">
+                <button type="submit" class="w-full bg-gradient-custom text-black font-bold py-4 rounded-lg hover:shadow-[0_0_25px_rgba(194,76,246,0.6)] hover:scale-[1.02] transition-all duration-300 uppercase tracking-widest mt-4 group z-20 relative">
                     Transmit Signal <i class="fas fa-paper-plane ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </button>
             </form>
@@ -431,7 +465,7 @@ pip install -r requirements.txt</code></pre>
 </section>
 
 <!-- Scroll to Top Button -->
-<a href="#home" class="fixed bottom-8 right-8 bg-black/50 backdrop-blur border border-white/10 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black transition-all duration-300 shadow-lg z-50 opacity-0 pointer-events-none" id="scroll-to-top">
+<a href="#home" class="fixed bottom-8 right-8 bg-black/80 backdrop-blur border border-accent-cyan/50 text-accent-cyan w-12 h-12 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black hover:shadow-[0_0_15px_rgba(0,229,255,0.6)] transition-all duration-300 shadow-lg z-50 opacity-0 pointer-events-none" id="scroll-to-top">
     <i class="fas fa-arrow-up"></i>
 </a>
 
@@ -475,10 +509,10 @@ pip install -r requirements.txt</code></pre>
     window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
         if (window.scrollY > 50) {
-            nav.classList.add('shadow-lg', 'bg-bg-surface/90');
+            nav.classList.add('shadow-[0_0_15px_rgba(0,229,255,0.1)]', 'bg-bg-surface/95');
             nav.classList.remove('bg-transparent');
         } else {
-            nav.classList.remove('shadow-lg', 'bg-bg-surface/90');
+            nav.classList.remove('shadow-[0_0_15px_rgba(0,229,255,0.1)]', 'bg-bg-surface/95');
             nav.classList.add('bg-transparent');
         }
     });
@@ -514,14 +548,14 @@ pip install -r requirements.txt</code></pre>
         });
     });
 
-    // Terminal Typing Animation
+    // Terminal Typing Animation with Blinking Cursor
     const terminalLines = [
         "> Initializing EnGem Autonomous Engine...",
         "[SYS] Core modules loaded successfully.",
         "> execute intent_classification --stream",
         "[LLM] Connection established. Awaiting input...",
         "> load tools: use_browser, run_python, generate_media",
-        "[SYS] 10/10 tools linked and ready.",
+        "[SYS] Tools linked and ready.",
         "> run deep_research --query 'intelligence acceleration'",
         "[ENGEM] Parsing data. Synthesizing output..."
     ];
@@ -531,12 +565,15 @@ pip install -r requirements.txt</code></pre>
     
     function typeLine(line, callback) {
         const lineElem = document.createElement('div');
-        lineElem.className = line.startsWith('>') ? 'text-accent-cyan mt-2 font-bold' : 'text-gray-300 mt-1';
+        lineElem.className = line.startsWith('>') ? 'text-accent-cyan mt-2 font-bold blinking-cursor' : 'text-gray-300 mt-1 blinking-cursor';
         terminalContent.appendChild(lineElem);
+        
+        // Remove cursor from previous lines
+        Array.from(terminalContent.children).slice(0, -1).forEach(child => child.classList.remove('blinking-cursor'));
         
         let charIndex = 0;
         const interval = setInterval(() => {
-            lineElem.textContent += line[charIndex];
+            lineElem.textContent = line.substring(0, charIndex + 1);
             charIndex++;
             terminalContent.scrollTop = terminalContent.scrollHeight;
             if (charIndex >= line.length) {
@@ -553,6 +590,7 @@ pip install -r requirements.txt</code></pre>
                 startTerminal();
             });
         } else {
+            // Keep cursor blinking on last line, then restart
             setTimeout(() => {
                 terminalContent.innerHTML = '';
                 lineIndex = 0;
@@ -561,7 +599,6 @@ pip install -r requirements.txt</code></pre>
         }
     }
     
-    // Start terminal animation when hero is in view
     setTimeout(startTerminal, 1000);
 
     // Canvas Particle Network
@@ -628,7 +665,7 @@ pip install -r requirements.txt</code></pre>
 
     // Active Nav Link Update on Scroll
     const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".hidden.md\:flex a, #docs-nav a");
+    const navLinks = document.querySelectorAll(".nav-link, #docs-nav a");
 
     window.addEventListener("scroll", () => {
         let current = "";
@@ -640,14 +677,14 @@ pip install -r requirements.txt</code></pre>
         });
 
         // Main Nav highlighting
-        document.querySelectorAll(".hidden.md\:flex a").forEach(li => {
+        document.querySelectorAll(".nav-link").forEach(li => {
             li.classList.remove("text-accent-cyan");
             if (li.getAttribute("href").substring(1) === current) {
                 li.classList.add("text-accent-cyan");
             }
         });
         
-        // Docs Sidebar highlighting (approximate)
+        // Docs Sidebar highlighting
         if(current === 'docs') {
             const docSections = document.querySelectorAll("#docs [id^='doc-']");
             let docCurrent = "";
