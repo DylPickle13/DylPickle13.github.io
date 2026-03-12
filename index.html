@@ -30,10 +30,26 @@
     </script>
     <style>
         body { background-color: #030305; color: #fff; overflow-x: hidden; line-height: 1.7; }
-        .glass { background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Modern UI Patterns: Glassmorphism */
+        .glass-panel {
+            background: rgba(20, 20, 25, 0.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glass-nav {
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
         .text-gradient { background: linear-gradient(135deg, #00e5ff, #c24cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .bg-gradient-custom { background: linear-gradient(135deg, #00e5ff, #c24cf6); }
         
+        /* Scanlines */
         body::after {
             content: " ";
             display: block;
@@ -47,60 +63,60 @@
         
         #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         
+        /* Advanced Feature Cards */
         .feature-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
         }
         .feature-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0,229,255,0.15), transparent 40%);
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0,229,255,0.12), transparent 40%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
             z-index: 1;
         }
         .feature-card:hover::before { opacity: 1; }
-        .feature-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(0, 229, 255, 0.6); box-shadow: 0 15px 35px -10px rgba(0,229,255,0.5); z-index: 20; }
-        
-        .neon-border:hover {
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 20px rgba(194, 76, 246, 0.15);
-            border-color: rgba(0, 229, 255, 0.8);
+        .feature-card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            border-color: rgba(0, 229, 255, 0.5); 
+            box-shadow: 0 15px 35px -10px rgba(0,229,255,0.4); 
+            z-index: 20; 
         }
         
         .docs-sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.2) transparent; }
         
         .terminal-window {
-            background: rgba(5,5,10,0.85);
             border: 1px solid rgba(0,229,255,0.3);
             box-shadow: 0 0 30px rgba(0,229,255,0.15);
-            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
         }
         .term-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .blinking-cursor::after {
-            content: '\2588';
+            content: '88';
             animation: blink 1s step-start infinite;
             color: #00e5ff;
             margin-left: 4px;
         }
         @keyframes blink { 50% { opacity: 0; } }
         
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(0,229,255,0.5); }
 
-        pre { background: #0d1117; padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        pre { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(8px); padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0; box-shadow: inset 0 0 15px rgba(0,0,0,0.5); }
         code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: #00e5ff; }
-        p code, li code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.25rem; color: #c24cf6; font-weight: 600; }
+        p code, li code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.375rem; color: #c24cf6; font-weight: 600; }
 
         section { scroll-margin-top: 80px; padding-top: 6rem; padding-bottom: 6rem; }
 
+        /* SVG Animations */
         .svg-path {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
@@ -121,38 +137,47 @@
         }
         @keyframes float {
             0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-30px) scale(1.1); }
+            100% { transform: translateY(-40px) scale(1.15); }
+        }
+        
+        .mobile-select-nav {
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300e5ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem top 50%;
+            background-size: 0.65rem auto;
         }
     </style>
 </head>
 <body class="antialiased selection:bg-accent-cyan selection:text-black">
 
 <!-- Navbar -->
-<nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
         <a href="#home" class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]">
             EnGem<span class="text-accent-cyan">.</span>
         </a>
         <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-            <a href="#home" class="nav-link hover:text-accent-cyan transition-colors">HOME</a>
-            <a href="#features" class="nav-link hover:text-accent-cyan transition-colors">FEATURES</a>
-            <a href="#architecture" class="nav-link hover:text-accent-cyan transition-colors">ARCHITECTURE</a>
-            <a href="#docs" class="nav-link hover:text-accent-cyan transition-colors">DOCS</a>
-            <a href="#contact" class="nav-link hover:text-accent-cyan transition-colors">CONTACT</a>
+            <a href="#home" class="nav-link hover:text-accent-cyan transition-colors p-2">HOME</a>
+            <a href="#features" class="nav-link hover:text-accent-cyan transition-colors p-2">FEATURES</a>
+            <a href="#architecture" class="nav-link hover:text-accent-cyan transition-colors p-2">ARCHITECTURE</a>
+            <a href="#docs" class="nav-link hover:text-accent-cyan transition-colors p-2">DOCS</a>
+            <a href="#contact" class="nav-link hover:text-accent-cyan transition-colors p-2">CONTACT</a>
         </div>
         <!-- Mobile menu button -->
-        <button class="md:hidden text-white hover:text-accent-cyan z-20 relative" id="mobile-menu-btn">
-            <i class="fas fa-bars text-xl"></i>
+        <button class="md:hidden text-white hover:text-accent-cyan z-20 relative p-2" id="mobile-menu-btn" aria-label="Toggle Menu">
+            <i class="fas fa-bars text-2xl"></i>
         </button>
     </div>
     <!-- Mobile menu -->
-    <div class="md:hidden hidden bg-bg-surface border-b border-white/10 absolute top-full left-0 w-full z-10 shadow-xl" id="mobile-menu">
-        <div class="px-6 py-4 flex flex-col space-y-4">
-            <a href="#home" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">HOME</a>
-            <a href="#features" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">FEATURES</a>
-            <a href="#architecture" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">ARCHITECTURE</a>
-            <a href="#docs" class="hover:text-accent-cyan mobile-link block py-2 border-b border-white/5">DOCS</a>
-            <a href="#contact" class="hover:text-accent-cyan mobile-link block py-2">CONTACT</a>
+    <div class="md:hidden hidden glass-panel border-t border-white/10 absolute top-full left-0 w-full z-10 shadow-xl" id="mobile-menu">
+        <div class="px-6 py-4 flex flex-col space-y-2">
+            <a href="#home" class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg">HOME</a>
+            <a href="#features" class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg">FEATURES</a>
+            <a href="#architecture" class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg">ARCHITECTURE</a>
+            <a href="#docs" class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg">DOCS</a>
+            <a href="#contact" class="hover:text-accent-cyan mobile-link block py-3 text-lg">CONTACT</a>
         </div>
     </div>
 </nav>
@@ -160,8 +185,8 @@
 <!-- Home Section -->
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <canvas id="hero-canvas"></canvas>
-    <div class="orb bg-accent-purple w-96 h-96 top-20 left-10"></div>
-    <div class="orb bg-accent-cyan w-96 h-96 bottom-20 right-10" style="animation-delay: -5s;"></div>
+    <div class="orb bg-accent-purple w-[500px] h-[500px] top-10 -left-20"></div>
+    <div class="orb bg-accent-cyan w-[500px] h-[500px] bottom-10 -right-20" style="animation-delay: -5s;"></div>
     
     <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full mt-10">
         <div class="space-y-8 text-center lg:text-left gs-reveal">
@@ -169,135 +194,136 @@
                 Intelligence<br>
                 <span class="text-gradient drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">Accelerated.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
                 A multi-modal autonomous agent engine built on Google's Gemini. Bridging raw compute and seamless environmental interaction.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="#features" class="bg-gradient-custom text-black font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.6)] text-center relative z-10">
+            <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+                <a href="#features" class="bg-gradient-custom text-black font-bold py-4 px-10 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.6)] text-center relative z-10">
                     Initialize Engine
                 </a>
-                <a href="#docs" class="border border-white/20 hover:border-accent-cyan hover:bg-accent-cyan/10 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] font-bold py-4 px-8 rounded-full transition-all duration-300 text-center relative z-10">
+                <a href="#docs" class="glass-panel hover:border-accent-cyan hover:bg-accent-cyan/10 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] font-bold py-4 px-10 rounded-full transition-all duration-300 text-center relative z-10 text-white">
                     Read Docs
                 </a>
             </div>
         </div>
         
-        <div class="terminal-window rounded-xl overflow-hidden gs-reveal hidden lg:flex border border-accent-cyan/30 z-10 relative h-[400px]">
-            <div class="bg-black/80 px-4 py-3 border-b border-accent-cyan/20 flex items-center shrink-0">
-                <div class="term-dot bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></div>
-                <div class="term-dot bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]"></div>
-                <div class="term-dot bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></div>
-                <span class="ml-4 text-xs text-accent-cyan font-mono flex-grow">engem-terminal ~ bash</span>
-                <span class="text-xs text-gray-500 font-mono">v1.2.0</span>
+        <div class="terminal-window glass-panel rounded-2xl overflow-hidden gs-reveal hidden lg:flex z-10 relative h-[420px]">
+            <div class="bg-black/60 px-5 py-4 border-b border-white/10 flex items-center shrink-0">
+                <div class="term-dot bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
+                <div class="term-dot bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.8)]"></div>
+                <div class="term-dot bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+                <span class="ml-4 text-sm text-accent-cyan font-mono flex-grow opacity-80">engem-terminal ~ bash</span>
+                <span class="text-xs text-gray-400 font-mono bg-white/5 px-2 py-1 rounded">v1.2.0</span>
             </div>
-            <div class="p-6 font-mono text-sm overflow-y-auto flex-grow flex flex-col" id="terminal-content">
+            <div class="p-6 font-mono text-sm overflow-y-auto flex-grow flex flex-col text-gray-200 leading-loose" id="terminal-content">
                 <!-- Typed by JS -->
             </div>
-            <div class="bg-black/90 p-3 border-t border-white/5 shrink-0 flex items-center">
-                <span class="text-accent-cyan mr-2 font-bold">></span>
-                <input type="text" class="bg-transparent border-none outline-none text-white font-mono w-full text-sm ml-2" placeholder="Type a command..." id="terminal-input" autocomplete="off">
+            <div class="bg-black/50 p-4 border-t border-white/10 shrink-0 flex items-center backdrop-blur-md">
+                <span class="text-accent-cyan mr-3 font-bold text-lg">></span>
+                <input type="text" class="bg-transparent border-none outline-none text-white font-mono w-full text-base" placeholder="Type a command..." id="terminal-input" autocomplete="off">
             </div>
         </div>
     </div>
 </section>
 
 <!-- Features Section -->
-<section id="features" class="relative bg-bg-surface z-10">
+<section id="features" class="relative z-10">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-20 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Core <span class="text-gradient">Capabilities</span></h2>
-            <p class="text-gray-300 max-w-2xl mx-auto text-lg">A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.</p>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl">A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr" id="features-grid">
+            <!-- Dynamically populated via Python to ensure all 9 tools are listed beautifully -->
             
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.0s">
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
                 <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-cloud transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">access_google_workspace.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Integrate seamlessly with Google Workspace, allowing the agent to read, write, and manage documents and sheets.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.1s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-folder-open transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">collect_generated_media.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.2s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-brain transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">deep_research.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Execute background deep research operations to dynamically parse and aggregate profound insights.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.0s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-image transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_image.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline via Gemini.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.1s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-video transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_video.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.2s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-search transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_google_search.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.0s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fas fa-book transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_notebook.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.1s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-2xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
-                        <i class="fab fa-python transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_python.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
-                </div>
-            </div>
-
-            <div class="feature-card rounded-xl p-8 gs-reveal neon-border flex flex-col h-full z-10 bg-black/40 backdrop-blur-sm group" style="transition-delay: 0.2s">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-14 h-14 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-2xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_15px_currentColor]">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
                         <i class="fas fa-globe transform transition-transform group-hover:scale-110"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">use_browser.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-sm mt-auto">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Autonomous DOM parsing and web interaction for seamless data extraction, navigation, and visual verification workflows.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+                        <i class="fab fa-python transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_python.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Secure local execution of Python scripts for advanced data manipulation, system operations, and analytical workloads.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+                        <i class="fas fa-image transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_image.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">High-fidelity text-to-image synthesis seamlessly integrated into the agentic multi-modal pipeline via Gemini.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+                        <i class="fas fa-video transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_video.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Transform complex textual directives into dynamic video sequences for rich media generation capabilities.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+                        <i class="fas fa-search transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_google_search.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Real-time information retrieval across the global web to augment contextual reasoning and factual accuracy.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+                        <i class="fas fa-cloud transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">access_google_workspace.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Integrate seamlessly with Google Workspace, allowing the agent to read, write, and manage documents and sheets.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+                        <i class="fas fa-book transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">run_notebook.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Automated Jupyter execution via Papermill. Perfect for orchestration of complex data science pipelines.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+                        <i class="fas fa-brain transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">deep_research.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Execute background deep research operations to dynamically parse and aggregate profound insights.</p>
+                </div>
+            </div>
+
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+                        <i class="fas fa-folder-open transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">collect_generated_media.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Automated indexing and retrieval of generated visual and auditory media assets bridging output streams.</p>
                 </div>
             </div>
 
@@ -305,113 +331,132 @@
     </div>
 </section>
 
-<!-- Architecture Section (New) -->
-<section id="architecture" class="relative bg-bg-base z-10 border-t border-white/5">
+<!-- Architecture Section -->
+<section id="architecture" class="relative z-10">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">System <span class="text-gradient">Architecture</span></h2>
-            <p class="text-gray-300 max-w-2xl mx-auto text-lg">Visualizing the flow of intelligence across the EnGem framework.</p>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl">Visualizing the flow of intelligence across the EnGem framework.</p>
         </div>
         
-        <div class="relative bg-black/40 backdrop-blur-md rounded-2xl border border-accent-cyan/20 p-8 shadow-[0_0_30px_rgba(0,229,255,0.1)] overflow-hidden gs-reveal flex items-center justify-center min-h-[400px]">
-            <!-- Decorative SVG Architecture Map -->
-            <svg viewBox="0 0 800 400" class="w-full max-w-4xl h-auto drop-shadow-[0_0_10px_rgba(0,229,255,0.4)]">
-                <!-- Grid Background -->
-                <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-                    </pattern>
-                    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.8" />
-                        <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.2" />
-                    </linearGradient>
-                    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#c24cf6" stop-opacity="0.8" />
-                        <stop offset="100%" stop-color="#c24cf6" stop-opacity="0.2" />
-                    </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <rect width="800" height="400" fill="url(#grid)" />
-                
-                <!-- Connections -->
-                <path d="M 200 200 C 300 200, 350 100, 450 100" fill="none" stroke="#00e5ff" stroke-width="2" class="svg-path" filter="url(#glow)"/>
-                <path d="M 200 200 C 300 200, 350 300, 450 300" fill="none" stroke="#c24cf6" stroke-width="2" class="svg-path" filter="url(#glow)"/>
-                <path d="M 450 100 C 550 100, 600 200, 700 200" fill="none" stroke="#00e5ff" stroke-width="2" class="svg-path" filter="url(#glow)"/>
-                <path d="M 450 300 C 550 300, 600 200, 700 200" fill="none" stroke="#c24cf6" stroke-width="2" class="svg-path" filter="url(#glow)"/>
-                <path d="M 450 100 L 450 300" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
-                
-                <!-- Nodes -->
-                <!-- LLM Core -->
-                <g transform="translate(200, 200)">
-                    <circle r="45" fill="url(#cyanGrad)" stroke="#00e5ff" stroke-width="2" filter="url(#glow)"/>
-                    <text x="0" y="5" font-family="JetBrains Mono" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">GEMINI</text>
-                </g>
-                
-                <!-- Sub-Agent 1 -->
-                <g transform="translate(450, 100)">
-                    <rect x="-60" y="-35" width="120" height="70" rx="10" fill="url(#purpleGrad)" stroke="#c24cf6" stroke-width="2" filter="url(#glow)"/>
-                    <text x="0" y="-5" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">MANAGER</text>
-                    <text x="0" y="15" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Orchestration</text>
-                </g>
-                
-                <!-- Sub-Agent 2 -->
-                <g transform="translate(450, 300)">
-                    <rect x="-60" y="-35" width="120" height="70" rx="10" fill="url(#cyanGrad)" stroke="#00e5ff" stroke-width="2" filter="url(#glow)"/>
-                    <text x="0" y="-5" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">TOOLS</text>
-                    <text x="0" y="15" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Execution Env</text>
-                </g>
-                
-                <!-- Output / Result -->
-                <g transform="translate(700, 200)">
-                    <polygon points="0,-45 40,25 -40,25" fill="url(#purpleGrad)" stroke="#c24cf6" stroke-width="2" filter="url(#glow)"/>
-                    <text x="0" y="45" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">ARTIFACTS</text>
-                </g>
-                
-                <!-- Animated Data Packets -->
-                <circle r="4" fill="#fff" filter="url(#glow)">
-                    <animateMotion dur="5s" repeatCount="indefinite" path="M 200 200 C 300 200, 350 100, 450 100"/>
-                </circle>
-                <circle r="4" fill="#fff" filter="url(#glow)">
-                    <animateMotion dur="5s" repeatCount="indefinite" path="M 200 200 C 300 200, 350 300, 450 300"/>
-                </circle>
-                <circle r="4" fill="#fff" filter="url(#glow)">
-                    <animateMotion dur="5s" repeatCount="indefinite" path="M 450 100 C 550 100, 600 200, 700 200"/>
-                </circle>
-            </svg>
+        <div class="glass-panel rounded-2xl p-4 md:p-8 gs-reveal flex items-center justify-center min-h-[400px]">
+            <!-- Responsive SVG Container -->
+            <div class="w-full overflow-x-auto pb-4 custom-scrollbar">
+                <div class="min-w-[800px] flex justify-center">
+                    <svg viewBox="0 0 800 400" class="w-full max-w-4xl h-auto drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                            </pattern>
+                            <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.2" />
+                            </linearGradient>
+                            <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#c24cf6" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#c24cf6" stop-opacity="0.2" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <rect width="800" height="400" fill="url(#grid)" rx="16"/>
+                        
+                        <!-- Animated Connections -->
+                        <path d="M 200 200 C 300 200, 350 100, 450 100" fill="none" stroke="#00e5ff" stroke-width="2" class="svg-path" filter="url(#glow)"/>
+                        <path d="M 200 200 C 300 200, 350 300, 450 300" fill="none" stroke="#c24cf6" stroke-width="2" class="svg-path" filter="url(#glow)"/>
+                        <path d="M 450 100 C 550 100, 600 200, 700 200" fill="none" stroke="#00e5ff" stroke-width="2" class="svg-path" filter="url(#glow)"/>
+                        <path d="M 450 300 C 550 300, 600 200, 700 200" fill="none" stroke="#c24cf6" stroke-width="2" class="svg-path" filter="url(#glow)"/>
+                        <path d="M 450 100 L 450 300" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="6,6"/>
+                        
+                        <!-- Nodes -->
+                        <!-- LLM Core -->
+                        <g transform="translate(200, 200)">
+                            <circle r="45" fill="url(#cyanGrad)" stroke="#00e5ff" stroke-width="2" filter="url(#glow)"/>
+                            <text x="0" y="5" font-family="JetBrains Mono" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">GEMINI</text>
+                        </g>
+                        
+                        <!-- Sub-Agent 1 -->
+                        <g transform="translate(450, 100)">
+                            <rect x="-65" y="-35" width="130" height="70" rx="12" fill="url(#purpleGrad)" stroke="#c24cf6" stroke-width="2" filter="url(#glow)"/>
+                            <text x="0" y="-5" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">MANAGER</text>
+                            <text x="0" y="15" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Orchestration</text>
+                        </g>
+                        
+                        <!-- Sub-Agent 2 -->
+                        <g transform="translate(450, 300)">
+                            <rect x="-65" y="-35" width="130" height="70" rx="12" fill="url(#cyanGrad)" stroke="#00e5ff" stroke-width="2" filter="url(#glow)"/>
+                            <text x="0" y="-5" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">TOOLS</text>
+                            <text x="0" y="15" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Execution Env</text>
+                        </g>
+                        
+                        <!-- Output / Result -->
+                        <g transform="translate(700, 200)">
+                            <polygon points="0,-45 45,25 -45,25" fill="url(#purpleGrad)" stroke="#c24cf6" stroke-width="2" filter="url(#glow)"/>
+                            <text x="0" y="45" font-family="JetBrains Mono" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">ARTIFACTS</text>
+                        </g>
+                        
+                        <!-- Animated Data Packets -->
+                        <circle r="4" fill="#fff" filter="url(#glow)">
+                            <animateMotion dur="4s" repeatCount="indefinite" path="M 200 200 C 300 200, 350 100, 450 100"/>
+                        </circle>
+                        <circle r="4" fill="#fff" filter="url(#glow)">
+                            <animateMotion dur="4s" repeatCount="indefinite" path="M 200 200 C 300 200, 350 300, 450 300"/>
+                        </circle>
+                        <circle r="4" fill="#fff" filter="url(#glow)">
+                            <animateMotion dur="4s" repeatCount="indefinite" path="M 450 100 C 550 100, 600 200, 700 200"/>
+                        </circle>
+                        <circle r="4" fill="#fff" filter="url(#glow)">
+                            <animateMotion dur="4s" repeatCount="indefinite" path="M 450 300 C 550 300, 600 200, 700 200"/>
+                        </circle>
+                    </svg>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Docs Section -->
-<section id="docs" class="relative bg-bg-surface z-10 border-t border-white/5">
+<section id="docs" class="relative z-10">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">System <span class="text-gradient">Documentation</span></h2>
-            <p class="text-gray-300 max-w-2xl mx-auto text-lg">Architecture, configuration, and developer guides parsed directly from source.</p>
+            <p class="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl">Architecture, configuration, and developer guides parsed directly from source.</p>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-12 relative items-start">
-            <!-- Sticky Sidebar -->
+            
+            <!-- Mobile Sticky Select Nav -->
+            <div class="block lg:hidden w-full sticky top-[72px] z-40 mb-6">
+                <select id="mobile-doc-nav" onchange="window.location.hash=this.value" class="mobile-select-nav w-full glass-panel border border-accent-cyan/30 rounded-xl p-4 text-white text-base font-bold shadow-lg outline-none cursor-pointer">
+                    <option value="#doc-intro">Introduction</option>
+                    <option value="#doc-quickstart">Quick Start</option>
+                    <option value="#doc-modules">Tools & Helpers</option>
+                    <option value="#doc-storage">Data & Storage</option>
+                    <option value="#doc-troubleshooting">Troubleshooting</option>
+                    <option value="#doc-dev">Developer Notes</option>
+                    <option value="#doc-repo">Repository Map</option>
+                </select>
+            </div>
+
+            <!-- Desktop Sticky Sidebar -->
             <div class="lg:w-1/4 w-full order-2 lg:order-1 hidden lg:block">
-                <div class="docs-sidebar bg-black/40 p-6 rounded-xl border border-accent-cyan/20 backdrop-blur-sm shadow-[0_0_15px_rgba(0,229,255,0.05)]">
+                <div class="docs-sidebar glass-panel p-6 rounded-2xl">
                     <div class="flex items-center gap-3 mb-6">
                         <i class="fas fa-book-open text-accent-cyan text-xl"></i>
                         <h4 class="text-white font-display font-bold text-lg uppercase tracking-wider">Contents</h4>
                     </div>
                     
-                    <!-- Search Field -->
                     <div class="mb-6 relative">
-                        <input type="text" id="doc-search" placeholder="Search docs..." class="w-full bg-black/50 border border-white/10 rounded-lg py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors">
-                        <i class="fas fa-search absolute left-3 top-2.5 text-gray-500 text-sm"></i>
+                        <input type="text" id="doc-search" placeholder="Search docs..." class="w-full bg-black/40 border border-white/10 rounded-lg py-3 px-4 pl-11 text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors shadow-inner">
+                        <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 text-sm"></i>
                     </div>
 
-                    <ul class="space-y-3 font-medium text-gray-400" id="docs-nav">
+                    <ul class="space-y-4 font-medium text-gray-400" id="docs-nav">
                         <li><a href="#doc-intro" class="hover:text-accent-cyan transition-colors block py-1 pl-3 border-l-2 border-transparent hover:border-accent-cyan">Introduction</a></li>
                         <li><a href="#doc-quickstart" class="hover:text-accent-cyan transition-colors block py-1 pl-3 border-l-2 border-transparent hover:border-accent-cyan">Quick Start</a></li>
                         <li><a href="#doc-modules" class="hover:text-accent-cyan transition-colors block py-1 pl-3 border-l-2 border-transparent hover:border-accent-cyan">Tools & Helpers</a></li>
@@ -424,163 +469,133 @@
             </div>
             
             <!-- Content Area -->
-            <div class="lg:w-3/4 w-full space-y-20 text-gray-300 gs-reveal order-1 lg:order-2">
+            <div class="lg:w-3/4 w-full space-y-24 text-gray-300 gs-reveal order-1 lg:order-2">
+                
                 <div id="doc-intro" class="scroll-mt-32 doc-section">
                     <h3 class="text-3xl font-display font-bold text-white mb-6 border-b border-white/10 pb-4 flex items-center gap-3"><i class="fas fa-info-circle text-accent-cyan"></i> EnGem Overview</h3>
-                    <p class="mb-4 text-lg text-gray-200">EnGem is a local assistant and automation framework that connects a streaming LLM (Gemini) to host-side tooling and exposes a Discord bot interface. It provides:</p>
-                    <ul class="list-disc pl-6 space-y-2 mb-6 text-lg text-gray-300 marker:text-accent-purple">
+                    <p class="mb-4 text-lg text-gray-200 leading-relaxed">EnGem is a local assistant and automation framework that connects a streaming LLM (Gemini) to host-side tooling and exposes a Discord bot interface. It provides:</p>
+                    <ul class="list-disc pl-6 space-y-3 mb-8 text-lg text-gray-300 marker:text-accent-purple">
                         <li>LLM orchestration and sub-agent execution plans</li>
                         <li>A Discord bot for text chat, scheduling, and execution-plan progress tracking</li>
                         <li>Persistent semantic memory backed by ChromaDB</li>
                         <li>Modular skills for browser automation, running code, notebooks, and media generation</li>
                         <li>Output capture and artifact relocation into <code>generated_files/</code></li>
                     </ul>
-                    <div class="bg-accent-cyan/10 border border-accent-cyan/30 rounded-lg p-5 flex items-start gap-4 shadow-[0_0_15px_rgba(0,229,255,0.1)]">
+                    <div class="glass-panel rounded-xl p-6 flex items-start gap-5 border-l-4 border-l-accent-cyan">
                         <i class="fas fa-lightbulb text-accent-cyan mt-1 text-2xl"></i>
-                        <p class="text-sm text-gray-200">This documentation outlines how to get started, where important pieces live, and common development tasks directly derived from the source <code>README.md</code>.</p>
+                        <p class="text-base text-gray-200">This documentation outlines how to get started, where important pieces live, and common development tasks directly derived from the source <code>README.md</code>.</p>
                     </div>
                 </div>
 
                 <div id="doc-quickstart" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-rocket"></i> Quick start</h3>
+                    <h3 class="text-3xl font-display font-bold text-white mb-8 text-gradient flex items-center gap-3"><i class="fas fa-rocket"></i> Quick start</h3>
                     
                     <div class="space-y-8">
-                        <div class="bg-black/40 p-6 rounded-xl border border-white/5 shadow-lg">
-                            <p class="mb-3 font-semibold text-white flex items-center gap-2"><span class="bg-accent-cyan/20 text-accent-cyan px-2 py-0.5 rounded text-xs">1</span> Create and activate a virtual environment, then install dependencies:</p>
+                        <div class="glass-panel p-6 md:p-8 rounded-2xl">
+                            <p class="mb-4 text-lg font-semibold text-white flex items-center gap-3"><span class="bg-accent-cyan/20 text-accent-cyan w-8 h-8 flex items-center justify-center rounded-lg text-sm">1</span> Create environment & install dependencies:</p>
                             <pre><code>python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt</code></pre>
                         </div>
                         
-                        <div class="bg-black/40 p-6 rounded-xl border border-white/5 shadow-lg">
-                            <p class="mb-3 font-semibold text-white flex items-center gap-2"><span class="bg-accent-cyan/20 text-accent-cyan px-2 py-0.5 rounded text-xs">2</span> Install Playwright browser binaries (required for browser automation):</p>
+                        <div class="glass-panel p-6 md:p-8 rounded-2xl">
+                            <p class="mb-4 text-lg font-semibold text-white flex items-center gap-3"><span class="bg-accent-cyan/20 text-accent-cyan w-8 h-8 flex items-center justify-center rounded-lg text-sm">2</span> Install Playwright browser binaries:</p>
                             <pre><code>python -m playwright install</code></pre>
                         </div>
 
-                        <div class="bg-black/40 p-6 rounded-xl border border-white/5 shadow-lg">
-                            <p class="mb-4 font-semibold text-white flex items-center gap-2"><span class="bg-accent-cyan/20 text-accent-cyan px-2 py-0.5 rounded text-xs">3</span> Set required environment variables:</p>
-                            <ul class="list-none space-y-3 text-gray-300">
-                                <li class="flex items-start gap-3"><i class="fas fa-key text-accent-purple mt-1"></i><div><code class="text-white">DISCORD_BOT_TOKEN</code> — Discord bot token (required to run the bot).</div></li>
-                                <li class="flex items-start gap-3"><i class="fas fa-key text-accent-purple mt-1"></i><div><code class="text-white">PAID_GEMINI_API_KEY</code> — Gemini API key used by the LLM clients/tools.</div></li>
-                                <li class="flex items-start gap-3"><i class="fas fa-users text-accent-purple mt-1"></i><div><code class="text-white">DISCORD_ALLOWED_CHANNELS</code> — Comma-separated allowed channel names.</div></li>
-                                <li class="flex items-start gap-3"><i class="fas fa-sliders-h text-gray-500 mt-1"></i><div><span class="text-gray-500">Optional:</span> <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>MODEL</code> — see <code>config.py</code>.</div></li>
+                        <div class="glass-panel p-6 md:p-8 rounded-2xl">
+                            <p class="mb-5 text-lg font-semibold text-white flex items-center gap-3"><span class="bg-accent-cyan/20 text-accent-cyan w-8 h-8 flex items-center justify-center rounded-lg text-sm">3</span> Set required environment variables:</p>
+                            <ul class="list-none space-y-4 text-gray-300 text-base">
+                                <li class="flex items-start gap-4"><i class="fas fa-key text-accent-purple mt-1 text-lg"></i><div><code class="text-white text-sm">DISCORD_BOT_TOKEN</code> — Discord bot token (required to run the bot).</div></li>
+                                <li class="flex items-start gap-4"><i class="fas fa-key text-accent-purple mt-1 text-lg"></i><div><code class="text-white text-sm">PAID_GEMINI_API_KEY</code> — Gemini API key used by the LLM clients/tools.</div></li>
+                                <li class="flex items-start gap-4"><i class="fas fa-users text-accent-purple mt-1 text-lg"></i><div><code class="text-white text-sm">DISCORD_ALLOWED_CHANNELS</code> — Comma-separated allowed channel names.</div></li>
+                                <li class="flex items-start gap-4"><i class="fas fa-sliders-h text-gray-500 mt-1 text-lg"></i><div><span class="text-gray-500">Optional:</span> <code>REPO_PATH</code>, <code>CRON_JOB_HOUR</code>, <code>MODEL</code> — see <code>config.py</code>.</div></li>
                             </ul>
                         </div>
 
-                        <div class="bg-black/40 p-6 rounded-xl border border-white/5 shadow-lg">
-                            <p class="mb-3 font-semibold text-white flex items-center gap-2"><span class="bg-accent-cyan/20 text-accent-cyan px-2 py-0.5 rounded text-xs">4</span> Run the Discord bot from the repository root:</p>
+                        <div class="glass-panel p-6 md:p-8 rounded-2xl border border-accent-cyan/20">
+                            <p class="mb-4 text-lg font-semibold text-white flex items-center gap-3"><span class="bg-accent-cyan/20 text-accent-cyan w-8 h-8 flex items-center justify-center rounded-lg text-sm">4</span> Run the Discord bot:</p>
                             <pre><code>python discord_bot.py</code></pre>
-                            <p class="mt-4 text-gray-400 text-sm">This starts the bot. The bot writes per-channel conversation history files to <code>memory/channel_history/</code> and uses <code>llm.py</code> to orchestrate intent classification and sub-agent execution.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="doc-modules" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-tools"></i> Tools and helpers</h3>
-                    <p class="mb-6 text-lg">The repository contains several helper tools under <code>tools/</code>. You can run most tools as small scripts or import their main functions.</p>
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fas fa-search text-accent-cyan text-xl"></i><code class="text-white bg-transparent p-0 text-lg">run_google_search.py</code></div>
-                            <p class="text-sm text-gray-400">Google Search via Gemini.</p>
-                        </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fab fa-python text-accent-purple text-xl"></i><code class="text-white bg-transparent p-0 text-lg">run_python.py</code></div>
-                            <p class="text-sm text-gray-400">Safely run Python snippets and capture artifacts.</p>
-                        </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fas fa-book text-accent-cyan text-xl"></i><code class="text-white bg-transparent p-0 text-lg">run_notebook.py</code></div>
-                            <p class="text-sm text-gray-400">Execute notebooks via Papermill.</p>
-                        </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fas fa-globe text-accent-purple text-xl"></i><code class="text-white bg-transparent p-0 text-lg">use_browser.py</code></div>
-                            <p class="text-sm text-gray-400">High-level browser automation via ComputerUse.</p>
-                        </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fas fa-photo-video text-accent-cyan text-xl"></i><code class="text-white bg-transparent p-0 text-lg">generate_media</code></div>
-                            <p class="text-sm text-gray-400">Image and video generation helpers.</p>
-                        </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 flex flex-col gap-2 neon-border transition-all">
-                            <div class="flex items-center gap-3 mb-2"><i class="fas fa-folder-open text-accent-purple text-xl"></i><code class="text-white bg-transparent p-0 text-lg">collect_media.py</code></div>
-                            <p class="text-sm text-gray-400">List recent generated outputs.</p>
+                            <p class="mt-4 text-gray-300 text-base">This starts the bot. The bot writes per-channel conversation history files to <code>memory/channel_history/</code> and uses <code>llm.py</code> to orchestrate intent classification and sub-agent execution.</p>
                         </div>
                     </div>
                 </div>
 
                 <div id="doc-storage" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-database"></i> Data & Storage</h3>
+                    <h3 class="text-3xl font-display font-bold text-white mb-8 text-gradient flex items-center gap-3"><i class="fas fa-database"></i> Data & Storage</h3>
                     <ul class="space-y-4 text-gray-300">
-                        <li class="flex items-start gap-4 p-4 bg-white/5 rounded-lg border border-white/5"><i class="fas fa-comments text-accent-cyan mt-1 text-xl"></i><div><strong class="text-white block mb-1">Conversation histories:</strong> <code>memory/channel_history/*.md</code> (one file per Discord channel).</div></li>
-                        <li class="flex items-start gap-4 p-4 bg-white/5 rounded-lg border border-white/5"><i class="fas fa-project-diagram text-accent-purple mt-1 text-xl"></i><div><strong class="text-white block mb-1">Vector DB:</strong> <code>memory/vector_db/</code> (ChromaDB persistent client).</div></li>
-                        <li class="flex items-start gap-4 p-4 bg-white/5 rounded-lg border border-white/5"><i class="fas fa-file-archive text-accent-cyan mt-1 text-xl"></i><div><strong class="text-white block mb-1">Generated outputs:</strong> <code>generated_files/</code>.</div></li>
-                        <li class="flex items-start gap-4 p-4 bg-white/5 rounded-lg border border-white/5"><i class="fas fa-clipboard-list text-accent-purple mt-1 text-xl"></i><div><strong class="text-white block mb-1">Sub-agent execution orders:</strong> <code>sub-agents/</code> (JSON files).</div></li>
-                        <li class="flex items-start gap-4 p-4 bg-white/5 rounded-lg border border-white/5"><i class="fas fa-scroll text-accent-cyan mt-1 text-xl"></i><div><strong class="text-white block mb-1">Agent instructions:</strong> <code>agent_instructions/</code> (templates).</div></li>
+                        <li class="flex items-start gap-5 p-6 glass-panel rounded-xl"><i class="fas fa-comments text-accent-cyan mt-1 text-2xl"></i><div><strong class="text-white block mb-1 text-lg">Conversation histories:</strong> <code>memory/channel_history/*.md</code> (one file per Discord channel).</div></li>
+                        <li class="flex items-start gap-5 p-6 glass-panel rounded-xl"><i class="fas fa-project-diagram text-accent-purple mt-1 text-2xl"></i><div><strong class="text-white block mb-1 text-lg">Vector DB:</strong> <code>memory/vector_db/</code> (ChromaDB). Generates embeddings via configured Gemini service. Semantic memories in <code>engem_memory_semantic_gemini2</code>.</div></li>
+                        <li class="flex items-start gap-5 p-6 glass-panel rounded-xl"><i class="fas fa-file-archive text-accent-cyan mt-1 text-2xl"></i><div><strong class="text-white block mb-1 text-lg">Generated outputs:</strong> <code>generated_files/</code>.</div></li>
+                        <li class="flex items-start gap-5 p-6 glass-panel rounded-xl"><i class="fas fa-clipboard-list text-accent-purple mt-1 text-2xl"></i><div><strong class="text-white block mb-1 text-lg">Sub-agent execution orders:</strong> <code>sub-agents/</code> (JSON files).</div></li>
+                        <li class="flex items-start gap-5 p-6 glass-panel rounded-xl"><i class="fas fa-scroll text-accent-cyan mt-1 text-2xl"></i><div><strong class="text-white block mb-1 text-lg">Agent instructions:</strong> <code>agent_instructions/</code> (templates).</div></li>
                     </ul>
                 </div>
 
                 <div id="doc-troubleshooting" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-life-ring"></i> Troubleshooting</h3>
-                    <div class="bg-accent-purple/10 border-l-4 border-accent-purple p-8 rounded-r-xl space-y-6 shadow-[0_0_20px_rgba(194,76,246,0.15)]">
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-exclamation-triangle text-accent-purple text-2xl mt-1"></i>
+                    <h3 class="text-3xl font-display font-bold text-white mb-8 text-gradient flex items-center gap-3"><i class="fas fa-life-ring"></i> Troubleshooting</h3>
+                    <div class="glass-panel border-l-4 border-l-accent-purple p-8 rounded-r-2xl space-y-8">
+                        <div class="flex items-start gap-5">
+                            <i class="fas fa-exclamation-triangle text-accent-purple text-3xl mt-1"></i>
                             <div>
-                                <h5 class="text-white font-bold mb-1">Playwright Issues</h5>
-                                <p class="text-gray-300">If Playwright actions fail, ensure browsers are installed: <br><code>python -m playwright install</code>.</p>
+                                <h5 class="text-white font-bold text-xl mb-2">Playwright Issues</h5>
+                                <p class="text-gray-300 text-base leading-relaxed">If Playwright actions fail, ensure browsers are installed: <br><code class="mt-2 block w-fit">python -m playwright install</code></p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-redo text-accent-purple text-2xl mt-1"></i>
+                        <div class="flex items-start gap-5">
+                            <i class="fas fa-redo text-accent-purple text-3xl mt-1"></i>
                             <div>
-                                <h5 class="text-white font-bold mb-1">API Errors</h5>
-                                <p class="text-gray-300">If Gemini/Google APIs error frequently, <code>api_backoff.call_with_exponential_backoff</code> retries on transient errors; verify your API keys.</p>
+                                <h5 class="text-white font-bold text-xl mb-2">API Errors</h5>
+                                <p class="text-gray-300 text-base leading-relaxed">If Gemini/Google APIs error frequently, <code>api_backoff.call_with_exponential_backoff</code> retries on transient errors; verify your API keys in the environment.</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-robot text-accent-purple text-2xl mt-1"></i>
+                        <div class="flex items-start gap-5">
+                            <i class="fas fa-robot text-accent-purple text-3xl mt-1"></i>
                             <div>
-                                <h5 class="text-white font-bold mb-1">Bot Connection</h5>
-                                <p class="text-gray-300">If the bot does not receive messages, verify <code>DISCORD_BOT_TOKEN</code> and <code>DISCORD_ALLOWED_CHANNELS</code> in your environment.</p>
+                                <h5 class="text-white font-bold text-xl mb-2">Bot Connection</h5>
+                                <p class="text-gray-300 text-base leading-relaxed">If the bot does not receive messages, meticulously verify <code>DISCORD_BOT_TOKEN</code> and <code>DISCORD_ALLOWED_CHANNELS</code> are correctly set.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="doc-dev" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-code"></i> Developer notes</h3>
-                    <div class="bg-black/40 p-8 rounded-xl border border-white/10 text-gray-300 relative overflow-hidden">
-                        <i class="fas fa-laptop-code absolute -right-10 -bottom-10 text-9xl text-white/5"></i>
-                        <ul class="list-disc pl-6 space-y-4 relative z-10 marker:text-accent-cyan">
+                    <h3 class="text-3xl font-display font-bold text-white mb-8 text-gradient flex items-center gap-3"><i class="fas fa-code"></i> Developer notes</h3>
+                    <div class="glass-panel p-8 md:p-10 rounded-2xl text-gray-300 relative overflow-hidden">
+                        <i class="fas fa-laptop-code absolute -right-10 -bottom-10 text-[12rem] text-white/5 pointer-events-none"></i>
+                        <ul class="list-disc pl-6 space-y-6 relative z-10 text-lg marker:text-accent-cyan">
                             <li><strong class="text-white">Manager/Planner:</strong> enforces a final `Reviewer` agent that must print <code>&lt;yes&gt;</code> when the task is complete.</li>
                             <li><strong class="text-white">Tool discovery:</strong> LLM sub-agents automatically call helpers in <code>tools/</code>. Ensure valid function signatures.</li>
-                            <li><strong class="text-white">Artifact relocation:</strong> <code>tools/run_python.py</code> snapshots the repo root, runs code, and moves generated artifacts into <code>generated_files/</code> to keep the repo clean.</li>
-                            <li><strong class="text-white">ChromaDB:</strong> uses <code>sentence-transformers</code> by default. Back up <code>memory/vector_db/</code> to preserve memories.</li>
+                            <li><strong class="text-white">Artifact relocation:</strong> <code>tools/run_python.py</code> snapshots the repo root, runs code, and moves generated artifacts into <code>generated_files/</code>.</li>
+                            <li><strong class="text-white">ChromaDB:</strong> Embeddings generated via Gemini. Make sure a paid API key is available. Back up <code>memory/vector_db/</code>.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div id="doc-repo" class="scroll-mt-32 doc-section">
-                    <h3 class="text-3xl font-display font-bold text-white mb-6 text-gradient flex items-center gap-3"><i class="fas fa-sitemap"></i> Repository map</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                    <h3 class="text-3xl font-display font-bold text-white mb-8 text-gradient flex items-center gap-3"><i class="fas fa-sitemap"></i> Repository map</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">discord_bot.py</code>
                             <span class="text-sm text-gray-400">Main bot entrypoint</span>
                         </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">llm.py</code>
                             <span class="text-sm text-gray-400">LLM orchestration</span>
                         </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">memory.py</code>
                             <span class="text-sm text-gray-400">ChromaDB store</span>
                         </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">config.py</code>
                             <span class="text-sm text-gray-400">Env and defaults</span>
                         </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">tools/</code>
                             <span class="text-sm text-gray-400">Automation helpers</span>
                         </div>
-                        <div class="bg-black/40 p-5 rounded-lg border border-white/10 hover:border-accent-cyan/80 hover:bg-accent-cyan/5 transition-all group cursor-pointer">
+                        <div class="glass-panel p-6 rounded-xl hover:border-accent-cyan/80 transition-all group cursor-pointer">
                             <code class="text-white bg-transparent p-0 text-lg mb-2 block group-hover:text-accent-cyan transition-colors">agent_instructions/</code>
                             <span class="text-sm text-gray-400">Markdown templates</span>
                         </div>
@@ -593,36 +608,35 @@ pip install -r requirements.txt</code></pre>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="relative bg-bg-base z-10 border-t border-white/5">
+<section id="contact" class="relative z-10 pt-10 pb-24">
     <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16 gs-reveal">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Initialize <span class="text-gradient">Contact</span></h2>
-            <p class="text-gray-300 text-lg">Direct transmission channel to the EnGem developers.</p>
+            <p class="text-gray-300 text-lg md:text-xl">Direct transmission channel to the EnGem developers.</p>
         </div>
 
-        <div class="bg-black/60 backdrop-blur-md border border-accent-purple/30 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(194,76,246,0.15)] relative overflow-hidden gs-reveal neon-border">
-            <!-- Decorative elements -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-accent-purple/20 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-cyan/20 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+        <div class="glass-panel rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(194,76,246,0.15)] relative overflow-hidden gs-reveal">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-accent-purple/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-cyan/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
             
-            <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain" class="space-y-6 relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
+            <form action="mailto:engem.engine@gmail.com" method="post" enctype="text/plain" class="space-y-8 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-3">
                         <label for="name" class="block text-sm font-mono text-accent-cyan uppercase tracking-wider">Identification</label>
-                        <input type="text" id="name" name="name" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all z-20 relative" placeholder="Enter Name">
+                        <input type="text" id="name" name="name" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all z-20 relative backdrop-blur-md" placeholder="Enter Name">
                     </div>
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                         <label for="email" class="block text-sm font-mono text-accent-purple uppercase tracking-wider">Return Vector (Email)</label>
-                        <input type="email" id="email" name="email" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple focus:shadow-[0_0_10px_rgba(194,76,246,0.3)] transition-all z-20 relative" placeholder="Enter Email Address">
+                        <input type="email" id="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple focus:shadow-[0_0_15px_rgba(194,76,246,0.3)] transition-all z-20 relative backdrop-blur-md" placeholder="Enter Email Address">
                     </div>
                 </div>
-                <div class="space-y-2">
+                <div class="space-y-3">
                     <label for="message" class="block text-sm font-mono text-gray-300 uppercase tracking-wider">Query Payload</label>
-                    <textarea id="message" name="message" rows="5" required class="w-full bg-black/80 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all resize-y z-20 relative" placeholder="Transmit your message here..."></textarea>
+                    <textarea id="message" name="message" rows="5" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all resize-y z-20 relative backdrop-blur-md custom-scrollbar" placeholder="Transmit your message here..."></textarea>
                 </div>
-                <button type="submit" class="w-full bg-gradient-custom text-black font-bold py-4 rounded-lg hover:shadow-[0_0_25px_rgba(194,76,246,0.6)] hover:scale-[1.02] transition-all duration-300 uppercase tracking-widest mt-4 group z-20 relative overflow-hidden">
+                <button type="submit" class="w-full bg-gradient-custom text-black font-bold py-5 rounded-xl hover:shadow-[0_0_30px_rgba(194,76,246,0.6)] hover:scale-[1.02] transition-all duration-300 uppercase tracking-widest mt-6 group z-20 relative overflow-hidden text-lg">
                     <span class="relative z-10 flex items-center justify-center">
-                        Transmit Signal <i class="fas fa-paper-plane ml-3 group-hover:translate-x-2 transition-transform"></i>
+                        Transmit Signal <i class="fas fa-paper-plane ml-3 group-hover:translate-x-3 transition-transform"></i>
                     </span>
                     <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 skew-x-12"></div>
                 </button>
@@ -632,12 +646,12 @@ pip install -r requirements.txt</code></pre>
 </section>
 
 <!-- Scroll to Top Button -->
-<a href="#home" class="fixed bottom-8 right-8 bg-black/80 backdrop-blur border border-accent-cyan/50 text-accent-cyan w-12 h-12 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,229,255,0.8)] transition-all duration-300 shadow-lg z-50 opacity-0 pointer-events-none transform translate-y-4" id="scroll-to-top">
-    <i class="fas fa-arrow-up"></i>
+<a href="#home" class="fixed bottom-8 right-8 glass-panel border border-accent-cyan/50 text-accent-cyan w-14 h-14 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black hover:shadow-[0_0_25px_rgba(0,229,255,0.8)] transition-all duration-300 shadow-xl z-50 opacity-0 pointer-events-none transform translate-y-6" id="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up text-xl"></i>
 </a>
 
 <!-- Footer -->
-<footer class="bg-black py-8 border-t border-white/5 text-center relative z-10">
+<footer class="bg-black py-10 border-t border-white/5 text-center relative z-10">
     <p class="text-gray-500 font-mono text-sm">&copy; <span id="year"></span> EnGem Framework. Intelligence Accelerated.</p>
 </footer>
 
@@ -649,10 +663,10 @@ pip install -r requirements.txt</code></pre>
     const scrollTopBtn = document.getElementById('scroll-to-top');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
-            scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-6');
             scrollTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
         } else {
-            scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-6');
             scrollTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
         }
     });
@@ -672,29 +686,18 @@ pip install -r requirements.txt</code></pre>
         });
     });
 
-    // Navbar blur on scroll
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('navbar');
-        if (window.scrollY > 50) {
-            nav.classList.add('shadow-[0_0_15px_rgba(0,229,255,0.1)]', 'bg-bg-surface/95');
-            nav.classList.remove('bg-transparent');
-        } else {
-            nav.classList.remove('shadow-[0_0_15px_rgba(0,229,255,0.1)]', 'bg-bg-surface/95');
-            nav.classList.add('bg-transparent');
-        }
-    });
-
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
     
     gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
         gsap.fromTo(elem, 
-            { y: 60, opacity: 0 }, 
+            { y: 50, opacity: 0, scale: 0.98 }, 
             {
                 y: 0, 
                 opacity: 1, 
+                scale: 1,
                 duration: 1.2, 
-                ease: "power4.out",
+                ease: "power3.out",
                 scrollTrigger: {
                     trigger: elem,
                     start: "top 85%",
@@ -703,6 +706,22 @@ pip install -r requirements.txt</code></pre>
             }
         );
     });
+
+    // Staggered reveal for Feature Cards
+    gsap.fromTo('.feature-card',
+        { y: 40, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#features-grid",
+                start: "top 80%"
+            }
+        }
+    );
 
     // Mouse Tracking Glow for Feature Cards
     document.querySelectorAll('.feature-card').forEach(card => {
@@ -735,7 +754,7 @@ pip install -r requirements.txt</code></pre>
     function typeLine(line, callback) {
         const lineElem = document.createElement('div');
         const isCommand = line.startsWith('>');
-        lineElem.className = isCommand ? 'text-accent-cyan mt-2 font-bold blinking-cursor' : 'text-gray-300 mt-1 blinking-cursor';
+        lineElem.className = isCommand ? 'text-accent-cyan mt-3 font-bold blinking-cursor' : 'text-gray-300 mt-2 blinking-cursor';
         if (line.startsWith('[SYS]')) lineElem.classList.add('text-green-400');
         if (line.startsWith('[LLM]')) lineElem.classList.add('text-accent-purple');
         if (line.startsWith('[MANAGER]')) lineElem.classList.add('text-yellow-400');
@@ -746,7 +765,7 @@ pip install -r requirements.txt</code></pre>
         Array.from(terminalContent.children).slice(0, -1).forEach(child => child.classList.remove('blinking-cursor'));
         
         let charIndex = 0;
-        const speed = isCommand ? 40 : 15; // Commands type slower, system output faster
+        const speed = isCommand ? 35 : 12; // Faster typing
         
         const interval = setInterval(() => {
             lineElem.textContent = line.substring(0, charIndex + 1);
@@ -766,12 +785,11 @@ pip install -r requirements.txt</code></pre>
                 startTerminal();
             });
         } else {
-            // Keep cursor blinking on last line, or remove it entirely since input is below
             Array.from(terminalContent.children).forEach(child => child.classList.remove('blinking-cursor'));
         }
     }
     
-    setTimeout(startTerminal, 800);
+    setTimeout(startTerminal, 1000);
 
     // Terminal Input Interactive Effect
     const termInput = document.getElementById('terminal-input');
@@ -781,17 +799,17 @@ pip install -r requirements.txt</code></pre>
             termInput.value = '';
             
             const lineElem = document.createElement('div');
-            lineElem.className = 'text-accent-cyan mt-2 font-bold';
+            lineElem.className = 'text-accent-cyan mt-3 font-bold';
             lineElem.textContent = '> ' + val;
             terminalContent.appendChild(lineElem);
             
             setTimeout(() => {
                 const resElem = document.createElement('div');
-                resElem.className = 'text-gray-400 mt-1';
+                resElem.className = 'text-gray-400 mt-2';
                 resElem.textContent = '[ENGEM] Command acknowledged. Processing...';
                 terminalContent.appendChild(resElem);
                 terminalContent.scrollTop = terminalContent.scrollHeight;
-            }, 400);
+            }, 300);
         }
     });
 
@@ -804,14 +822,14 @@ pip install -r requirements.txt</code></pre>
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         particles = [];
-        const numParticles = Math.floor(window.innerWidth / 15);
+        const numParticles = Math.floor(window.innerWidth / 18); // Slightly less dense for cleaner look
         
         for (let i = 0; i < numParticles; i++) {
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
                 radius: Math.random() * 1.5 + 0.5
             });
         }
@@ -820,7 +838,7 @@ pip install -r requirements.txt</code></pre>
     function drawCanvas() {
         ctx.clearRect(0, 0, width, height);
         
-        ctx.fillStyle = 'rgba(0, 229, 255, 0.4)';
+        ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -841,7 +859,7 @@ pip install -r requirements.txt</code></pre>
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 
-                if (dist < 120) {
+                if (dist < 130) {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -865,7 +883,7 @@ pip install -r requirements.txt</code></pre>
         let current = "";
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (scrollY >= sectionTop - 200) {
+            if (scrollY >= sectionTop - 250) {
                 current = section.getAttribute("id");
             }
         });
@@ -877,25 +895,32 @@ pip install -r requirements.txt</code></pre>
             }
         });
         
-        // Docs Sidebar highlighting
+        // Docs Sidebar & Mobile Select highlighting
         if(current === 'docs') {
             const docSections = document.querySelectorAll("#docs .doc-section");
             let docCurrent = "";
             docSections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 250) {
-                    docCurrent = section.getAttribute("id");
+                if (scrollY >= sectionTop - 300) {
+                    docCurrent = "#" + section.getAttribute("id");
                 }
             });
             
+            // Update Sidebar
             document.querySelectorAll("#docs-nav a").forEach(li => {
                 li.classList.remove("text-accent-cyan", "border-accent-cyan");
                 li.classList.add("border-transparent");
-                if (li.getAttribute("href").substring(1) === docCurrent) {
+                if (li.getAttribute("href") === docCurrent) {
                     li.classList.add("text-accent-cyan", "border-accent-cyan");
                     li.classList.remove("border-transparent");
                 }
             });
+
+            // Update Mobile Select
+            const mobileSelect = document.getElementById("mobile-doc-nav");
+            if(mobileSelect && docCurrent) {
+                mobileSelect.value = docCurrent;
+            }
         }
     });
 
