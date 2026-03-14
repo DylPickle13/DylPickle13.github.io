@@ -1,149 +1,133 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor Glow Follow Effect
-    const cursorGlow = document.getElementById('cursor-glow');
-    if (cursorGlow) {
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
+    // 1. Smooth Scrolling for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').slice(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         });
-        
-        document.addEventListener('mousedown', () => {
-            cursorGlow.style.width = '200px';
-            cursorGlow.style.height = '200px';
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursorGlow.style.width = '300px';
-            cursorGlow.style.height = '300px';
+    });
+
+    // 2. Documentation Search Logic
+    const searchInput = document.getElementById('doc-search');
+    const docNav = document.getElementById('docs-nav');
+    if (searchInput && docNav) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const items = docNav.querySelectorAll('li');
+            const sections = document.querySelectorAll('.doc-section');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+            
+            sections.forEach(section => {
+                const text = section.innerText.toLowerCase();
+                section.style.display = text.includes(term) ? 'block' : 'none';
+            });
         });
     }
 
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+    // 3. Initialize Engine Button Feedback
+    const initBtn = document.querySelector('a[href="#features"]');
+    if (initBtn && initBtn.innerText.includes('Initialize Engine')) {
+        initBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Initializing...';
+            this.classList.add('opacity-80');
+            
+            // Trigger terminal line
+            const termContent = document.getElementById('terminal-content');
+            const newLine = document.createElement('div');
+            newLine.className = 'text-accent-cyan mt-3 font-bold';
+            newLine.textContent = '> Manual override: re-initializing engine core...';
+            termContent.appendChild(newLine);
+            
+            setTimeout(() => {
+                window.scrollTo({
+                    top: document.getElementById('features').offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                setTimeout(() => {
+                    this.innerHTML = 'Initialize Engine';
+                    this.classList.remove('opacity-80');
+                }, 1000);
+            }, 800);
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
 
-    // Interactive Terminal
-    const termInput = document.getElementById('term-input');
-    const termOutput = document.getElementById('term-output');
-
-    if (termInput && termOutput) {
-        termInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const cmd = termInput.value.trim();
-                if (cmd) {
-                    processCommand(cmd);
-                    termInput.value = '';
+    // 4. Existing animations and terminal logic (restoring relevant parts)
+    const terminalLines = [
+        "EnGem OS v1.2.0 initialized.",
+        "> loading core_modules ...",
+        "[SYS] Core modules loaded: 100%",
+        "> connect llm --provider gemini --mode stream",
+        "[LLM] Connection secured. Vector DB sync active.",
+        "> start agent_manager",
+        "[MANAGER] Awaiting execution directives.",
+        "> analyze environment --visual",
+        "[VISION] High-fidelity analysis complete.",
+        "[ENGEM] System ready. Intelligence Accelerated."
+    ];
+    
+    const terminalContent = document.getElementById('terminal-content');
+    if (terminalContent) {
+        let lineIndex = 0;
+        function typeLine(line, callback) {
+            const lineElem = document.createElement('div');
+            lineElem.className = line.startsWith('>') ? 'text-accent-cyan mt-3 font-bold' : 'text-gray-300 mt-2';
+            terminalContent.appendChild(lineElem);
+            let charIndex = 0;
+            const interval = setInterval(() => {
+                lineElem.textContent = line.substring(0, charIndex + 1);
+                charIndex++;
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+                if (charIndex >= line.length) {
+                    clearInterval(interval);
+                    setTimeout(callback, 200);
                 }
-            }
-        });
-    }
-
-    function processCommand(cmd) {
-        // Echo command
-        const cmdLine = document.createElement('div');
-        cmdLine.className = 'term-line';
-        cmdLine.innerHTML = `<span class="term-prompt">engem@ai:~$</span> <span class="term-text">${cmd}</span>`;
-        termOutput.appendChild(cmdLine);
-
-        // Response
-        const resLine = document.createElement('div');
-        resLine.className = 'term-output';
-        
-        let response = '';
-        const lowerCmd = cmd.toLowerCase();
-
-        if (lowerCmd === 'help') {
-            response = 'Available commands: help, about, features, clear, engem';
-        } else if (lowerCmd === 'about') {
-            response = 'EnGem: Multi-modal agentic platform powered by Gemini.';
-        } else if (lowerCmd === 'features') {
-            response = 'Skills: use_browser, run_python, generate_image, generate_video, run_notebook...';
-        } else if (lowerCmd === 'engem') {
-            response = 'Intelligence Accelerated. Welcome to the future.';
-        } else if (lowerCmd === 'clear') {
-            termOutput.innerHTML = '';
-            return;
-        } else if (lowerCmd.startsWith('echo ')) {
-            response = cmd.substring(5);
-        } else {
-            response = `Command not found: ${cmd}. Type 'help' for available commands.`;
+            }, 20);
         }
-
-        resLine.innerText = response;
-        termOutput.appendChild(resLine);
-        
-        // Auto scroll
-        const body = document.querySelector('.terminal-body');
-        body.scrollTop = body.scrollHeight;
-    }
-
-    // Canvas Background Animation
-    const canvas = document.getElementById('canvas-bg');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-
-        function init() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            for (let i = 0; i < 50; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 2 + 0.5,
-                    alpha: Math.random() * 0.5 + 0.1
+        function startTerminal() {
+            if (lineIndex < terminalLines.length) {
+                typeLine(terminalLines[lineIndex], () => {
+                    lineIndex++;
+                    startTerminal();
                 });
             }
         }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 255, 204, ${p.alpha})`;
-                ctx.fill();
+        setTimeout(startTerminal, 1000);
+    }
+    
+    // Canvas Particle Network (simplified)
+    const canvas = document.getElementById('hero-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        let p = Array(100).fill().map(() => ({
+            x: Math.random() * w, y: Math.random() * h,
+            vx: Math.random() - 0.5, vy: Math.random() - 0.5
+        }));
+        function draw() {
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = 'rgba(0, 229, 255, 0.2)';
+            p.forEach(particle => {
+                particle.x += particle.vx; particle.y += particle.vy;
+                if(particle.x<0||particle.x>w) particle.vx*=-1;
+                if(particle.y<0||particle.y>h) particle.vy*=-1;
+                ctx.beginPath(); ctx.arc(particle.x, particle.y, 1, 0, Math.PI*2); ctx.fill();
             });
-
-            // Draw connections
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(191, 0, 255, ${0.1 * (1 - dist/150)})`;
-                        ctx.stroke();
-                    }
-                }
-            }
-            
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
-
-        init();
-        animate();
-        window.addEventListener('resize', init);
+        draw();
     }
 });
