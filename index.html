@@ -148,6 +148,20 @@
             background-position: right 1rem top 50%;
             background-size: 0.65rem auto;
         }
+    
+        .prose h1 { font-size: 2.5rem; color: #fff; margin-bottom: 1.5rem; font-family: 'Space Grotesk', sans-serif; }
+        .prose h2 { font-size: 2rem; color: #00e5ff; margin-top: 2rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; }
+        .prose h3 { font-size: 1.5rem; color: #c24cf6; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .prose p { margin-bottom: 1rem; line-height: 1.7; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose pre { background: rgba(13, 17, 23, 0.8); padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.1); }
+        .prose code { color: #00e5ff; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+        .prose p code, .prose li code { background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.375rem; color: #c24cf6; }
+        .prose strong { color: #fff; font-weight: 600; }
+        .prose a { color: #00e5ff; text-decoration: underline; text-underline-offset: 4px; }
+        .prose a:hover { color: #c24cf6; }
+
     </style>
 </head>
 <body class="antialiased selection:bg-accent-cyan selection:text-black">
@@ -246,7 +260,7 @@
             </div>
             <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
                 <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-purple/20">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
                         <i class="fas fa-code transform transition-transform group-hover:scale-110"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">run_python.py</h3>
@@ -264,7 +278,7 @@
             </div>
             <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
                 <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-purple/20">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
                         <i class="fas fa-video transform transition-transform group-hover:scale-110"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_video.py</h3>
@@ -274,19 +288,19 @@
             <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
                 <div class="feature-content flex-grow flex flex-col z-10">
                     <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-                        <i class="fas fa-comment-dots transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_speech.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Convert text into natural-sounding speech audio for multi-modal output.</p>
-                </div>
-            </div>
-            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-purple/20">
                         <i class="fas fa-search transform transition-transform group-hover:scale-110"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">run_google_search.py</h3>
                     <p class="text-gray-300 leading-relaxed text-base mt-auto">Real-time information retrieval across the global web to augment contextual reasoning.</p>
+                </div>
+            </div>
+            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+                <div class="feature-content flex-grow flex flex-col z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+                        <i class="fas fa-comment-dots transform transition-transform group-hover:scale-110"></i>
+                    </div>
+                    <h3 class="text-xl font-mono font-bold mb-3 text-white">generate_speech.py</h3>
+                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Convert text into natural-sounding speech audio for multi-modal output.</p>
                 </div>
             </div>
             <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
@@ -300,7 +314,7 @@
             </div>
             <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
                 <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-purple/20">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
                         <i class="fas fa-book transform transition-transform group-hover:scale-110"></i>
                     </div>
                     <h3 class="text-xl font-mono font-bold mb-3 text-white">run_notebook.py</h3>
@@ -316,15 +330,7 @@
                     <p class="text-gray-300 leading-relaxed text-base mt-auto">Execute background deep research operations to parse and aggregate profound insights.</p>
                 </div>
             </div>
-            <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-                <div class="feature-content flex-grow flex flex-col z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-purple/20">
-                        <i class="fas fa-folder-open transform transition-transform group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="text-xl font-mono font-bold mb-3 text-white">collect_generated_media.py</h3>
-                    <p class="text-gray-300 leading-relaxed text-base mt-auto">Automated indexing and retrieval of generated visual and auditory media assets.</p>
-                </div>
-            </div></div>
+        </div>
     </div>
 </section>
 
@@ -460,13 +466,152 @@
             
             <!-- Content Area -->
             <div class="lg:w-3/4 w-full space-y-24 text-gray-300 gs-reveal order-1 lg:order-2">
+
     <div id="doc-engem" class="scroll-mt-32 doc-section mb-16">
-        <h3 class="text-3xl font-display font-bold text-white mb-6 border-b border-white/10 pb-4">EnGem</h3>
+        <h3 class="text-3xl font-display font-bold text-white mb-6 border-b border-white/10 pb-4">EnGem Documentation</h3>
         <div class="prose prose-invert max-w-none text-gray-300">
-            <br>EnGem is a local assistant and automation framework that connects a streaming LLM (Gemini) to host-side tooling and exposes a Discord bot interface. It coordinates intent classification, a two-phase planning/execution manager flow, staged sub-agent execution, browser automation, notebook and code execution, media generation, attachment ingestion and archiving, and a ChromaDB-backed memory system. Generated artifacts and user-visible outputs are consolidated under <code>generated_files/</code>.<br><br>Last updated: 2026-03-13<br><br>Quick start<br><br>1. Create and activate a virtual environment and install dependencies:<br><br><pre><code><br>python3 -m venv .venv<br>source .venv/bin/activate<br>pip install -r requirements.txt<br></code></pre><br><br>2. Install Playwright browsers (required for browser automation):<br><br><pre><code><br>python -m playwright install<br></code></pre><br><br>3. Set environment variables (see <code>config.py</code> for defaults):<br><br>- <code>DISCORD_BOT_TOKEN</code> — Discord bot token (required to run the bot).<br>- <code>PAID_GEMINI_API_KEY</code> — Paid Gemini API key used for model calls and embeddings.<br>- <code>DISCORD_ALLOWED_CHANNELS</code> — Optional comma-separated channel names to limit bot activity.<br>- <code>MODEL</code> — Default model alias. Several levels (MINIMAL_MODEL, LOW_MODEL, MEDIUM_MODEL, HIGH_MODEL) are defined in <code>config.py</code>.<br>- Embedding/memory settings: <code>GEMINI_EMBEDDING_MODEL</code>, <code>GEMINI_EMBEDDING_DIM</code>, <code>GEMINI_EMBEDDING_BATCH_SIZE</code>, <code>MEMORY_SEMANTIC_COLLECTION_NAME</code>, <code>MEMORY_FILE_COLLECTION_NAME</code>, <code>MEMORY_ARCHIVE_DIR</code>.<br><br>Important: <code>config.py</code> ships with convenient defaults and placeholder values. Do not commit real secrets — use environment variables or a secrets manager.<br><br>Running the Discord bot<br><br>From the repository root:<br><br><pre><code><br>python discord_bot.py<br></code></pre><br><br>The bot creates per-channel conversation history files in <code>memory/channel_history/</code>, responds to messages via [llm.py](llm.py), and can attach generated media from <code>generated_files/</code> to replies.<br><br>Bot commands<br><br>- <code>>commands</code> — List available bot commands.<br>- <code>>history length</code> — Show conversation history length.<br>- <code>>clear history</code> — Clear the current channel history file.<br>- <code>>clear memory</code> — Clear semantic and file memory stores (<code>memory.clear_all_memory_stores</code>).<br>- <code>>forget memories {topic}</code> — Semantically forget memories related to a topic.<br>- <code>>list memories [limit]</code> — List stored memory records.<br><br>Core concepts<br><br>- <strong>Two-phase Manager Flow</strong>: EnGem runs a Planner phase followed by an Execution phase.<br>  - <strong>PlannerManager</strong>: Generates a structured planner artifact (JSON) describing staged sub-agents. Planner output is written to <code>sub-agents/planner_order_<history>.json</code> and uses the top-level key <code>planner_plan</code>.<br>  - <strong>Planner Reviewer</strong>: The planner finishes when the planner reviewer agent returns the literal <code><ready></code> indicating the plan is sufficient.<br>  - <strong>Post-Planner Cache Freeze</strong>: After the planner returns <code><ready></code>, EnGem rebuilds the conversation <code>HistoryContextCache</code> so the Execution phase runs from a stable cached prelude (avoids sending long mutable histories repeatedly).<br>  - <strong>ExecutionManager</strong>: Uses the planner's outcome to produce an execution plan (top-level key <code>execution_plan</code>) and writes <code>sub-agents/execution_order_<history>.json</code>. Execution runs staged sub-agents and must finish with a final serial <code>Reviewer</code> that returns the literal <code><yes></code> to indicate completion.<br><br>- <strong>Execution plan shape</strong>: Both planner and execution JSON files are arrays of staged objects. Example shapes:<br><br>Planner example<br><br><pre><code><br>{<br>  "planner_plan": [<br>    {"mode": "parallel", "sub_agents": [{"task_name": "Research", "instruction": "...", "thinking_level": "HIGH"}]},<br>    {"mode": "serial", "sub_agents": [{"task_name": "PlannerReviewer", "instruction": "...", "thinking_level": "LOW"}]}<br>  ]<br>}<br></code></pre><br><br>Execution example<br><br><pre><code><br>{<br>  "execution_plan": [<br>    {"mode": "serial", "sub_agents": [{"task_name": "DoSteps", "instruction": "...", "thinking_level": "MEDIUM"}]},<br>    {"mode": "serial", "sub_agents": [{"task_name": "Reviewer", "instruction": "...", "thinking_level": "LOW"}]}<br>  ]<br>}<br></code></pre><br><br>- <strong>Stages</strong>: Each stage has a <code>mode</code> of <code>serial</code> or <code>parallel</code> and a <code>sub_agents</code> array. Each sub-agent entry includes <code>task_name</code>, <code>instruction</code> (plain text system-style instruction), and <code>thinking_level</code> (one of <code>MINIMAL|LOW|MEDIUM|HIGH</code>).<br><br>- <strong>Tools</strong>: Public functions in the <code>tools/</code> directory are exposed to sub-agents via the function-calling mechanism implemented in [llm.py](llm.py). Add new tools as top-level functions (no leading underscore) in <code>tools/*.py</code> to make them discoverable.<br><br>- <strong>History caching</strong>: See [history_cache.py](history_cache.py). Core primitives (e.g., <code>create_history_context_cache</code>, <code>CachedContentProfile</code>, <code>resolve_history_cached_prompt</code>) are used to create cached conversation preludes — EnGem explicitly rebuilds this cache after the Planner phase.<br><br>Attachments & media<br><br>- <strong>Attachments ingestion</strong>: [attachments.py](attachments.py) ingests images, audio, video and documents, extracts text/metadata, and returns segments for inclusion in prompts.<br>- <strong>Media catalog / selection</strong>: [collect_generated_media.py](collect_generated_media.py) builds a catalog used by the LLM to select assets for attaching to replies.<br>- <strong>Generated assets</strong>: Created assets are stored in <code>generated_files/</code>.<br><br>Memory & embeddings<br><br>- <strong>Persistent memory</strong>: Managed by [memory.py](memory.py) and stored locally in ChromaDB under <code>memory/memories_vector_db/</code> (semantic file memory) and <code>memory/skills_vector_db/</code> (skill records).<br>- <strong>Embeddings</strong>: Created with the configured Gemini embedding model (<code>GEMINI_EMBEDDING_MODEL</code>). Embedding parameters are controlled by environment variables described above.<br><br>LLM orchestration & sub-agents<br><br>- <strong>Orchestration entrypoint</strong>: [llm.py](llm.py) handles intent classification, the two-phase planner/execution pipeline, staged sub-agent execution (parallel/serial), tool invocation via function-calling, a final <code>Reviewer</code> gate, and a <code>Texter</code> that composes the final reply.<br>- <strong>Instruction templates</strong>: Edit <code>agent_instructions/</code> templates carefully — they guide the planner and manager behavior. Notable instruction files include <code>agent_instructions/planner.md</code>, <code>agent_instructions/execution_manager.md</code>, <code>agent_instructions/planner_reviewer.md</code>, and <code>agent_instructions/execution_reviewer.md</code> (the former <code>reviewer.md</code> was renamed to make phase intent explicit).<br><br>Progress indicators<br><br>- <strong>Preview & progress</strong>: [progress_indicator.py](progress_indicator.py) provides <code>ExecutionPlanProgressIndicator</code> which posts an ASCII preview of the active plan and updates a progress message while sub-agents run. It is phase-aware (planner vs execution) and anchors progress to the manager role to produce meaningful previews.<br><br>Tools and helpers<br><br>- Directory: <code>tools/</code> — host-side utilities and integration scripts. Notable helpers:<br>  - <code>tools/access_google_workspace.py</code><br>  - <code>tools/run_google_search.py</code><br>  - <code>tools/run_python.py</code> (captures execution output and relocates artifacts to <code>generated_files/</code>)<br>  - <code>tools/run_notebook.py</code><br>  - <code>tools/use_browser.py</code><br>  - <code>tools/generate_image.py</code>, <code>tools/generate_video.py</code><br>  - <code>tools/deep_research.py</code><br><br>Developer notes & conventions<br><br>- <strong>Instruction templates</strong>: Templates in <code>agent_instructions/</code> are effectively system messages for managers and sub-agents. Small edits can significantly change planner behavior — iterate carefully and test.<br>- <strong>Plan file conventions</strong>: Planner output files are <code>sub-agents/planner_order_<history>.json</code> (key <code>planner_plan</code>) and execution files are <code>sub-agents/execution_order_<history>.json</code> (key <code>execution_plan</code>). These artifacts are useful for debugging and replay.<br>- <strong>Adding tools</strong>: To expose a new tool to sub-agents, add a top-level function in <code>tools/*.py</code> and ensure its signature is compatible with the function-calling mechanism used by the LLM runner.<br><br>Troubleshooting<br><br>- Playwright errors: ensure browsers are installed (<code>python -m playwright install</code>) and your environment supports headless/GUI runs as needed.<br>- API failures: check <code>PAID_GEMINI_API_KEY</code> and network connectivity. Transient errors are retried via <code>api_backoff.py</code>.<br>- Discord issues: verify <code>DISCORD_BOT_TOKEN</code> and <code>DISCORD_ALLOWED_CHANNELS</code> settings.<br><br>Short file references<br><br>- [discord_bot.py](discord_bot.py)<br>- [llm.py](llm.py)<br>- [memory.py](memory.py)<br>- [attachments.py](attachments.py)<br>- [collect_generated_media.py](collect_generated_media.py)<br>- [progress_indicator.py](progress_indicator.py)<br>- [history_cache.py](history_cache.py)<br>- [agent_instructions/](agent_instructions/)<br>- [<code>tools/</code>](tools/)
+            <h1>EnGem</h1>
+<p>EnGem is a local assistant and automation framework that connects a streaming LLM (Gemini) to host-side tooling and exposes a Discord bot interface. It coordinates intent classification, a two-phase planning/execution manager flow, staged sub-agent execution, browser automation, notebook and code execution, media generation, attachment ingestion and archiving, and a ChromaDB-backed memory system. Generated artifacts and user-visible outputs are consolidated under <code>generated_files/</code>.</p>
+<p>Last updated: 2026-03-13</p>
+<p>Quick start</p>
+<ol>
+<li>Create and activate a virtual environment and install dependencies:</li>
+</ol>
+<pre><code class="language-bash">python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+</code></pre>
+<ol>
+<li>Install Playwright browsers (required for browser automation):</li>
+</ol>
+<pre><code class="language-bash">python -m playwright install
+</code></pre>
+<ol>
+<li>
+<p>Set environment variables (see <code>config.py</code> for defaults):</p>
+</li>
+<li>
+<p><code>DISCORD_BOT_TOKEN</code> — Discord bot token (required to run the bot).</p>
+</li>
+<li><code>PAID_GEMINI_API_KEY</code> — Paid Gemini API key used for model calls and embeddings.</li>
+<li><code>DISCORD_ALLOWED_CHANNELS</code> — Optional comma-separated channel names to limit bot activity.</li>
+<li><code>MODEL</code> — Default model alias. Several levels (MINIMAL_MODEL, LOW_MODEL, MEDIUM_MODEL, HIGH_MODEL) are defined in <code>config.py</code>.</li>
+<li>Embedding/memory settings: <code>GEMINI_EMBEDDING_MODEL</code>, <code>GEMINI_EMBEDDING_DIM</code>, <code>GEMINI_EMBEDDING_BATCH_SIZE</code>, <code>MEMORY_SEMANTIC_COLLECTION_NAME</code>, <code>MEMORY_FILE_COLLECTION_NAME</code>, <code>MEMORY_ARCHIVE_DIR</code>.</li>
+</ol>
+<p>Important: <code>config.py</code> ships with convenient defaults and placeholder values. Do not commit real secrets — use environment variables or a secrets manager.</p>
+<p>Running the Discord bot</p>
+<p>From the repository root:</p>
+<pre><code class="language-bash">python discord_bot.py
+</code></pre>
+<p>The bot creates per-channel conversation history files in <code>memory/channel_history/</code>, responds to messages via <a href="llm.py">llm.py</a>, and can attach generated media from <code>generated_files/</code> to replies.</p>
+<p>Bot commands</p>
+<ul>
+<li><code>&gt;commands</code> — List available bot commands.</li>
+<li><code>&gt;history length</code> — Show conversation history length.</li>
+<li><code>&gt;clear history</code> — Clear the current channel history file.</li>
+<li><code>&gt;clear memory</code> — Clear semantic and file memory stores (<code>memory.clear_all_memory_stores</code>).</li>
+<li><code>&gt;forget memories {topic}</code> — Semantically forget memories related to a topic.</li>
+<li><code>&gt;list memories [limit]</code> — List stored memory records.</li>
+</ul>
+<p>Core concepts</p>
+<ul>
+<li><strong>Two-phase Manager Flow</strong>: EnGem runs a Planner phase followed by an Execution phase.</li>
+<li><strong>PlannerManager</strong>: Generates a structured planner artifact (JSON) describing staged sub-agents. Planner output is written to <code>sub-agents/planner_order_&lt;history&gt;.json</code> and uses the top-level key <code>planner_plan</code>.</li>
+<li><strong>Planner Reviewer</strong>: The planner finishes when the planner reviewer agent returns the literal <code>&lt;ready&gt;</code> indicating the plan is sufficient.</li>
+<li><strong>Post-Planner Cache Freeze</strong>: After the planner returns <code>&lt;ready&gt;</code>, EnGem rebuilds the conversation <code>HistoryContextCache</code> so the Execution phase runs from a stable cached prelude (avoids sending long mutable histories repeatedly).</li>
+<li>
+<p><strong>ExecutionManager</strong>: Uses the planner's outcome to produce an execution plan (top-level key <code>execution_plan</code>) and writes <code>sub-agents/execution_order_&lt;history&gt;.json</code>. Execution runs staged sub-agents and must finish with a final serial <code>Reviewer</code> that returns the literal <code>&lt;yes&gt;</code> to indicate completion.</p>
+</li>
+<li>
+<p><strong>Execution plan shape</strong>: Both planner and execution JSON files are arrays of staged objects. Example shapes:</p>
+</li>
+</ul>
+<p>Planner example</p>
+<pre><code class="language-json">{
+  &quot;planner_plan&quot;: [
+    {&quot;mode&quot;: &quot;parallel&quot;, &quot;sub_agents&quot;: [{&quot;task_name&quot;: &quot;Research&quot;, &quot;instruction&quot;: &quot;...&quot;, &quot;thinking_level&quot;: &quot;HIGH&quot;}]},
+    {&quot;mode&quot;: &quot;serial&quot;, &quot;sub_agents&quot;: [{&quot;task_name&quot;: &quot;PlannerReviewer&quot;, &quot;instruction&quot;: &quot;...&quot;, &quot;thinking_level&quot;: &quot;LOW&quot;}]}
+  ]
+}
+</code></pre>
+<p>Execution example</p>
+<pre><code class="language-json">{
+  &quot;execution_plan&quot;: [
+    {&quot;mode&quot;: &quot;serial&quot;, &quot;sub_agents&quot;: [{&quot;task_name&quot;: &quot;DoSteps&quot;, &quot;instruction&quot;: &quot;...&quot;, &quot;thinking_level&quot;: &quot;MEDIUM&quot;}]},
+    {&quot;mode&quot;: &quot;serial&quot;, &quot;sub_agents&quot;: [{&quot;task_name&quot;: &quot;Reviewer&quot;, &quot;instruction&quot;: &quot;...&quot;, &quot;thinking_level&quot;: &quot;LOW&quot;}]}
+  ]
+}
+</code></pre>
+<ul>
+<li>
+<p><strong>Stages</strong>: Each stage has a <code>mode</code> of <code>serial</code> or <code>parallel</code> and a <code>sub_agents</code> array. Each sub-agent entry includes <code>task_name</code>, <code>instruction</code> (plain text system-style instruction), and <code>thinking_level</code> (one of <code>MINIMAL|LOW|MEDIUM|HIGH</code>).</p>
+</li>
+<li>
+<p><strong>Tools</strong>: Public functions in the <code>tools/</code> directory are exposed to sub-agents via the function-calling mechanism implemented in <a href="llm.py">llm.py</a>. Add new tools as top-level functions (no leading underscore) in <code>tools/*.py</code> to make them discoverable.</p>
+</li>
+<li>
+<p><strong>History caching</strong>: See <a href="history_cache.py">history_cache.py</a>. Core primitives (e.g., <code>create_history_context_cache</code>, <code>CachedContentProfile</code>, <code>resolve_history_cached_prompt</code>) are used to create cached conversation preludes — EnGem explicitly rebuilds this cache after the Planner phase.</p>
+</li>
+</ul>
+<p>Attachments &amp; media</p>
+<ul>
+<li><strong>Attachments ingestion</strong>: <a href="attachments.py">attachments.py</a> ingests images, audio, video and documents, extracts text/metadata, and returns segments for inclusion in prompts.</li>
+<li><strong>Media catalog / selection</strong>: <a href="collect_generated_media.py">collect_generated_media.py</a> builds a catalog used by the LLM to select assets for attaching to replies.</li>
+<li><strong>Generated assets</strong>: Created assets are stored in <code>generated_files/</code>.</li>
+</ul>
+<p>Memory &amp; embeddings</p>
+<ul>
+<li><strong>Persistent memory</strong>: Managed by <a href="memory.py">memory.py</a> and stored locally in ChromaDB under <code>memory/memories_vector_db/</code> (semantic file memory) and <code>memory/skills_vector_db/</code> (skill records).</li>
+<li><strong>Embeddings</strong>: Created with the configured Gemini embedding model (<code>GEMINI_EMBEDDING_MODEL</code>). Embedding parameters are controlled by environment variables described above.</li>
+</ul>
+<p>LLM orchestration &amp; sub-agents</p>
+<ul>
+<li><strong>Orchestration entrypoint</strong>: <a href="llm.py">llm.py</a> handles intent classification, the two-phase planner/execution pipeline, staged sub-agent execution (parallel/serial), tool invocation via function-calling, a final <code>Reviewer</code> gate, and a <code>Texter</code> that composes the final reply.</li>
+<li><strong>Instruction templates</strong>: Edit <code>agent_instructions/</code> templates carefully — they guide the planner and manager behavior. Notable instruction files include <code>agent_instructions/planner.md</code>, <code>agent_instructions/execution_manager.md</code>, <code>agent_instructions/planner_reviewer.md</code>, and <code>agent_instructions/execution_reviewer.md</code> (the former <code>reviewer.md</code> was renamed to make phase intent explicit).</li>
+</ul>
+<p>Progress indicators</p>
+<ul>
+<li><strong>Preview &amp; progress</strong>: <a href="progress_indicator.py">progress_indicator.py</a> provides <code>ExecutionPlanProgressIndicator</code> which posts an ASCII preview of the active plan and updates a progress message while sub-agents run. It is phase-aware (planner vs execution) and anchors progress to the manager role to produce meaningful previews.</li>
+</ul>
+<p>Tools and helpers</p>
+<ul>
+<li>Directory: <code>tools/</code> — host-side utilities and integration scripts. Notable helpers:</li>
+<li><code>tools/access_google_workspace.py</code></li>
+<li><code>tools/run_google_search.py</code></li>
+<li><code>tools/run_python.py</code> (captures execution output and relocates artifacts to <code>generated_files/</code>)</li>
+<li><code>tools/run_notebook.py</code></li>
+<li><code>tools/use_browser.py</code></li>
+<li><code>tools/generate_image.py</code>, <code>tools/generate_video.py</code></li>
+<li><code>tools/deep_research.py</code></li>
+</ul>
+<p>Developer notes &amp; conventions</p>
+<ul>
+<li><strong>Instruction templates</strong>: Templates in <code>agent_instructions/</code> are effectively system messages for managers and sub-agents. Small edits can significantly change planner behavior — iterate carefully and test.</li>
+<li><strong>Plan file conventions</strong>: Planner output files are <code>sub-agents/planner_order_&lt;history&gt;.json</code> (key <code>planner_plan</code>) and execution files are <code>sub-agents/execution_order_&lt;history&gt;.json</code> (key <code>execution_plan</code>). These artifacts are useful for debugging and replay.</li>
+<li><strong>Adding tools</strong>: To expose a new tool to sub-agents, add a top-level function in <code>tools/*.py</code> and ensure its signature is compatible with the function-calling mechanism used by the LLM runner.</li>
+</ul>
+<p>Troubleshooting</p>
+<ul>
+<li>Playwright errors: ensure browsers are installed (<code>python -m playwright install</code>) and your environment supports headless/GUI runs as needed.</li>
+<li>API failures: check <code>PAID_GEMINI_API_KEY</code> and network connectivity. Transient errors are retried via <code>api_backoff.py</code>.</li>
+<li>Discord issues: verify <code>DISCORD_BOT_TOKEN</code> and <code>DISCORD_ALLOWED_CHANNELS</code> settings.</li>
+</ul>
+<p>Short file references</p>
+<ul>
+<li><a href="discord_bot.py">discord_bot.py</a></li>
+<li><a href="llm.py">llm.py</a></li>
+<li><a href="memory.py">memory.py</a></li>
+<li><a href="attachments.py">attachments.py</a></li>
+<li><a href="collect_generated_media.py">collect_generated_media.py</a></li>
+<li><a href="progress_indicator.py">progress_indicator.py</a></li>
+<li><a href="history_cache.py">history_cache.py</a></li>
+<li><a href="agent_instructions/">agent_instructions/</a></li>
+<li><a href="tools/"><code>tools/</code></a></li>
+</ul>
         </div>
     </div>
-    </div>
+
+            </div>
         </div>
     </div>
 </section>
@@ -655,27 +800,64 @@
     
     setTimeout(startTerminal, 1000);
 
+    
     // Terminal Input Interactive Effect
     const termInput = document.getElementById('terminal-input');
-    termInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter' && termInput.value.trim() !== '') {
-            const val = termInput.value;
-            termInput.value = '';
-            
-            const lineElem = document.createElement('div');
-            lineElem.className = 'text-accent-cyan mt-3 font-bold';
-            lineElem.textContent = '> ' + val;
-            terminalContent.appendChild(lineElem);
-            
-            setTimeout(() => {
-                const resElem = document.createElement('div');
-                resElem.className = 'text-gray-400 mt-2';
-                resElem.textContent = '[ENGEM] Command acknowledged. Processing...';
-                terminalContent.appendChild(resElem);
-                terminalContent.scrollTop = terminalContent.scrollHeight;
-            }, 300);
-        }
-    });
+    if(termInput) {
+        termInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' && termInput.value.trim() !== '') {
+                const val = termInput.value;
+                termInput.value = '';
+                
+                const lineElem = document.createElement('div');
+                lineElem.className = 'text-accent-cyan mt-3 font-bold';
+                lineElem.textContent = '> ' + val;
+                terminalContent.appendChild(lineElem);
+                
+                setTimeout(() => {
+                    const resElem = document.createElement('div');
+                    resElem.className = 'text-gray-400 mt-2 whitespace-pre-wrap';
+                    
+                    const cmd = val.toLowerCase().trim();
+                    let response = '';
+                    if (cmd === 'help') {
+                        response = 'Available commands:
+- help: Show this message
+- status: Display system status
+- tools: List available tools
+- clear: Clear terminal output';
+                    } else if (cmd === 'status') {
+                        response = '[SYS] All core modules operational.
+[LLM] Connection secured (streaming).
+[DB] Vector DB sync active.';
+                    } else if (cmd === 'tools') {
+                        response = 'Loaded tools:
+- use_browser.py
+- run_python.py
+- generate_image.py
+- generate_video.py
+- run_google_search.py
+- generate_speech.py
+- access_google_workspace.py
+- run_notebook.py
+- deep_research.py';
+                    } else if (cmd === 'clear') {
+                        terminalContent.innerHTML = '';
+                        return; // do not append response
+                    } else {
+                        response = `[ENGEM] Command not recognized: '${val}'. Type 'help' for available commands.`;
+                        resElem.classList.remove('text-gray-400');
+                        resElem.classList.add('text-red-400');
+                    }
+                    
+                    resElem.textContent = response;
+                    terminalContent.appendChild(resElem);
+                    terminalContent.scrollTop = terminalContent.scrollHeight;
+                }, 300);
+            }
+        });
+    }
+
 
     // Canvas Particle Network
     const canvas = document.getElementById('hero-canvas');
