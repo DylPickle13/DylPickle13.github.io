@@ -259,7 +259,7 @@
         Browser Use
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Runs actions based on the provided prompt using the computer_use agent. Returns the output of the agent's actions as a string.
+        Empowers agents to navigate the live web, interact with websites, and extract information just like a human user.
        </p>
       </div>
      </div>
@@ -273,7 +273,7 @@
         Python Execution
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Run Python code safely. Use print statements to ensure code execution is visible in the output.
+        Provides a secure sandbox for running logic, processing data, and programmatically creating files to solve dynamic problems.
        </p>
       </div>
      </div>
@@ -287,7 +287,7 @@
         Image Generation
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Generate an image and save it under `generated_files/`.
+        Transforms creative visions into high-fidelity visuals using state-of-the-art AI, perfect for design and conceptualization.
        </p>
       </div>
      </div>
@@ -301,7 +301,7 @@
         Video Generation
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Generate a video and save it under `generated_files/`.
+        Creates cinematic motion content and short animations from simple text prompts or starting frames.
        </p>
       </div>
      </div>
@@ -315,7 +315,7 @@
         Google Search
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Run a Google Search using the Gemini API's Google Search tool. Only returns summarized search results, not urls or article titles.
+        Connects the system to the global knowledge base, ensuring every response is backed by real-time web intelligence.
        </p>
       </div>
      </div>
@@ -329,7 +329,7 @@
         Speech Generation
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Convert text in `prompt` to speech audio and save it as a WAV file under the repository `generated_files/` folder.
+        Converts text into natural, expressive audio across multiple voices, bringing AI-driven communication to life.
        </p>
       </div>
      </div>
@@ -343,7 +343,7 @@
         Google Workspace Access
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Plain-text Google Workspace entry point backed by the gws CLI.
+        Seamlessly manages professional workflows by reading and writing Docs, Sheets, and Drive files through automated productivity cycles.
        </p>
       </div>
      </div>
@@ -357,7 +357,7 @@
         Notebook Execution
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Resolve the notebook path flexibly: - If absolute, return as-is. - If present relative to the repository root, use that. - Otherwise, search the repository for a matching filename. - Finally fall back to cwd-relative resolution.
+        Orchestrates data science workflows by running complex Jupyter notebooks to derive insights and perform deep analysis.
        </p>
       </div>
      </div>
@@ -371,8 +371,89 @@
         Deep Research
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Run a background deep research interaction and return the final text result.
+        Conducts exhaustive, autonomous investigations into any topic, synthesizing vast amounts of data into comprehensive reports.
        </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="py-24 bg-gray-900/50 relative overflow-hidden" id="orchestration">
+   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
+   </div>
+   <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 gs-reveal">
+     <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">
+      Multi-Agent
+      <span class="text-gradient">
+       Orchestration
+      </span>
+     </h2>
+     <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
+      A sophisticated cognitive pipeline that manages the interplay between intelligence and action.
+     </p>
+    </div>
+    <div class="max-w-4xl mx-auto glass-panel p-8 md:p-12 gs-reveal">
+     <div class="grid grid-cols-1 gap-8">
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+       <div class="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center shrink-0">
+        <span class="text-accent-blue font-bold">
+         01
+        </span>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold mb-2">
+         Intent Classification
+        </h3>
+        <p class="text-gray-400">
+         Every request is instantly analyzed against conversational memory and skill libraries to identify the optimal strategy—balancing efficiency with deep reasoning.
+        </p>
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-6 items-start border-t border-white/5 pt-8">
+       <div class="w-12 h-12 rounded-xl bg-accent-purple/10 flex items-center justify-center shrink-0">
+        <span class="text-accent-purple font-bold">
+         02
+        </span>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold mb-2">
+         Strategic Planning
+        </h3>
+        <p class="text-gray-400">
+         For complex goals, the system deconstructs objectives into a structured execution graph, verified by a dedicated Reviewer before a single line of code is run.
+        </p>
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-6 items-start border-t border-white/5 pt-8">
+       <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center shrink-0">
+        <span class="text-accent-cyan font-bold">
+         03
+        </span>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold mb-2">
+         Adaptive Execution
+        </h3>
+        <p class="text-gray-400">
+         Specialized Sub-Agents are dispatched to perform targeted operations. The workflow is iterative: feedback loops ensure the system can recover from errors and re-plan dynamically.
+        </p>
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-6 items-start border-t border-white/5 pt-8">
+       <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center shrink-0">
+        <span class="text-accent-green font-bold">
+         04
+        </span>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold mb-2">
+         Synthesis &amp; Delivery
+        </h3>
+        <p class="text-gray-400">
+         Final outputs are aggregated into a coherent response, while a media selection engine ensures any generated visuals, audio, or data files are presented as a unified experience.
+        </p>
+       </div>
       </div>
      </div>
     </div>
