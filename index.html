@@ -259,7 +259,7 @@
         Browser Use
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Runs actions based on the provided prompt using the computer_use agent.
+        Runs actions based on the provided prompt using the computer_use agent. Returns the output of the agent's actions as a string.
        </p>
       </div>
      </div>
@@ -273,7 +273,7 @@
         Python Execution
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Run Python code safely.
+        Run Python code safely. Use print statements to ensure code execution is visible in the output.
        </p>
       </div>
      </div>
@@ -315,7 +315,7 @@
         Google Search
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Run a Google Search using the Gemini API's Google Search tool.
+        Run a Google Search using the Gemini API's Google Search tool. Only returns summarized search results, not urls or article titles.
        </p>
       </div>
      </div>
@@ -329,7 +329,7 @@
         Speech Generation
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Convert text in `prompt` to speech audio and save it as a WAV file under
+        Convert text in `prompt` to speech audio and save it as a WAV file under the repository `generated_files/` folder.
        </p>
       </div>
      </div>
@@ -357,7 +357,7 @@
         Notebook Execution
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Resolve the notebook path flexibly:
+        Resolve the notebook path flexibly: - If absolute, return as-is. - If present relative to the repository root, use that. - Otherwise, search the repository for a matching filename. - Finally fall back to cwd-relative resolution.
        </p>
       </div>
      </div>
