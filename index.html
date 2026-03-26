@@ -169,14 +169,63 @@
   </style>
  </head>
  <body class="antialiased selection:bg-accent-cyan selection:text-black">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" id="glowy-dots-container">
+   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 60%; left: 8%; width: 5rem; height: 5rem; animation-duration: 7s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 57%; left: 15%; width: 5rem; height: 5rem; animation-duration: 4s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 53%; left: 35%; width: 5rem; height: 5rem; animation-duration: 6s; animation-delay: 4s;">
+   </div>
+   <div class="absolute rounded-full bg-blue-500/10 blur-3xl animate-pulse" style="top: 44%; left: 81%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 3s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 38%; left: 14%; width: 10rem; height: 10rem; animation-duration: 6s; animation-delay: 5s;">
+   </div>
+   <div class="absolute rounded-full bg-indigo-500/10 blur-xl animate-pulse" style="top: 8%; left: 88%; width: 4rem; height: 4rem; animation-duration: 6s; animation-delay: 4s;">
+   </div>
+   <div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 33%; left: 24%; width: 12rem; height: 12rem; animation-duration: 3s; animation-delay: 3s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 66%; left: 6%; width: 11rem; height: 11rem; animation-duration: 3s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 49%; left: 77%; width: 8rem; height: 8rem; animation-duration: 5s; animation-delay: 4s;">
+   </div>
+   <div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 44%; left: 25%; width: 9rem; height: 9rem; animation-duration: 3s; animation-delay: 5s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 24%; left: 31%; width: 7rem; height: 7rem; animation-duration: 5s; animation-delay: 5s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 82%; left: 13%; width: 9rem; height: 9rem; animation-duration: 7s; animation-delay: 2s;">
+   </div>
+   <div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 24%; left: 67%; width: 5rem; height: 5rem; animation-duration: 3s; animation-delay: 4s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 27%; left: 60%; width: 10rem; height: 10rem; animation-duration: 5s; animation-delay: 1s;">
+   </div>
+   <div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 7%; left: 68%; width: 5rem; height: 5rem; animation-duration: 5s; animation-delay: 3s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 12%; left: 73%; width: 4rem; height: 4rem; animation-duration: 5s; animation-delay: 3s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 99%; left: 73%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 1s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 89%; left: 3%; width: 7rem; height: 7rem; animation-duration: 7s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 57%; left: 80%; width: 9rem; height: 9rem; animation-duration: 5s; animation-delay: 5s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 3%; left: 50%; width: 11rem; height: 11rem; animation-duration: 6s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 76%; left: 45%; width: 6rem; height: 6rem; animation-duration: 3s; animation-delay: 4s;">
+   </div>
+   <div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 9%; left: 63%; width: 10rem; height: 10rem; animation-duration: 7s; animation-delay: 2s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 92%; left: 54%; width: 4rem; height: 4rem; animation-duration: 3s; animation-delay: 1s;">
+   </div>
+   <div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 61%; left: 18%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 0s;">
+   </div>
+   <div class="absolute rounded-full bg-accent-cyan/20 blur-3xl animate-pulse" style="top: 32%; left: 97%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 1s;">
+   </div>
+  </div>
   <!-- Navbar -->
   <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
     <a class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]" href="#home">
      EnGem
-     <span class="text-accent-cyan">
-      .
-     </span>
     </a>
     <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
      <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#home">
