@@ -1,20 +1,21 @@
 <!DOCTYPE html>
+
 <html class="scroll-smooth" lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
    EnGem
   </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
-  <script>
+<script src="https://cdn.tailwindcss.com">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<script>
    tailwind.config = {
             theme: {
                 extend: {
@@ -35,7 +36,7 @@
             }
         }
   </script>
-  <style>
+<style>
    body { background-color: #030305; color: #fff; overflow-x: hidden; line-height: 1.7; }
         
         /* Modern UI Patterns: Glassmorphism */
@@ -169,429 +170,429 @@
         .prose a { color: #00e5ff; text-decoration: underline; text-underline-offset: 4px; }
         .prose a:hover { color: #c24cf6; }
   </style>
- </head>
- <body class="antialiased selection:bg-accent-cyan selection:text-black">
-  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10" id="background-orbs">
-   <div class="orb" style="top: -10%; left: -10%; width: 600px; height: 600px; background: rgba(0, 229, 255, 0.62); animation-delay: 0s;">
-   </div>
-   <div class="orb" style="top: 60%; left: 70%; width: 500px; height: 500px; background: rgba(194, 76, 246, 0.62); animation-delay: -2s;">
-   </div>
-   <div class="orb" style="top: 20%; left: 50%; width: 400px; height: 400px; background: rgba(0, 229, 255, 0.62); animation-delay: -4s;">
-   </div>
-   <div class="orb" style="top: 80%; left: 10%; width: 550px; height: 550px; background: rgba(194, 76, 246, 0.62); animation-delay: -6s;">
-   </div>
-   <div class="orb" style="top: 40%; left: -5%; width: 450px; height: 450px; background: rgba(0, 229, 255, 0.62); animation-delay: -1s;">
-   </div>
-  </div>
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" id="glowy-dots-container">
-   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 60%; left: 8%; width: 5rem; height: 5rem; animation-duration: 7s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 57%; left: 15%; width: 5rem; height: 5rem; animation-duration: 4s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 53%; left: 35%; width: 5rem; height: 5rem; animation-duration: 6s; animation-delay: 4s;">
-   </div>
-   <div class="absolute rounded-full bg-blue-500/10 blur-3xl animate-pulse" style="top: 44%; left: 81%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 3s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 38%; left: 14%; width: 10rem; height: 10rem; animation-duration: 6s; animation-delay: 5s;">
-   </div>
-   <div class="absolute rounded-full bg-indigo-500/10 blur-xl animate-pulse" style="top: 8%; left: 88%; width: 4rem; height: 4rem; animation-duration: 6s; animation-delay: 4s;">
-   </div>
-   <div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 33%; left: 24%; width: 12rem; height: 12rem; animation-duration: 3s; animation-delay: 3s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 66%; left: 6%; width: 11rem; height: 11rem; animation-duration: 3s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 49%; left: 77%; width: 8rem; height: 8rem; animation-duration: 5s; animation-delay: 4s;">
-   </div>
-   <div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 44%; left: 25%; width: 9rem; height: 9rem; animation-duration: 3s; animation-delay: 5s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 24%; left: 31%; width: 7rem; height: 7rem; animation-duration: 5s; animation-delay: 5s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 82%; left: 13%; width: 9rem; height: 9rem; animation-duration: 7s; animation-delay: 2s;">
-   </div>
-   <div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 24%; left: 67%; width: 5rem; height: 5rem; animation-duration: 3s; animation-delay: 4s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 27%; left: 60%; width: 10rem; height: 10rem; animation-duration: 5s; animation-delay: 1s;">
-   </div>
-   <div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 7%; left: 68%; width: 5rem; height: 5rem; animation-duration: 5s; animation-delay: 3s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 12%; left: 73%; width: 4rem; height: 4rem; animation-duration: 5s; animation-delay: 3s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 99%; left: 73%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 1s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 89%; left: 3%; width: 7rem; height: 7rem; animation-duration: 7s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 57%; left: 80%; width: 9rem; height: 9rem; animation-duration: 5s; animation-delay: 5s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 3%; left: 50%; width: 11rem; height: 11rem; animation-duration: 6s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 76%; left: 45%; width: 6rem; height: 6rem; animation-duration: 3s; animation-delay: 4s;">
-   </div>
-   <div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 9%; left: 63%; width: 10rem; height: 10rem; animation-duration: 7s; animation-delay: 2s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 92%; left: 54%; width: 4rem; height: 4rem; animation-duration: 3s; animation-delay: 1s;">
-   </div>
-   <div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 61%; left: 18%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 0s;">
-   </div>
-   <div class="absolute rounded-full bg-accent-cyan/20 blur-3xl animate-pulse" style="top: 32%; left: 97%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 1s;">
-   </div>
-  </div>
-  <!-- Navbar -->
-  <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
-   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
-    <a class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]" href="#home">
+</head>
+<body class="antialiased selection:bg-accent-cyan selection:text-black">
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10" id="background-orbs">
+<div class="orb" style="top: -10%; left: -10%; width: 600px; height: 600px; background: rgba(0, 229, 255, 0.62); animation-delay: 0s;">
+</div>
+<div class="orb" style="top: 60%; left: 70%; width: 500px; height: 500px; background: rgba(194, 76, 246, 0.62); animation-delay: -2s;">
+</div>
+<div class="orb" style="top: 20%; left: 50%; width: 400px; height: 400px; background: rgba(0, 229, 255, 0.62); animation-delay: -4s;">
+</div>
+<div class="orb" style="top: 80%; left: 10%; width: 550px; height: 550px; background: rgba(194, 76, 246, 0.62); animation-delay: -6s;">
+</div>
+<div class="orb" style="top: 40%; left: -5%; width: 450px; height: 450px; background: rgba(0, 229, 255, 0.62); animation-delay: -1s;">
+</div>
+</div>
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0" id="glowy-dots-container">
+<div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 60%; left: 8%; width: 5rem; height: 5rem; animation-duration: 7s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 57%; left: 15%; width: 5rem; height: 5rem; animation-duration: 4s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 53%; left: 35%; width: 5rem; height: 5rem; animation-duration: 6s; animation-delay: 4s;">
+</div>
+<div class="absolute rounded-full bg-blue-500/10 blur-3xl animate-pulse" style="top: 44%; left: 81%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 3s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 38%; left: 14%; width: 10rem; height: 10rem; animation-duration: 6s; animation-delay: 5s;">
+</div>
+<div class="absolute rounded-full bg-indigo-500/10 blur-xl animate-pulse" style="top: 8%; left: 88%; width: 4rem; height: 4rem; animation-duration: 6s; animation-delay: 4s;">
+</div>
+<div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 33%; left: 24%; width: 12rem; height: 12rem; animation-duration: 3s; animation-delay: 3s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 66%; left: 6%; width: 11rem; height: 11rem; animation-duration: 3s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 49%; left: 77%; width: 8rem; height: 8rem; animation-duration: 5s; animation-delay: 4s;">
+</div>
+<div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 44%; left: 25%; width: 9rem; height: 9rem; animation-duration: 3s; animation-delay: 5s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 24%; left: 31%; width: 7rem; height: 7rem; animation-duration: 5s; animation-delay: 5s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 82%; left: 13%; width: 9rem; height: 9rem; animation-duration: 7s; animation-delay: 2s;">
+</div>
+<div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 24%; left: 67%; width: 5rem; height: 5rem; animation-duration: 3s; animation-delay: 4s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 27%; left: 60%; width: 10rem; height: 10rem; animation-duration: 5s; animation-delay: 1s;">
+</div>
+<div class="absolute rounded-full bg-blue-500/10 blur-xl animate-pulse" style="top: 7%; left: 68%; width: 5rem; height: 5rem; animation-duration: 5s; animation-delay: 3s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-xl animate-pulse" style="top: 12%; left: 73%; width: 4rem; height: 4rem; animation-duration: 5s; animation-delay: 3s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-2xl animate-pulse" style="top: 99%; left: 73%; width: 8rem; height: 8rem; animation-duration: 3s; animation-delay: 1s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 89%; left: 3%; width: 7rem; height: 7rem; animation-duration: 7s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 57%; left: 80%; width: 9rem; height: 9rem; animation-duration: 5s; animation-delay: 5s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-2xl animate-pulse" style="top: 3%; left: 50%; width: 11rem; height: 11rem; animation-duration: 6s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 76%; left: 45%; width: 6rem; height: 6rem; animation-duration: 3s; animation-delay: 4s;">
+</div>
+<div class="absolute rounded-full bg-blue-500/10 blur-2xl animate-pulse" style="top: 9%; left: 63%; width: 10rem; height: 10rem; animation-duration: 7s; animation-delay: 2s;">
+</div>
+<div class="absolute rounded-full bg-accent-purple/20 blur-xl animate-pulse" style="top: 92%; left: 54%; width: 4rem; height: 4rem; animation-duration: 3s; animation-delay: 1s;">
+</div>
+<div class="absolute rounded-full bg-indigo-500/10 blur-3xl animate-pulse" style="top: 61%; left: 18%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 0s;">
+</div>
+<div class="absolute rounded-full bg-accent-cyan/20 blur-3xl animate-pulse" style="top: 32%; left: 97%; width: 9rem; height: 9rem; animation-duration: 4s; animation-delay: 1s;">
+</div>
+</div>
+<!-- Navbar -->
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
+<a class="text-2xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]" href="#home">
      EnGem
     </a>
-    <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#home">
+<div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+<a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#home">
       HOME
      </a>
-     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#features">
+<a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#features">
       FEATURES
      </a>
-     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#orchestration">
+<a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#orchestration">
       ORCHESTRATION
      </a>
-     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#contact">
+<a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#contact">
       CONTACT
      </a>
-    </div>
-    <!-- Mobile menu button -->
-    <button aria-label="Toggle Menu" class="md:hidden text-white hover:text-accent-cyan z-20 relative p-2" id="mobile-menu-btn">
-     <i class="fas fa-bars text-2xl">
-     </i>
-    </button>
-   </div>
-   <!-- Mobile menu -->
-   <div class="md:hidden hidden glass-panel border-t border-white/10 absolute top-full left-0 w-full z-10 shadow-xl" id="mobile-menu">
-    <div class="px-6 py-4 flex flex-col space-y-2">
-     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#home">
+</div>
+<!-- Mobile menu button -->
+<button aria-label="Toggle Menu" class="md:hidden text-white hover:text-accent-cyan z-20 relative p-2" id="mobile-menu-btn">
+<i class="fas fa-bars text-2xl">
+</i>
+</button>
+</div>
+<!-- Mobile menu -->
+<div class="md:hidden hidden glass-panel border-t border-white/10 absolute top-full left-0 w-full z-10 shadow-xl" id="mobile-menu">
+<div class="px-6 py-4 flex flex-col space-y-2">
+<a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#home">
       HOME
      </a>
-     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg border-b border-white/5" href="#features">
+<a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg border-b border-white/5" href="#features">
       FEATURES
      </a>
-     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#orchestration">
+<a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#orchestration">
       ORCHESTRATION
      </a>
-     <a class="hover:text-accent-cyan mobile-link block py-3 text-lg" href="#contact">
+<a class="hover:text-accent-cyan mobile-link block py-3 text-lg" href="#contact">
       CONTACT
      </a>
-    </div>
-   </div>
-  </nav>
-  <!-- Home Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
-   <canvas id="hero-canvas">
-   </canvas>
-   <div class="relative z-10 max-w-7xl mx-auto px-6 items-center w-full mt-10">
-    <div class="space-y-8 text-center gs-reveal">
-     <h1 class="font-display font-bold leading-tight tracking-tight text-6xl md:text-8xl">
+</div>
+</div>
+</nav>
+<!-- Home Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
+<canvas id="hero-canvas">
+</canvas>
+<div class="relative z-10 max-w-7xl mx-auto px-6 items-center w-full mt-10">
+<div class="space-y-8 text-center gs-reveal">
+<h1 class="font-display font-bold leading-tight tracking-tight text-6xl md:text-8xl">
       Intelligence
       <br/>
-      <span class="text-gradient drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">
+<span class="text-gradient drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">
        Accelerated.
       </span>
-     </h1>
-     <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+</h1>
+<p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
       A multi-modal autonomous agent engine built on Google's Gemini. Bridging raw compute and seamless environmental interaction.
      </p>
-     <div class="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-      <a class="bg-gradient-custom text-black font-bold py-4 px-10 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.6)] text-center relative z-10" href="https://github.com/DylPickle13/EnGem" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+<a class="bg-gradient-custom text-black font-bold py-4 px-10 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(0,229,255,0.6)] text-center relative z-10" href="https://github.com/DylPickle13/EnGem" rel="noopener noreferrer" target="_blank">
        GitHub
       </a>
-     </div>
-    </div>
-   </div>
-  </section>
-  <!-- Features Section -->
-  <section class="relative z-10" id="features">
-   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-20 gs-reveal">
-     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="relative z-10" id="features">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20 gs-reveal">
+<h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
       Core
       <span class="text-gradient">
        Capabilities
       </span>
-     </h2>
-     <p class="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl">
+</h2>
+<p class="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl">
       A modular suite of operational tools empowering the EnGem architecture to execute complex real-world tasks.
      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr" id="features-grid">
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-globe transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr" id="features-grid">
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-globe transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Browser Use
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Empowers agents to navigate the live web, interact with websites, and extract information just like a human user.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-code transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+<i class="fas fa-code transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Python Execution
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Provides a secure sandbox for running logic, processing data, and programmatically creating files to solve dynamic problems.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-image transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-image transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Image Generation
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Transforms creative visions into high-fidelity visuals using state-of-the-art AI, perfect for design and conceptualization.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-video transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+<i class="fas fa-video transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Video Generation
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Creates cinematic motion content and short animations from simple text prompts or starting frames.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-search transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-search transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Google Search
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Connects the system to the global knowledge base, ensuring every response is backed by real-time web intelligence.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-comment-dots transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+<i class="fas fa-comment-dots transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Speech Generation
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Converts text into natural, expressive audio across multiple voices, bringing AI-driven communication to life.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-cloud transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-cloud transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Google Workspace Access
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Seamlessly manages professional workflows by reading and writing Docs, Sheets, and Drive files through automated productivity cycles.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-book transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+<i class="fas fa-book transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Notebook Execution
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Orchestrates data science workflows by running complex Jupyter notebooks to derive insights and perform deep analysis.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-brain transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-brain transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Deep Research
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Conducts exhaustive, autonomous investigations into any topic, synthesizing vast amounts of data into comprehensive reports.
        </p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
-  <section class="py-24 bg-gray-900/50 relative overflow-hidden" id="orchestration">
-   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
-   </div>
-   <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-16 gs-reveal">
-     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-gray-900/50 relative overflow-hidden" id="orchestration">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
+</div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="text-center mb-16 gs-reveal">
+<h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
       Multi-Agent
       <span class="text-gradient">
        Orchestration
       </span>
-     </h2>
-     <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
+</h2>
+<p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
       A sophisticated cognitive pipeline that manages the interplay between intelligence and action.
      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr mt-12">
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-brain transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr mt-12">
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+<i class="fas fa-brain transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Intent Classification
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Analyzes user input to identify goals, retrieves relevant context from long-term memory, and maps objectives to specific engine capabilities.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-chess transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+<i class="fas fa-chess transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Strategic Planning
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Decomposes complex goals into actionable sub-tasks, evaluates dependencies, and selects the optimal sequence for multi-agent execution.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
-        <i class="fas fa-bolt transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
+<i class="fas fa-bolt transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Adaptive Execution
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Dispatches specialized sub-agents to perform tasks while monitoring real-time feedback and adjusting the plan dynamically based on environmental changes.
        </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
-        <i class="fas fa-rocket transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
+</div>
+</div>
+<div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+<div class="feature-content flex-grow flex flex-col z-10">
+<div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
+<i class="fas fa-rocket transform transition-transform group-hover:scale-110">
+</i>
+</div>
+<h3 class="font-mono font-bold mb-3 text-3xl">
         Synthesis &amp; Delivery
        </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+<p class="text-gray-300 leading-relaxed text-base mt-auto">
         Aggregates outputs from all agents, performs final quality review, selects appropriate media formats, and delivers a cohesive final result.
        </p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
-  <!-- Docs Section -->
-  <section class="relative z-10" id="docs">
-  </section>
-  <!-- Contact Section -->
-  <section class="relative z-10 pt-10 pb-24" id="contact">
-   <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-16 gs-reveal">
-     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
-      <span class="text-gradient">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Docs Section -->
+<section class="relative z-10" id="docs">
+</section>
+<!-- Contact Section -->
+<section class="relative z-10 pt-10 pb-24" id="contact">
+<div class="max-w-4xl mx-auto px-6">
+<div class="text-center mb-16 gs-reveal">
+<h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
+<span class="text-gradient">
        Contact
       </span>
-     </h2>
-     <p class="text-gray-300 text-lg md:text-xl">
+</h2>
+<p class="text-gray-300 text-lg md:text-xl">
       Get in touch with the EnGem team.
      </p>
-    </div>
-    <div class="glass-panel rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(194,76,246,0.15)] relative overflow-hidden gs-reveal">
-     <div class="absolute top-0 right-0 w-64 h-64 bg-accent-purple/20 rounded-full blur-[100px] -z-10 pointer-events-none">
-     </div>
-     <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-cyan/20 rounded-full blur-[100px] -z-10 pointer-events-none">
-     </div>
-     <form action="mailto:engem.engine@gmail.com" class="space-y-8 relative z-10" enctype="text/plain" method="post">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-       <div class="space-y-3">
-        <label class="block text-sm font-mono text-accent-cyan uppercase tracking-wider" for="name">
+</div>
+<div class="glass-panel rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(194,76,246,0.15)] relative overflow-hidden gs-reveal">
+<div class="absolute top-0 right-0 w-64 h-64 bg-accent-purple/20 rounded-full blur-[100px] -z-10 pointer-events-none">
+</div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-cyan/20 rounded-full blur-[100px] -z-10 pointer-events-none">
+</div>
+<form action="mailto:engem.engine@gmail.com" class="space-y-8 relative z-10" enctype="text/plain" method="post">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-3">
+<label class="block text-sm font-mono text-accent-cyan uppercase tracking-wider" for="name">
          Name
         </label>
-        <input class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all z-20 relative backdrop-blur-md" id="name" name="name" placeholder="Name" required="" type="text"/>
-       </div>
-       <div class="space-y-3">
-        <label class="block text-sm font-mono text-accent-purple uppercase tracking-wider" for="email">
+<input class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all z-20 relative backdrop-blur-md" id="name" name="name" placeholder="Name" required="" type="text"/>
+</div>
+<div class="space-y-3">
+<label class="block text-sm font-mono text-accent-purple uppercase tracking-wider" for="email">
          Email
         </label>
-        <input class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple focus:shadow-[0_0_15px_rgba(194,76,246,0.3)] transition-all z-20 relative backdrop-blur-md" id="email" name="email" placeholder="Email" required="" type="email"/>
-       </div>
-      </div>
-      <div class="space-y-3">
-       <label class="block text-sm font-mono text-gray-300 uppercase tracking-wider" for="message">
+<input class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple focus:shadow-[0_0_15px_rgba(194,76,246,0.3)] transition-all z-20 relative backdrop-blur-md" id="email" name="email" placeholder="Email" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block text-sm font-mono text-gray-300 uppercase tracking-wider" for="message">
         Message
        </label>
-       <textarea class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all resize-y z-20 relative backdrop-blur-md custom-scrollbar" id="message" name="message" placeholder="Message" required="" rows="5"></textarea>
-      </div>
-      <button class="w-full bg-gradient-custom text-black font-bold py-5 rounded-xl hover:shadow-[0_0_30px_rgba(194,76,246,0.6)] hover:scale-[1.02] transition-all duration-300 uppercase tracking-widest mt-6 group z-20 relative overflow-hidden text-lg" type="submit">
-       <span class="relative z-10 flex items-center justify-center">
+<textarea class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white text-lg focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all resize-y z-20 relative backdrop-blur-md custom-scrollbar" id="message" name="message" placeholder="Message" required="" rows="5"></textarea>
+</div>
+<button class="w-full bg-gradient-custom text-black font-bold py-5 rounded-xl hover:shadow-[0_0_30px_rgba(194,76,246,0.6)] hover:scale-[1.02] transition-all duration-300 uppercase tracking-widest mt-6 group z-20 relative overflow-hidden text-lg" type="submit">
+<span class="relative z-10 flex items-center justify-center">
         Send Message
         <i class="fas fa-paper-plane ml-3 group-hover:translate-x-3 transition-transform">
-        </i>
-       </span>
-       <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 skew-x-12">
-       </div>
-      </button>
-     </form>
-    </div>
-   </div>
-  </section>
-  <!-- Scroll to Top Button -->
-  <a aria-label="Scroll to top" class="fixed bottom-8 right-8 glass-panel border border-accent-cyan/50 text-accent-cyan w-14 h-14 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black hover:shadow-[0_0_25px_rgba(0,229,255,0.8)] transition-all duration-300 shadow-xl z-50 opacity-0 pointer-events-none transform translate-y-6" href="#home" id="scroll-to-top">
-   <i class="fas fa-arrow-up text-xl">
-   </i>
-  </a>
-  <!-- Footer -->
-  <footer class="bg-black py-10 border-t border-white/5 text-center relative z-10">
-   <p class="text-gray-500 font-mono text-sm">
-    <span id="year">
-    </span>
+</i>
+</span>
+<div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 skew-x-12">
+</div>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Scroll to Top Button -->
+<a aria-label="Scroll to top" class="fixed bottom-8 right-8 glass-panel border border-accent-cyan/50 text-accent-cyan w-14 h-14 flex items-center justify-center rounded-full hover:bg-accent-cyan hover:text-black hover:shadow-[0_0_25px_rgba(0,229,255,0.8)] transition-all duration-300 shadow-xl z-50 opacity-0 pointer-events-none transform translate-y-6" href="#home" id="scroll-to-top">
+<i class="fas fa-arrow-up text-xl">
+</i>
+</a>
+<!-- Footer -->
+<footer class="bg-black py-10 border-t border-white/5 text-center relative z-10">
+<p class="text-gray-500 font-mono text-sm">
+<span id="year">
+</span>
     EnGem Framework. Intelligence Accelerated.
    </p>
-  </footer>
-  <!-- Scripts -->
-  <script>
+</footer>
+<!-- Scripts -->
+<script>
    document.getElementById('year').textContent = new Date().getFullYear();
 
     // Scroll to Top logic
@@ -913,5 +914,36 @@
         });
     }
   </script>
- </body>
+<section class="relative py-20 md:py-32 flex items-center justify-center bg-surface">
+<div class="container mx-auto px-6">
+<div class="text-center max-w-4xl mx-auto">
+<h2 class="text-gradient font-display font-bold text-4xl md:text-5xl mb-6">
+                Retrieval-Augmented Generation (RAG)
+            </h2>
+<p class="text-gray-300 text-lg md:text-xl mb-8">
+                Retrieval-Augmented Generation (RAG) is a technique that enhances the capabilities of large language models (LLMs) by grounding their responses in external, up-to-date information. In our system, RAG works by:
+            </p>
+<div class="text-left space-y-4 md:space-y-6 text-gray-400 text-base md:text-lg">
+<div class="bg-bg-surface border border-white/10 p-6 rounded-lg shadow-lg">
+<h3 class="font-semibold text-xl text-accent-cyan mb-3">1. Retrieval</h3>
+<p>
+                        When a query is made, relevant context is fetched from our memory stores (using <code>memory.py</code>) which utilize vector databases (like ChromaDB) and embeddings (Gemini). This context can include past conversation history (<code>history.py</code>), relevant documents, or extracted information.
+                    </p>
+</div>
+<div class="bg-bg-surface border border-white/10 p-6 rounded-lg shadow-lg">
+<h3 class="font-semibold text-xl text-accent-cyan mb-3">2. Augmentation</h3>
+<p>
+                        The retrieved context is combined with the original query and fed into the LLM (<code>llm.py</code>). This allows the model to access specific, accurate, and up-to-date information beyond its training data.
+                    </p>
+</div>
+<div class="bg-bg-surface border border-white/10 p-6 rounded-lg shadow-lg">
+<h3 class="font-semibold text-xl text-accent-cyan mb-3">3. Generation</h3>
+<p>
+                        The LLM then generates a response that is informed by both its internal knowledge and the augmented context, leading to more precise, relevant, and factual answers.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</section></body>
 </html>
