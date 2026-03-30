@@ -255,6 +255,12 @@
      <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#rag">
       RAG
      </a>
+     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#caching">
+      CACHING
+     </a>
+     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#smart-caching">
+      CACHING
+     </a>
      <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#contact">
       CONTACT
      </a>
@@ -279,6 +285,12 @@
      </a>
      <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#rag">
       RAG
+     </a>
+     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#caching">
+      CACHING
+     </a>
+     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#smart-caching">
+      CACHING
      </a>
      <a class="hover:text-accent-cyan mobile-link block py-3 text-lg" href="#contact">
       CONTACT
@@ -602,6 +614,175 @@
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
         The framework autonomously distills complex operational patterns from past interactions into a structured library of skills. By persisting these reusable workflows as planning patterns in the memory store, the engine can semantically retrieve and apply high-level strategic logic to solve novel problems, ensuring the system grows more capable with every execution.
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="py-24 relative overflow-hidden z-10" id="smart-caching">
+   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
+   </div>
+   <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 gs-reveal">
+     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
+      Smart Context
+      <span class="text-gradient">
+       Caching
+      </span>
+     </h2>
+     <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
+      Optimizing performance and reducing costs through an intelligent multi-layered context lifecycle.
+     </p>
+    </div>
+    <div class="grid grid-cols-1 gap-8 auto-rows-fr mt-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+     <!-- Profile Creation -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+        <i class="fas fa-fingerprint transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-2xl">
+        Profile Creation
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
+        Generates a unique cryptographic fingerprint from model parameters, system instructions, and tool definitions to ensure perfect context isolation.
+       </p>
+      </div>
+     </div>
+     <!-- Intelligent Lookup -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+        <i class="fas fa-search transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-2xl">
+        Intelligent Lookup
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
+        Queries local and global registries for the "best prefix entry," identifying existing caches that match the current conversation history.
+       </p>
+      </div>
+     </div>
+     <!-- Cacheability Checks -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
+        <i class="fas fa-tasks transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-2xl">
+        Cacheability Checks
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
+        Calculates token counts against model-specific thresholds (e.g., 1024-4096 tokens) to ensure caching only occurs when operationally beneficial.
+       </p>
+      </div>
+     </div>
+     <!-- Delta Updates -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
+        <i class="fas fa-layer-group transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-2xl">
+        Delta-Based Updates
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
+        Optimizes transmission by only sending the conversation "delta"—the new messages after the cache—drastically reducing input token costs.
+       </p>
+      </div>
+     </div>
+     <!-- Maintenance -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+        <i class="fas fa-sync-alt transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-2xl">
+        Dynamic Maintenance
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
+        Monitors cache TTL (Time To Live) and automatically extends it during active multi-agent execution, preventing expiration mid-task.
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="py-24 relative overflow-hidden z-10" id="caching">
+   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
+   </div>
+   <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 gs-reveal">
+     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
+      Smart Context
+      <span class="text-gradient">
+       Caching
+      </span>
+     </h2>
+     <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
+      Optimizing cognitive throughput through high-performance persistent context management.
+     </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr mt-12">
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
+        <i class="fas fa-fingerprint transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-3xl">
+        Profile Fingerprinting
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+        Every request personality—defined by model, instructions, and toolsets—is hashed into a unique profile. This ensures zero cross-contamination between different specialized agents.
+       </p>
+      </div>
+     </div>
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+        <i class="fas fa-share-alt transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-3xl">
+        Intelligent Reuse
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+        The engine identifies the "best prefix entry" from a global registry, allowing multiple sub-agents to share context or reuse cached history across conversation turns to minimize redundant processing.
+       </p>
+      </div>
+     </div>
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
+        <i class="fas fa-compress-arrows-alt transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-3xl">
+        Delta Resolution
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+        Instead of re-sending entire histories, EnGem identifies the precise delta between the cache and the current state, streaming only the new signals to maximize speed and efficiency.
+       </p>
+      </div>
+     </div>
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
+        <i class="fas fa-sync transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-3xl">
+        Dynamic TTL
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+        Caches are automatically monitored and refreshed during active cycles. To prevent mid-task expiration, the system proactively updates "Time-To-Live" parameters based on usage patterns.
        </p>
       </div>
      </div>
