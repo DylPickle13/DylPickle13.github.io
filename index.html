@@ -37,7 +37,7 @@
   </script>
   <style>
    body { background-color: #030305; color: #fff; overflow-x: hidden; line-height: 1.7; }
-        
+
         /* Modern UI Patterns: Glassmorphism */
         .glass-panel {
             background: rgba(20, 20, 25, 0.35);
@@ -52,10 +52,10 @@
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .text-gradient { background: linear-gradient(135deg, #00e5ff, #c24cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .bg-gradient-custom { background: linear-gradient(135deg, #00e5ff, #c24cf6); }
-        
+
         /* Scanlines */
         body::after {
             content: " ";
@@ -67,9 +67,9 @@
             background-size: 100% 2px, 3px 100%;
             pointer-events: none;
         }
-        
+
         #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        
+
         /* Advanced Feature Cards */
         .feature-card {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -94,9 +94,9 @@
             box-shadow: 0 15px 35px -10px rgba(0,229,255,0.4); 
             z-index: 20; 
         }
-        
+
         .docs-sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.2) transparent; }
-        
+
         .terminal-window {
             border: 1px solid rgba(0,229,255,0.3);
             box-shadow: 0 0 30px rgba(0,229,255,0.15);
@@ -111,7 +111,7 @@
             margin-left: 4px;
         }
         @keyframes blink { 50% { opacity: 0; } }
-        
+
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
@@ -132,7 +132,7 @@
         @keyframes dash {
             to { stroke-dashoffset: 0; }
         }
-        
+
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -146,7 +146,7 @@
             0% { transform: translateY(0) scale(1); }
             100% { transform: translateY(-40px) scale(1.15); }
         }
-        
+
         .mobile-select-nav {
             -webkit-appearance: none;
             appearance: none;
@@ -155,7 +155,7 @@
             background-position: right 1rem top 50%;
             background-size: 0.65rem auto;
         }
-    
+
         .prose h1 { color: #fff; margin-bottom: 1.5rem; font-family: 'Space Grotesk', sans-serif; }
         .prose h2 { color: #00e5ff; margin-top: 2rem; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; }
         .prose h3 { color: #c24cf6; margin-top: 1.5rem; margin-bottom: 0.75rem; }
@@ -258,9 +258,7 @@
      <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#caching">
       CACHING
      </a>
-     <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#smart-caching">
-      CACHING
-     </a>
+
      <a class="nav-link hover:text-accent-cyan transition-colors p-2" href="#contact">
       CONTACT
      </a>
@@ -289,9 +287,7 @@
      <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#caching">
       CACHING
      </a>
-     <a class="hover:text-accent-cyan mobile-link block py-3 border-b border-white/5 text-lg" href="#smart-caching">
-      CACHING
-     </a>
+
      <a class="hover:text-accent-cyan mobile-link block py-3 text-lg" href="#contact">
       CONTACT
      </a>
@@ -620,100 +616,7 @@
     </div>
    </div>
   </section>
-  <section class="py-24 relative overflow-hidden z-10" id="smart-caching">
-   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
-   </div>
-   <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-16 gs-reveal">
-     <h2 class="font-display font-bold mb-4 text-6xl md:text-8xl">
-      Smart Context
-      <span class="text-gradient">
-       Caching
-      </span>
-     </h2>
-     <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
-      Optimizing performance and reducing costs through an intelligent multi-layered context lifecycle.
-     </p>
-    </div>
-    <div class="grid grid-cols-1 gap-8 auto-rows-fr mt-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-     <!-- Profile Creation -->
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-fingerprint transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-2xl">
-        Profile Creation
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
-        Generates a unique cryptographic fingerprint from model parameters, system instructions, and tool definitions to ensure perfect context isolation.
-       </p>
-      </div>
-     </div>
-     <!-- Intelligent Lookup -->
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
-        <i class="fas fa-search transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-2xl">
-        Intelligent Lookup
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
-        Queries local and global registries for the "best prefix entry," identifying existing caches that match the current conversation history.
-       </p>
-      </div>
-     </div>
-     <!-- Cacheability Checks -->
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
-        <i class="fas fa-tasks transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-2xl">
-        Cacheability Checks
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
-        Calculates token counts against model-specific thresholds (e.g., 1024-4096 tokens) to ensure caching only occurs when operationally beneficial.
-       </p>
-      </div>
-     </div>
-     <!-- Delta Updates -->
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
-        <i class="fas fa-layer-group transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-2xl">
-        Delta-Based Updates
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
-        Optimizes transmission by only sending the conversation "delta"—the new messages after the cache—drastically reducing input token costs.
-       </p>
-      </div>
-     </div>
-     <!-- Maintenance -->
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-sync-alt transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-2xl">
-        Dynamic Maintenance
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-sm mt-auto">
-        Monitors cache TTL (Time To Live) and automatically extends it during active multi-agent execution, preventing expiration mid-task.
-       </p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
+
   <section class="py-24 relative overflow-hidden z-10" id="caching">
    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent">
    </div>
@@ -726,27 +629,14 @@
       </span>
      </h2>
      <p class="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
-      Optimizing cognitive throughput through high-performance persistent context management.
+      High-performance persistent context management leveraging Gemini's caching API and intelligent multi-layered lifecycle.
      </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr mt-12">
+     <!-- Card 1: Prefix Reuse -->
      <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
       <div class="feature-content flex-grow flex flex-col z-10">
        <div class="w-16 h-16 rounded-2xl bg-accent-cyan/10 flex items-center justify-center mb-6 text-accent-cyan text-3xl group-hover:bg-accent-cyan/20 transition-colors duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-accent-cyan/20">
-        <i class="fas fa-fingerprint transform transition-transform group-hover:scale-110">
-        </i>
-       </div>
-       <h3 class="font-mono font-bold mb-3 text-3xl">
-        Profile Fingerprinting
-       </h3>
-       <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Every request personality—defined by model, instructions, and toolsets—is hashed into a unique profile. This ensures zero cross-contamination between different specialized agents.
-       </p>
-      </div>
-     </div>
-     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
-      <div class="feature-content flex-grow flex flex-col z-10">
-       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
         <i class="fas fa-share-alt transform transition-transform group-hover:scale-110">
         </i>
        </div>
@@ -754,41 +644,59 @@
         Intelligent Reuse
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        The engine identifies the "best prefix entry" from a global registry, allowing multiple sub-agents to share context or reuse cached history across conversation turns to minimize redundant processing.
+        Automatically identifies the "best prefix entry" from a global registry, allowing multiple sub-agents to share context or reuse cached history to eliminate redundant uploads.
        </p>
       </div>
      </div>
+     <!-- Card 2: Dynamic Thresholds -->
+     <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
+      <div class="feature-content flex-grow flex flex-col z-10">
+       <div class="w-16 h-16 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 text-accent-purple text-3xl group-hover:bg-accent-purple/20 transition-colors duration-300 shadow-[0_0_20px_rgba(194,76,246,0.3)] border border-accent-purple/20">
+        <i class="fas fa-tachometer-alt transform transition-transform group-hover:scale-110">
+        </i>
+       </div>
+       <h3 class="font-mono font-bold mb-3 text-3xl">
+        Smart Thresholds
+       </h3>
+       <p class="text-gray-300 leading-relaxed text-base mt-auto">
+        Enforces model-specific triggers (1,024 for Flash, 4,096 for Pro) based on precise token counts and length estimates to ensure optimal performance and cost-efficiency.
+       </p>
+      </div>
+     </div>
+     <!-- Card 3: TTL Management -->
      <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
       <div class="feature-content flex-grow flex flex-col z-10">
        <div class="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6 text-accent-emerald text-3xl group-hover:bg-accent-emerald/20 transition-colors duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-accent-emerald/20">
-        <i class="fas fa-compress-arrows-alt transform transition-transform group-hover:scale-110">
+        <i class="fas fa-history transform transition-transform group-hover:scale-110">
         </i>
        </div>
        <h3 class="font-mono font-bold mb-3 text-3xl">
-        Delta Resolution
+        Lifecycle TTL
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Instead of re-sending entire histories, EnGem identifies the precise delta between the cache and the current state, streaming only the new signals to maximize speed and efficiency.
+        Maintains context via a 15-minute Time-To-Live with proactive, usage-based auto-refreshes that prevent expiration during active conversation bursts.
        </p>
       </div>
      </div>
+     <!-- Card 4: Parallel Pre-warming -->
      <div class="feature-card glass-panel p-8 flex flex-col h-full z-10 group gs-reveal">
       <div class="feature-content flex-grow flex flex-col z-10">
        <div class="w-16 h-16 rounded-2xl bg-accent-amber/10 flex items-center justify-center mb-6 text-accent-amber text-3xl group-hover:bg-accent-amber/20 transition-colors duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] border border-accent-amber/20">
-        <i class="fas fa-sync transform transition-transform group-hover:scale-110">
+        <i class="fas fa-fire transform transition-transform group-hover:scale-110">
         </i>
        </div>
        <h3 class="font-mono font-bold mb-3 text-3xl">
-        Dynamic TTL
+        Parallel Pre-warm
        </h3>
        <p class="text-gray-300 leading-relaxed text-base mt-auto">
-        Caches are automatically monitored and refreshed during active cycles. To prevent mid-task expiration, the system proactively updates "Time-To-Live" parameters based on usage patterns.
+        Minimizes latency by pre-generating and warming cache profiles for sub-agents executing in parallel, ensuring immediate responsiveness across the entire multi-agent pipeline.
        </p>
       </div>
      </div>
     </div>
    </div>
   </section>
+
   <!-- Docs Section -->
   <section class="relative z-10" id="docs">
   </section>
@@ -877,11 +785,11 @@
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const links = document.querySelectorAll('.mobile-link');
-    
+
     btn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
-    
+
     links.forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.add('hidden');
@@ -890,7 +798,7 @@
 
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
-    
+
     gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
         gsap.fromTo(elem, 
             { y: 50, opacity: 0, scale: 0.98 }, 
@@ -949,10 +857,10 @@
         "[VISION] High-fidelity analysis complete.",
         "[ENGEM] System ready. Intelligence Accelerated."
     ];
-    
+
     const terminalContent = document.getElementById('terminal-content');
     let lineIndex = 0;
-    
+
     function typeLine(line, callback) {
         const lineElem = document.createElement('div');
         const isCommand = line.startsWith('>');
@@ -960,15 +868,15 @@
         if (line.startsWith('[SYS]')) lineElem.classList.add('text-green-400');
         if (line.startsWith('[LLM]')) lineElem.classList.add('text-accent-purple');
         if (line.startsWith('[MANAGER]')) lineElem.classList.add('text-yellow-400');
-        
+
         terminalContent.appendChild(lineElem);
-        
+
         // Remove cursor from previous lines
         Array.from(terminalContent.children).slice(0, -1).forEach(child => child.classList.remove('blinking-cursor'));
-        
+
         let charIndex = 0;
         const speed = isCommand ? 35 : 12; // Faster typing
-        
+
         const interval = setInterval(() => {
             lineElem.textContent = line.substring(0, charIndex + 1);
             charIndex++;
@@ -979,7 +887,7 @@
             }
         }, speed);
     }
-    
+
     function startTerminal() {
         if (lineIndex < terminalLines.length) {
             typeLine(terminalLines[lineIndex], () => {
@@ -990,10 +898,9 @@
             Array.from(terminalContent.children).forEach(child => child.classList.remove('blinking-cursor'));
         }
     }
-    
+
     setTimeout(startTerminal, 1000);
 
-    
     // Terminal Input Interactive Effect
     const termInput = document.getElementById('terminal-input');
     if(termInput) {
@@ -1001,16 +908,16 @@
             if(e.key === 'Enter' && termInput.value.trim() !== '') {
                 const val = termInput.value;
                 termInput.value = '';
-                
+
                 const lineElem = document.createElement('div');
                 lineElem.className = 'text-accent-cyan mt-3 font-bold';
                 lineElem.textContent = '> ' + val;
                 terminalContent.appendChild(lineElem);
-                
+
                 setTimeout(() => {
                     const resElem = document.createElement('div');
                     resElem.className = 'text-gray-400 mt-2 whitespace-pre-wrap';
-                    
+
                     const cmd = val.toLowerCase().trim();
                     let response = '';
                     if (cmd === 'help') {
@@ -1042,7 +949,7 @@
                         resElem.classList.remove('text-gray-400');
                         resElem.classList.add('text-red-400');
                     }
-                    
+
                     resElem.textContent = response;
                     terminalContent.appendChild(resElem);
                     terminalContent.scrollTop = terminalContent.scrollHeight;
@@ -1050,7 +957,6 @@
             }
         });
     }
-
 
     // Canvas Particle Network
     const canvas = document.getElementById('hero-canvas');
@@ -1062,7 +968,7 @@
         height = canvas.height = window.innerHeight;
         particles = [];
         const numParticles = Math.floor(window.innerWidth / 18); // Slightly less dense for cleaner look
-        
+
         for (let i = 0; i < numParticles; i++) {
             particles.push({
                 x: Math.random() * width,
@@ -1076,20 +982,20 @@
 
     function drawCanvas() {
         ctx.clearRect(0, 0, width, height);
-        
+
         ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
-            
+
             if (p.x < 0 || p.x > width) p.vx *= -1;
             if (p.y < 0 || p.y > height) p.vy *= -1;
-            
+
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             ctx.fill();
         });
-        
+
         ctx.strokeStyle = 'rgba(194, 76, 246, 0.15)';
         ctx.lineWidth = 0.5;
         for (let i = 0; i < particles.length; i++) {
@@ -1097,7 +1003,7 @@
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (dist < 130) {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
@@ -1106,7 +1012,7 @@
                 }
             }
         }
-        
+
         requestAnimationFrame(drawCanvas);
     }
 
@@ -1133,7 +1039,7 @@
                 li.classList.add("text-accent-cyan");
             }
         });
-        
+
         // Docs Sidebar & Mobile Select highlighting
         if(current === 'docs') {
             const docSections = document.querySelectorAll("#docs .doc-section");
@@ -1144,7 +1050,7 @@
                     docCurrent = "#" + section.getAttribute("id");
                 }
             });
-            
+
             // Update Sidebar
             document.querySelectorAll("#docs-nav a").forEach(li => {
                 li.classList.remove("text-accent-cyan", "border-accent-cyan");
